@@ -8,8 +8,8 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.example.kimhy.open_source_project_naver_price_compare"
-        minSdkVersion 21
-        targetSdkVersion 27
+        minSdkVersion 19
+        targetSdkVersion 21
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"

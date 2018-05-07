@@ -11,25 +11,25 @@ public class Naver_API {
 
     public static StringBuilder sb;//
 
-    static String getString(String input, String data) // API에서 필요한 문자 자르기. http://wowon.tistory.com/122
+    static String getString(String input, String data) // API���� �ʿ��� ���� �ڸ���.
     {
         String[] dataSplit = data.split("{" + input + "}");
         String[] dataSplit2 = dataSplit[1].split("\"" + input + "\"");
         return dataSplit2[0];
     }
 
-    public static void Naver_Search_API(String search_keyword) {
+    public static void Naver_Search_API() {
         // TODO Auto-generated method stub
-        String clientId = "VgVlGnfsifjWb55DM4s_";// app clinet idkey
-        String clientSecret = "uw7_JLBNnh"; //app clinet secret key"
-        int display = 2; //검색결과갯수. 최대100개
-/*
+        String clientId = "VgVlGnfsifjWb55DM4s_";
+        String clientSecret = "uw7_JLBNnh";
+        int display = 2;
+
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter an search keyword : ");//consol input keyword
+        System.out.print("Enter an search keyword : ");
         String search = sc.next();
-*/
+
         try {
-            String text = URLEncoder.encode(search_keyword, "UTF-8");
+            String text = URLEncoder.encode(search, "UTF-8");
             String apiURL = "https://openapi.naver.com/v1/search/shop?query=" + text + "&display=" + display + "&";
             URL url = new URL(apiURL);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -87,8 +87,8 @@ public class Naver_API {
             }
             System.out.println(sb);
             System.out.println("----------------------------");
-            System.out.println("first title : " + title[0]);
-            System.out.println("second title : " + title[1]);
+            System.out.println("ù��° Ÿ��Ʋ : " + title[0]);
+            System.out.println("�ι�° Ÿ��Ʋ : " + title[1]);
         } catch (Exception e) {
             System.out.println(e);
         }

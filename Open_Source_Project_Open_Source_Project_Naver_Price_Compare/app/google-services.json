@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "362285449368",
+    "firebase_url": "https://swprojectfix.firebaseio.com",
+    "project_id": "swprojectfix",
+    "storage_bucket": "swprojectfix.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:362285449368:android:d9c61d3d5434186f",
+        "android_client_info": {
+          "package_name": "com.example.kimhy.open_source_project_naver_price_compare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "362285449368-v76fb041031ope4frisjghv1kqvemrnt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kimhy.open_source_project_naver_price_compare",
+            "certificate_hash": "314ac1bf5c68cab0f1c24885a0f8303f81caebf2"
+          }
+        },
+        {
+          "client_id": "362285449368-dmi4q8jpphufve5k9t30s4qi5lpc74rt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAd2Zvlbxuizy7aRgZ-qc0erNWBU5w19S0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "362285449368-dmi4q8jpphufve5k9t30s4qi5lpc74rt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

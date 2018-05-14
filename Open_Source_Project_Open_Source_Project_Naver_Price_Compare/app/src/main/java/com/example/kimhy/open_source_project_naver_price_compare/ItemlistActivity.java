@@ -10,5 +10,6 @@ public class ItemlistActivity extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.itemlist);
+        // Set up the itemlist form.
     }
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Open_Source_Project_Naver_Price_Compare</string>
+    <string name="app_name">NAVER 가격 비교</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>

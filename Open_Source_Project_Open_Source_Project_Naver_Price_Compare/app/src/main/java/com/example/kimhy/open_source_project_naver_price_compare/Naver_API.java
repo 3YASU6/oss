@@ -7,7 +7,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
-public class Naver_API {
+public class Naver_API
+{
 
 
     public static StringBuilder sb;//
@@ -19,7 +20,8 @@ public class Naver_API {
         return dataSplit2[0];
     }
 
-    public static StringBuilder Naver_Search_API(String search_keyword) {
+    public static StringBuilder Naver_Search_API(String search_keyword)
+    {
 
         // TODO Auto-generated method stub
         String clientId = "VgVlGnfsifjWb55DM4s_";
@@ -30,7 +32,8 @@ public class Naver_API {
         System.out.print("Enter an search keyword : ");//consol input keyword
         String search = sc.next();
     */
-        try {
+        try
+            {
             String text = URLEncoder.encode(search_keyword, "UTF-8");
             String apiURL = "https://openapi.naver.com/v1/search/shop?query=" + text + "&display=" + display + "&";
             URL url = new URL(apiURL);
@@ -40,17 +43,21 @@ public class Naver_API {
             con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
             int responseCode = con.getResponseCode();
             BufferedReader br;
-            if (responseCode == 200) {
+            if (responseCode == 200)
+                {
                 br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            } else {
+                }
+            else
+                {
                 br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
-            }
+                }
             sb = new StringBuilder();
             String line;
 
-            while ((line = br.readLine()) != null) {
+            while ((line = br.readLine()) != null)
+                {
                 sb.append(line + "\n");
-            }
+                }
 
             br.close();
             con.disconnect();
@@ -67,34 +74,51 @@ public class Naver_API {
             String[] mapx = new String[display];
             String[] mapy = new String[display];
             int k = 0;
-            for (int i = 0; i < array.length; i++) {
+            for (int i = 0; i < array.length; i++)
+                {
                 if (array[i].equals("title"))
+                    {
                     title[k] = array[i + 2];
+                    }
                 if (array[i].equals("link"))
+                    {
                     link[k] = array[i + 2];
+                    }
                 if (array[i].equals("category"))
+                    {
                     category[k] = array[i + 2];
+                    }
                 if (array[i].equals("description"))
+                    {
                     description[k] = array[i + 2];
+                    }
                 if (array[i].equals("telephone"))
+                    {
                     telephone[k] = array[i + 2];
+                    }
                 if (array[i].equals("address"))
+                    {
                     address[k] = array[i + 2];
+                    }
                 if (array[i].equals("mapx"))
+                    {
                     mapx[k] = array[i + 2];
-                if (array[i].equals("mapy")) {
+                    }
+                if (array[i].equals("mapy"))
+                    {
                     mapy[k] = array[i + 2];
                     k++;
+                    }
                 }
-            }
             System.out.println(sb);
             System.out.println("----------------------------");
             System.out.println("first title : " + title[0]);
             System.out.println("second title : " + title[1]);
-        } catch (Exception e) {
+            } catch (Exception e)
+            {
             System.out.println(e);
-        }
-            return sb;//test 후 삭제 혹은 수정할 것
+            }
+        return sb;//test 후 삭제 혹은 수정할 것
     }
 
 }

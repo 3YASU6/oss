@@ -3,9 +3,8 @@ package com.example.kimhy.open_source_project_naver_price_compare
 /*
 
 NAVER API KEY
-Client ID
-VgVlGnfsifjWb55DM4s_
-Client Secret
+Client ID : VgVlGnfsifjWb55DM4s_
+Client : Secret
 채팅방 참고
 
 

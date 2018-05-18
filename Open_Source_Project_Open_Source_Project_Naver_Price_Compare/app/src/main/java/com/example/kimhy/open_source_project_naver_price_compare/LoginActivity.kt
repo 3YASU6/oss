@@ -32,6 +32,9 @@ import android.widget.TextView
 
 import java.util.ArrayList
 import android.Manifest.permission.READ_CONTACTS
+import android.content.Intent
+import android.support.v7.app.AlertDialog
+import android.widget.Toast
 
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -145,6 +148,24 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             mAuthTask = UserLoginTask(emailStr, passwordStr)
             mAuthTask!!.execute(null as Void?)
         }
+
+        // 화면 전이 확인 용 다이어로그
+        val builder = AlertDialog.Builder(this@LoginActivity)
+        // Set the alert dialog title
+        builder.setTitle("Itemlist")
+        // Display a message on alert dialog
+        builder.setMessage("This is Itemlist")
+        // Set a positive button and its click listener on alert dialog
+        builder.setPositiveButton("YES") { dialog, which ->
+            // Do something when user press the positive button
+            Toast.makeText(applicationContext, "Ok", Toast.LENGTH_SHORT).show()
+
+        }
+        // 화명 전이 부분
+        val intent = Intent(this, ItemlistActivity::class.java)
+        startActivity(intent)
+
+
     }
 
     private fun isEmailValid(email: String): Boolean {

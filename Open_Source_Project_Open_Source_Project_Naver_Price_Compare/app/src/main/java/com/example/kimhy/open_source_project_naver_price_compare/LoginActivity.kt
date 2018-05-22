@@ -161,7 +161,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             Toast.makeText(applicationContext, "Ok", Toast.LENGTH_SHORT).show()
 
         }
-        // 화명 전이 부분
+        // 화면 전이 부분
         val intent = Intent(this, ItemlistActivity::class.java)
         startActivity(intent)
 

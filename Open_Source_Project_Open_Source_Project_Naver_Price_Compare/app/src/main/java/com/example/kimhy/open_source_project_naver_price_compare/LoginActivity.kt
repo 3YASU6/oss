@@ -171,7 +171,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
 
     private fun isEmailValid(email: String): Boolean {
         //TODO: Replace this with your own logic
-        return email.contains("@")
+       return email.contains("@")
     }
 
     private fun isPasswordValid(password: String): Boolean {

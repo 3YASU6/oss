@@ -1,4 +1,4 @@
-package com.example.kimhy.open_source_project_open_source_project_naver_price_compare
+package com.example.kimhy.open_source_project_naver_price_compare
 
 import org.junit.Test
 

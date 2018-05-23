@@ -4,10 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/liner"
     android:orientation="vertical"
-    tools:context=".itemlist">
+    tools:context=".ItemList">
 
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="446dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="195dp"
+        android:layout_height="63dp"
+        android:onClick="onClick"
+        android:text="@string/search" />
 </LinearLayout>

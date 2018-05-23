@@ -9,6 +9,53 @@ import java.net.URLEncoder;
 
 public class Naver_API
 {
+    public static String clientId = "VgVlGnfsifjWb55DM4s_";//애플리케이션 클라이언트 아이디값";
+    public static String clientSecret = "uw7_JLBNnh";//애플리케이션 클라이언트 시크릿값";
+    protected StringBuffer response = new StringBuffer();
+    public String naver_API_Call() //https://developers.naver.com/docs/search/blog/
+    {
+
+        try
+            {
+            String text = URLEncoder.encode("그린팩토리", "UTF-8");
+            String apiURL = "https://openapi.naver.com/v1/search/blog?query=" + text; // json 결과
+            //String apiURL = "https://openapi.naver.com/v1/search/blog.xml?query="+ text; // xml 결과
+            URL url = new URL(apiURL);
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+            con.setRequestProperty("X-Naver-Client-Id", clientId);
+            con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
+            int responseCode = con.getResponseCode();
+            BufferedReader br;
+            if (responseCode == 200)
+                { // 정상 호출
+                br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                }
+            else
+                {  // 에러 발생
+                br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+                }
+            String inputLine;
+            //StringBuffer response = new StringBuffer();
+            while ((inputLine = br.readLine()) != null)
+                {
+                response.append(inputLine);
+                }
+            br.close();
+            //테스트 후 삭제
+            System.out.println(response.toString());//받은 값을 출력함
+
+            }
+        catch (Exception e)
+            {
+            System.out.println(e);
+            }
+        return response.toString(); //테스트 후 수정할것
+    }
+}
+/*
+public class Naver_API
+{
 
 
     public static StringBuilder sb;//
@@ -27,11 +74,11 @@ public class Naver_API
         String clientId = "VgVlGnfsifjWb55DM4s_";
         String clientSecret = "uw7_JLBNnh";
         int display = 2;
-    /*
+
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter an search keyword : ");//consol input keyword
         String search = sc.next();
-    */
+
         try
             {
             String text = URLEncoder.encode(search_keyword, "UTF-8");
@@ -122,3 +169,4 @@ public class Naver_API
     }
 
 }
+*/

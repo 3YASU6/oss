@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.kimhy.open_source_project_naver_price_compare">
-
+    package="com.example.kimhy.open_source_project_open_source_project_naver_price_compare">
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
@@ -23,13 +22,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".itemlist" />
-        <activity
-            android:name=".graphActivity"
-            android:label="@string/title_activity_graph"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".GraphActivity" />
-        <activity android:name=".ItemSearch"></activity>
     </application>
 
 </manifest>

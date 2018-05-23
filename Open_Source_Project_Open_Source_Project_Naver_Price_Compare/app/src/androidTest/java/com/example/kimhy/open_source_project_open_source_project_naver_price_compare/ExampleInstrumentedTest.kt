@@ -1,4 +1,4 @@
-package com.example.kimhy.open_source_project_naver_price_compare
+package com.example.kimhy.open_source_project_open_source_project_naver_price_compare
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getTargetContext()
-        assertEquals("com.example.kimhy.open_source_project_naver_price_compare", appContext.packageName)
+        assertEquals("com.example.kimhy.open_source_project_open_source_project_naver_price_compare", appContext.packageName)
     }
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NAVER 가격 비교</string>
+    <string name="app_name">Open_Source_Project_Open_Source_Project_Naver_Price_Compare</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -13,10 +13,4 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-<<<<<<< HEAD
-    <string name="todo">TODO</string>
-    <string name="search">Search</string>
-=======
-    <string name="title_activity_graph">graphActivity</string>
->>>>>>> 688ed8e9d19127c31ccd290a1cd0d0c3467926e8
 </resources>

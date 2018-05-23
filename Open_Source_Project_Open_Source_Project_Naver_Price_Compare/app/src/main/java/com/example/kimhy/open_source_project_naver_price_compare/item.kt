@@ -47,7 +47,7 @@ class NewsDataResponse(
 //
 //}
 
-//class item : AppCompatActivity(), LoaderManager.LoaderCallbacks<Cursor> {
+//class Item : AppCompatActivity(), LoaderManager.LoaderCallbacks<Cursor> {
 //    /**
 //     * Keep track of the login task to ensure we can cancel it if requested.
 //     */

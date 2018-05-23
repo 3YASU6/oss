@@ -23,7 +23,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".itemlist"></activity>
+        <activity android:name=".itemlist" />
+        <activity android:name=".GraphActivity" />
+        <activity android:name=".SearchResultListActivity" />
+        <activity android:name=".ShowMoreItemInfoActivity" />
+        <activity android:name=".ItemSearchActivity"></activity>
     </application>
 
 </manifest>

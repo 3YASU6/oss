@@ -23,6 +23,7 @@ import android.widget.TextView
 
 import java.util.ArrayList
 import android.Manifest.permission.READ_CONTACTS
+import android.content.Intent
 
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -139,6 +140,9 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             mAuthTask = UserLoginTask(emailStr, passwordStr)
             mAuthTask!!.execute(null as Void?)
         }
+
+        var mainIntent = Intent(this,MainActivity::class.java);
+        startActivity(mainIntent)
     }
 
     private fun isEmailValid(email: String): Boolean {

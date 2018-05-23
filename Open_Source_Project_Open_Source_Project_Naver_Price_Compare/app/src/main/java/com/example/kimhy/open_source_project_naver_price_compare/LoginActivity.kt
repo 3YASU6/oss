@@ -162,16 +162,17 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
 //            Toast.makeText(applicationContext, "Ok", Toast.LENGTH_SHORT).show()
 //        }
 
-        // 화면 전이 부분
-        val intent = Intent(this, itemlist::class.java)
+        // 화면 전환 부분
+        /*
+        val intent = Intent(this, ItemList::class.java)
         startActivity(intent)
-
+        */
 
     }
 
     private fun isEmailValid(email: String): Boolean {
         //TODO: Replace this with your own logic
-        return email.contains("@")
+       return email.contains("@")
     }
 
     private fun isPasswordValid(password: String): Boolean {

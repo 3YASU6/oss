@@ -13,4 +13,10 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+<<<<<<< HEAD
+    <string name="todo">TODO</string>
+    <string name="search">Search</string>
+=======
+    <string name="title_activity_graph">graphActivity</string>
+>>>>>>> 688ed8e9d19127c31ccd290a1cd0d0c3467926e8
 </resources>

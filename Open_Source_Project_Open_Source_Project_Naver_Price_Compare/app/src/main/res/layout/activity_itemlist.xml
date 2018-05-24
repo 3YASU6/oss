@@ -4,7 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/liner"
     android:orientation="vertical"
-    tools:context=".itemlist">
+    tools:context=".ItemList">
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="63dp"
+        android:onClick="onClick"
+        android:text="@string/search" />
 
     <ListView
         android:id="@+id/listView"

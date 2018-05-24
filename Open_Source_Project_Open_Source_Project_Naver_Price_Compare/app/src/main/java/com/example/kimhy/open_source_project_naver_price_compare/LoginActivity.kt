@@ -24,7 +24,6 @@ import android.os.AsyncTask
 import android.os.Build
 import android.os.Bundle
 import android.provider.ContactsContract
-import android.text.TextUtils
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.ArrayAdapter
@@ -33,9 +32,6 @@ import android.widget.TextView
 import java.util.ArrayList
 import android.Manifest.permission.READ_CONTACTS
 import android.content.Intent
-import android.support.v7.app.AlertDialog
-import android.widget.Toast
-import com.example.kimhy.open_source_project_naver_price_compare.R.layout.activity_itemlist
 
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -162,8 +158,8 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
 //            Toast.makeText(applicationContext, "Ok", Toast.LENGTH_SHORT).show()
 //        }
 
-        // 화면 전이 부분
-        val intent = Intent(this, itemlist::class.java)
+        // 화면 전환 부분
+        val intent = Intent(this, ItemList::class.java)
         startActivity(intent)
 
 

@@ -14,4 +14,5 @@
         completions."
     </string>
     <string name="search">Search</string>
+    <string name="item_add_button">item_add_button</string>
 </resources>

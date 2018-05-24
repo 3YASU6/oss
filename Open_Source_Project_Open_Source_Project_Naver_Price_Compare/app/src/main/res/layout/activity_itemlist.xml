@@ -6,13 +6,6 @@
     android:orientation="vertical"
     tools:context=".ItemList">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="63dp"
-        android:onClick="onClick"
-        android:text="@string/search" />
-
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
@@ -26,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="113dp"
         android:layout_weight="1"
-        android:contentDescription="item_add_button"
+        android:contentDescription="@string/item_add_button"
         app:srcCompat="@drawable/add" />
 
 </LinearLayout>

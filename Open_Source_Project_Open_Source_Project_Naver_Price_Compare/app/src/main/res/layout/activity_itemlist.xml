@@ -9,5 +9,17 @@
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+    </ListView>
+
+    <ImageButton
+        android:id="@+id/addButton"
+        android:layout_width="match_parent"
+        android:layout_height="113dp"
+        android:layout_weight="1"
+        android:contentDescription="item_add_button"
+        app:srcCompat="@drawable/add" />
+
 </LinearLayout>

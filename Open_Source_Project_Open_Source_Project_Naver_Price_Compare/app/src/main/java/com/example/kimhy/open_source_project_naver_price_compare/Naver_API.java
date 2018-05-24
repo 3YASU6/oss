@@ -18,8 +18,8 @@ public class Naver_API
         try
             {
             String text = URLEncoder.encode("그린팩토리", "UTF-8");
-            String apiURL = "https://openapi.naver.com/v1/search/blog?query=" + text; // json 결과
-            //String apiURL = "https://openapi.naver.com/v1/search/blog.xml?query="+ text; // xml 결과
+            String apiURL = "https://openapi.naver.com/v1/search/shop?query=" + text; // json 결과
+            //String apiURL = "https://openapi.naver.com/v1/search/shop.xml?query="+ text; // xml 결과
             URL url = new URL(apiURL);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("GET");
@@ -36,7 +36,7 @@ public class Naver_API
                 br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
                 }
             String inputLine;
-            //StringBuffer response = new StringBuffer();
+            //StringBuffer response = new StringBuffer(); 리턴값으로 사용하기 위해서 전역변수로 변경. 테스트 후 삭제여부 결정할 것
             while ((inputLine = br.readLine()) != null)
                 {
                 response.append(inputLine);

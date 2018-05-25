@@ -1,7 +1,5 @@
 package com.example.kimhy.open_source_project_naver_price_compare;
-
 import java.io.BufferedReader;
-import java.util.*;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -9,50 +7,50 @@ import java.net.URLEncoder;
 
 public class Naver_API
 {
-    public static String clientId = "VgVlGnfsifjWb55DM4s_";//애플리케이션 클라이언트 아이디값";
-    public static String clientSecret = "uw7_JLBNnh";//애플리케이션 클라이언트 시크릿값";
-    protected StringBuffer response = new StringBuffer();
-    public String naver_API_Call() //https://developers.naver.com/docs/search/blog/
-    {
 
-        try
-            {
-            String text = URLEncoder.encode("그린팩토리", "UTF-8");
-            String apiURL = "https://openapi.naver.com/v1/search/shop?query=" + text; // json 결과
+    protected final String clientId = "VgVlGnfsifjWb55DM4s_";//애플리케이션 클라이언트 아이디값";
+    protected final String clientSecret = "uw7_JLBNnh";//애플리케이션 클라이언트 시크릿값";
+    public void naver_API_Call(String keyword)
+    {
+        try {
+            String text = URLEncoder.encode(keyword, "UTF-8");
+            String apiURL = "https://openapi.naver.com/v1/search/shop?query="+ text; // json 결과
             //String apiURL = "https://openapi.naver.com/v1/search/shop.xml?query="+ text; // xml 결과
             URL url = new URL(apiURL);
-            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            HttpURLConnection con = (HttpURLConnection)url.openConnection();
             con.setRequestMethod("GET");
             con.setRequestProperty("X-Naver-Client-Id", clientId);
             con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
             int responseCode = con.getResponseCode();
             BufferedReader br;
-            if (responseCode == 200)
-                { // 정상 호출
+            if(responseCode==200) { // 정상 호출
                 br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-                }
-            else
-                {  // 에러 발생
+            } else {  // 에러 발생
                 br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
-                }
+            }
             String inputLine;
-            //StringBuffer response = new StringBuffer(); 리턴값으로 사용하기 위해서 전역변수로 변경. 테스트 후 삭제여부 결정할 것
-            while ((inputLine = br.readLine()) != null)
-                {
+            StringBuffer response = new StringBuffer();
+            while ((inputLine = br.readLine()) != null) {
                 response.append(inputLine);
-                }
+            }
             br.close();
-            //테스트 후 삭제
-            System.out.println(response.toString());//받은 값을 출력함
-
-            }
-        catch (Exception e)
-            {
+            System.out.println(response.toString());
+        } catch (Exception e) {
             System.out.println(e);
-            }
-        return response.toString(); //테스트 후 수정할것
+        }
+    }
+    public String getClientId()
+    {
+        return clientId;
+    }
+
+    public String getClientSecret()
+    {
+        return clientSecret;
     }
 }
+//var clientId = "VgVlGnfsifjWb55DM4s_"//애플리케이션 클라이언트 아이디값";
+//        var clientSecret = "uw7_JLBNnh"//애플리케이션 클라이언트 시크릿값";
 /*
 public class Naver_API
 {

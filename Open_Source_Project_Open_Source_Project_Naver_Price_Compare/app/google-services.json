@@ -15,12 +15,24 @@
       },
       "oauth_client": [
         {
+          "client_id": "362285449368-84cvfrtioeproa1q3as2pe71eu48f9nh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kimhy.open_source_project_naver_price_compare",
+            "certificate_hash": "d8969b48453a5c949b541dc919cdeeb2660940de"
+          }
+        },
+        {
           "client_id": "362285449368-v76fb041031ope4frisjghv1kqvemrnt.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.kimhy.open_source_project_naver_price_compare",
             "certificate_hash": "314ac1bf5c68cab0f1c24885a0f8303f81caebf2"
           }
+        },
+        {
+          "client_id": "362285449368-dmi4q8jpphufve5k9t30s4qi5lpc74rt.apps.googleusercontent.com",
+          "client_type": 3
         },
         {
           "client_id": "362285449368-dmi4q8jpphufve5k9t30s4qi5lpc74rt.apps.googleusercontent.com",

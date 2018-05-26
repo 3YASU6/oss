@@ -9,17 +9,19 @@
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="449dp"
         android:layout_weight="1">
 
     </ListView>
 
-    <ImageButton
+    <Button
         android:id="@+id/addButton"
         android:layout_width="match_parent"
-        android:layout_height="113dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:contentDescription="@string/item_add_button"
-        app:srcCompat="@drawable/add" />
+        android:background="#a1d5a1"
+        android:fontFamily="sans-serif"
+        android:text="추 가"
+        android:textSize="30sp" />
 
 </LinearLayout>

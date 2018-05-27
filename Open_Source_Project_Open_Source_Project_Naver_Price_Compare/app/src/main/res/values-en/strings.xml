@@ -15,5 +15,5 @@
     </string>
     <string name="search">Search</string>
     <string name="item_add_button">item_add_button</string>
-    <string name="addButton_text">추 가</string>
+    <string name="addButton_text">Add New Item</string>
 </resources>

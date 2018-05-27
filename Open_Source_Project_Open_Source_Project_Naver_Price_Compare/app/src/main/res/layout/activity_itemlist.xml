@@ -21,7 +21,7 @@
         android:layout_weight="1"
         android:background="#a1d5a1"
         android:fontFamily="sans-serif"
-        android:text="추 가"
+        android:text="@string/addButton_text"
         android:textSize="30sp" />
 
 </LinearLayout>

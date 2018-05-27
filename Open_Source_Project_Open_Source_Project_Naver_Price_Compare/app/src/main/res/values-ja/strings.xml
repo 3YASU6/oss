@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">NAVER 가격 비교</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Eメール</string>
+    <string name="prompt_password">パスワード (optional)</string>
+    <string name="action_sign_in">ログインまたは新規登録</string>
+    <string name="action_sign_in_short">ログイン</string>
+    <string name="error_invalid_email">入力されたメールアドレスが正しいか確認してください。</string>
+    <string name="error_invalid_password">パスワードが短すぎます。</string>
+    <string name="error_incorrect_password">パスワードが正しくありません。</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Eメールの完了を提供するには連絡先権限が必要です。"
+    </string>
+    <string name="search">Search</string>
+    <string name="item_add_button">item_add_button</string>
+    <string name="addButton_text">追 加</string>
+</resources>

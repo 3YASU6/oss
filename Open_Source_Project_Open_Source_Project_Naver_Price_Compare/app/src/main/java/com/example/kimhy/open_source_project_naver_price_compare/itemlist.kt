@@ -37,10 +37,8 @@ class ItemList : AppCompatActivity() {
 
         }
 
-        val hoge = "yanosuhi"
         // add button click시 발생하는 event를 추가
         addButton.setOnClickListener {
-            //Log.v(hoge, "clicked")
 
             // activity_graph 화면에 이동
             val intent = Intent(this, ItemSearchActivity::class.java)

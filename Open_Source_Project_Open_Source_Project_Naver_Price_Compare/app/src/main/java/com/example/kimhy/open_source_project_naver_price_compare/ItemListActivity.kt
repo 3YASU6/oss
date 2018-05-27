@@ -16,7 +16,7 @@ class ItemListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_item_list)
 
-    /*    val thisView = findViewById(R.id.listView) as ListView
+        val thisView = findViewById(R.id.listView) as ListView
         val data_array_items = Array(20, { i -> "Title-$i" })
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
         thisView.adapter = adapter
@@ -34,10 +34,10 @@ class ItemListActivity : AppCompatActivity() {
         }
 
         // add button click시 발생하는 event를 추가
-        itemButton.setOnClickListener {
+        addButton.setOnClickListener {
             val intent = Intent(this, ItemSearchActivity::class.java)
             startActivity(intent)
 
-        }*/
+        }
     }
 }

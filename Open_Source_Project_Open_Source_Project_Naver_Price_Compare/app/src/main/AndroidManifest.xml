@@ -26,7 +26,7 @@
         <activity android:name=".SearchResultListActivity" />
         <activity android:name=".ShowMoreItemInfoActivity" />
         <activity android:name=".ItemSearchActivity" />
-        <activity android:name=".ItemListActivity"/>
+        <activity android:name=".ItemListActivity" />
     </application>
 
 </manifest><!--

@@ -16,13 +16,13 @@ class ItemListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_item_list)
 
-        val listView = findViewById(R.id.listView) as ListView
+    /*    val thisView = findViewById(R.id.listView) as ListView
         val data_array_items = Array(20, { i -> "Title-$i" })
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
-        listView.adapter = adapter
+        thisView.adapter = adapter
 
         // item click시 발생하는 event를 추가
-        listView.setOnItemClickListener { _, view, _, _ ->
+        thisView.setOnItemClickListener { _, view, _, _ ->
             // Toast 표시
             val textView = view.findViewById<TextView>(android.R.id.text1)
             Toast.makeText(this, "Clicked: ${textView.text}", Toast.LENGTH_SHORT).show()
@@ -35,10 +35,9 @@ class ItemListActivity : AppCompatActivity() {
 
         // add button click시 발생하는 event를 추가
         itemButton.setOnClickListener {
-            // activity_graph 화면에 이동
             val intent = Intent(this, ItemSearchActivity::class.java)
             startActivity(intent)
 
-        }
+        }*/
     }
 }

@@ -16,4 +16,6 @@
     <string name="search">Search</string>
     <string name="item_add_button">item_add_button</string>
     <string name="addButton_text">추 가</string>
+    <string name="wish_text">WISH LIST 가격 변동 정보</string>
+    <string name="search_item_more_info">검색결과 상품의 상세 정보</string>
 </resources>

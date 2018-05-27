@@ -159,8 +159,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
 //        }
 
         // 화면 전환 부분
-
-        val mainIntent = Intent(this, R.layout.activity_itemlist::class.java)
+        val mainIntent = Intent(this, ItemListActivity::class.java)
         startActivity(mainIntent)
 
 

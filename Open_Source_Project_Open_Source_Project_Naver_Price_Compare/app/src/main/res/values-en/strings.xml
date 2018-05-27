@@ -16,4 +16,6 @@
     <string name="search">Search</string>
     <string name="item_add_button">item_add_button</string>
     <string name="addButton_text">Add New Item</string>
+    <string name="wish_text">Show users wish list Graph and Info</string>
+    <string name="search_item_more_info">Show more information of the item of result of search</string>
 </resources>

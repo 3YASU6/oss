@@ -18,7 +18,7 @@ class ItemSearchActivity : AppCompatActivity() {
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
         listView.adapter = adapter
 
-        searchListView.setOnItemClickListener { adapterView, view, position, id ->
+        searchListView.setOnItemClickListener { _, _, _, _ ->
 
             val intent = Intent(this, ShowMoreItemInfoActivity::class.java)
             startActivity(intent)

@@ -24,5 +24,11 @@ class ItemSearchActivity : AppCompatActivity() {
             startActivity(intent)
 
         }
+
+       /* override fun onQueryTextSubmit(boolean: Boolean)
+        {
+
+        }
+        */
     }
 }

@@ -5,7 +5,9 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import android.widget.SearchView
 import kotlinx.android.synthetic.main.activity_item_search.*
+import kotlinx.android.synthetic.main.activity_item_search.view.*
 
 class ItemSearchActivity : AppCompatActivity() {
 
@@ -18,6 +20,27 @@ class ItemSearchActivity : AppCompatActivity() {
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
         listView.adapter = adapter
 
+        //검색창을 누르면 보이는 값 입력시 사라짐
+        searchView.setQueryHint("검색어를 입력하세요")
+
+        //https://stackoverflow.com/questions/47303819/kotlin-how-to-get-searchview-submit
+        /*
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener() {
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                return false
+            }
+
+            override fun onQueryTextSubmit(query: String): Boolean {
+                //Task HERE
+                return false
+            }
+
+        })
+        */
+
+
+
         searchListView.setOnItemClickListener { _, _, _, _ ->
 
             val intent = Intent(this, ShowMoreItemInfoActivity::class.java)
@@ -25,10 +48,6 @@ class ItemSearchActivity : AppCompatActivity() {
 
         }
 
-       /* override fun onQueryTextSubmit(boolean: Boolean)
-        {
 
-        }
-        */
     }
 }

@@ -24,8 +24,8 @@ class ItemSearchActivity : AppCompatActivity() {
         searchView.setQueryHint("검색어를 입력하세요")
 
         //https://stackoverflow.com/questions/47303819/kotlin-how-to-get-searchview-submit
-        /*
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener() {
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextChange(newText: String): Boolean {
                 return false
@@ -37,7 +37,7 @@ class ItemSearchActivity : AppCompatActivity() {
             }
 
         })
-        */
+
 
 
 

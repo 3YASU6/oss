@@ -10,7 +10,12 @@ public class Naver_API
 
     protected final String clientId = "VgVlGnfsifjWb55DM4s_";//애플리케이션 클라이언트 아이디값";
     protected final String clientSecret = "uw7_JLBNnh";//애플리케이션 클라이언트 시크릿값";
-    public void naver_API_Call(String keyword)
+    private String returnString = null;
+    public Naver_API()
+    {
+
+    }
+    public String naver_API_Call(String keyword)
     {
         try {
             String text = URLEncoder.encode(keyword, "UTF-8");
@@ -30,14 +35,21 @@ public class Naver_API
             }
             String inputLine;
             StringBuffer response = new StringBuffer();
-            while ((inputLine = br.readLine()) != null) {
+            while ((inputLine = br.readLine()) != null)
+            {
                 response.append(inputLine);
             }
             br.close();
-            System.out.println(response.toString());
-        } catch (Exception e) {
+
+            returnString = response.toString();
+            //System.out.println(response.toString());
+        }
+        catch (Exception e)
+        {
             System.out.println(e);
         }
+        return returnString;
+
     }
     public String getClientId()
     {

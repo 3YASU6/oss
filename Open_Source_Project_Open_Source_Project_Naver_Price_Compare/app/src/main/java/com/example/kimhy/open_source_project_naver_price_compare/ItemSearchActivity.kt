@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.activity_item_search.*
 import kotlinx.android.synthetic.main.activity_item_search.view.*
 
 class ItemSearchActivity : AppCompatActivity() {
-
+//NetworkOnMainThreadException Thread로 돌릴 것
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_item_search)

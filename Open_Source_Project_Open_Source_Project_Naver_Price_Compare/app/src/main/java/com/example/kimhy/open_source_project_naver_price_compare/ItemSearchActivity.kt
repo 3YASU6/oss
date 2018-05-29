@@ -28,11 +28,17 @@ class ItemSearchActivity : AppCompatActivity() {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextChange(newText: String): Boolean {
+                //검색어 입력시 : onQueryTextChange
                 return false
             }
 
             override fun onQueryTextSubmit(query: String): Boolean {
+                //검색어 완료시 : onQueryTextSubmit
                 //Task HERE
+             var apiCall = Naver_API()
+            var printString = apiCall.naver_API_Call(query)
+            println(printString)
+
                 return false
             }
 

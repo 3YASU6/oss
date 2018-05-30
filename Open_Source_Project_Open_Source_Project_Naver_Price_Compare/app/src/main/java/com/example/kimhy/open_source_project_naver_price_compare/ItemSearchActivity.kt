@@ -35,9 +35,9 @@ class ItemSearchActivity : AppCompatActivity() {
                 //검색어 완료시 : onQueryTextSubmit
                 //Task HERE
                 println("Hello World!")
-                var apiCall = Naver_API()
-                var printString = apiCall.naver_API_Call(query)
-                println(printString)
+                var apiCall = Naver_API(query)
+               // var printString = apiCall.naver_API_Call(query)
+                //println(printString)
 
                 return false
             }

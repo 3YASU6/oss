@@ -8,6 +8,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -15,38 +16,38 @@ import android.widget.TextView;
 
 
 //NetworkOnMainThreadException AsyncTask
-public class Naver_API extends AsyncTask<Void, Void, Void>
+public class Naver_API extends Thread
 {
-
-    private final String clientId = "VgVlGnfsifjWb55DM4s_";//애플리케이션 클라이언트 아이디값";
-    private final String clientSecret = "uw7_JLBNnh";//애플리케이션 클라이언트 시크릿값";
-    private String returnString = null;
-
-    public Naver_API()
+    // AsyncTask는  http://mailmail.tistory.com/12 참조
+    private final String clientId = "tFZOEVXrE7b672z3YZ5L";//애플리케이션 클라이언트 아이디값";
+    private final String clientSecret = "S2m9hxStjR";//애플리케이션 클라이언트 시크릿값";
+    private String returnString = null;// naver_API_Call return variable
+    String printString = null; //thread print variable
+    public Naver_API(final String query)//class constructor
     {
+        new Thread()
+        {
 
+            public void run()
+            {
+                try
+                {
+                    String printString = naver_API_Call(query);
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+
+                System.out.println("thread print "+printString);//test완료 후 삭제
+            }
+        }.start();
     }
 
-    @Override
-    protected Void doInBackground(Void... params)
-    {
-
-        try
-
-            {
-            }
-        catch (Exception e)
-            {
-
-            }
-        return null;
-
-    }
-
-    public String naver_API_Call(String keyword)
+    private String naver_API_Call(String keyword)
     {
         try
-            {
+        {
             String text = URLEncoder.encode(keyword, "UTF-8");
             String apiURL = "https://openapi.naver.com/v1/search/shop?query=" + text; // json 결과
             //String apiURL = "https://openapi.naver.com/v1/search/shop.xml?query="+ text; // xml 결과
@@ -58,28 +59,28 @@ public class Naver_API extends AsyncTask<Void, Void, Void>
             int responseCode = con.getResponseCode();
             BufferedReader br;
             if (responseCode == 200)
-                { // 정상 호출
+            { // 정상 호출
                 br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-                }
+            }
             else
-                {  // 에러 발생
+            {  // 에러 발생
                 br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
-                }
+            }
             String inputLine;
             StringBuffer response = new StringBuffer();
             while ((inputLine = br.readLine()) != null)
-                {
+            {
                 response.append(inputLine);
-                }
+            }
             br.close();
 
             returnString = response.toString();
-            //System.out.println(response.toString());
-            }
+            System.out.println("naver_API_Call class "+response.toString());// 테스트 완료 후 삭제 혹은 주석처리
+        }
         catch (Exception e)
-            {
+        {
             System.out.println(e);
-            }
+        }
         return returnString;
 
     }
@@ -94,6 +95,10 @@ public class Naver_API extends AsyncTask<Void, Void, Void>
         return clientSecret;
     }
 }
+
+
+
+
 //var clientId = "VgVlGnfsifjWb55DM4s_"//애플리케이션 클라이언트 아이디값";
 //        var clientSecret = "uw7_JLBNnh"//애플리케이션 클라이언트 시크릿값";
 /*

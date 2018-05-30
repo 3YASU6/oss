@@ -34,10 +34,10 @@ class ItemSearchActivity : AppCompatActivity() {
             override fun onQueryTextSubmit(query: String): Boolean {
                 //검색어 완료시 : onQueryTextSubmit
                 //Task HERE
-                println("Hello World!")
-                var apiCall = Naver_API()
-                var printString = apiCall.naver_API_Call(query)
-                println(printString)
+                //println("Hello World!")
+                var apiCall = Naver_API(query)
+                println(apiCall)
+
 
                 return false
             }

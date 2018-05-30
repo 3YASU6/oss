@@ -21,8 +21,8 @@ public class Naver_API extends Thread
     // AsyncTask는  http://mailmail.tistory.com/12 참조
     private final String clientId = "tFZOEVXrE7b672z3YZ5L";//애플리케이션 클라이언트 아이디값";
     private final String clientSecret = "S2m9hxStjR";//애플리케이션 클라이언트 시크릿값";
-    private String returnString = null;
-
+    private String returnString = null;// naver_API_Call return variable
+    String printString = null; //thread print variable
     public Naver_API(final String query)//class constructor
     {
         new Thread()
@@ -32,41 +32,18 @@ public class Naver_API extends Thread
             {
                 try
                 {
-                    naver_API_Call(query);
+                    String printString = naver_API_Call(query);
                 }
                 catch (Exception e)
                 {
                     e.printStackTrace();
                 }
 
-                //System.out.println();//test완료 후 삭제
+                System.out.println("thread print "+printString);//test완료 후 삭제
             }
         }.start();
     }
 
-
-    /*
-        protected class APITask extends AsyncTask<String, Void, String>
-        {
-            @Override
-            protected String doInBackground(String... params)
-            {
-                String keywordBackground = params[0];//제대로 동작하는지 테스트할 것
-                String returnValue;
-                try
-                {
-                    returnValue = naver_API_Call(keywordBackground);
-                }
-                catch (Exception e)
-                {
-                    e.printStackTrace();
-                    returnValue = ""; //실패할 경우 "" 반환
-                }
-                return returnValue;
-
-            }
-        }
-    */
     private String naver_API_Call(String keyword)
     {
         try
@@ -98,7 +75,7 @@ public class Naver_API extends Thread
             br.close();
 
             returnString = response.toString();
-            System.out.println(response.toString());// 테스트 완료 후 삭제 혹은 주석처리
+            System.out.println("naver_API_Call class "+response.toString());// 테스트 완료 후 삭제 혹은 주석처리
         }
         catch (Exception e)
         {

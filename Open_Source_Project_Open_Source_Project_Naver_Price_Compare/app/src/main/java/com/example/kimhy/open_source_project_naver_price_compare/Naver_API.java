@@ -19,8 +19,8 @@ import android.widget.TextView;
 public class Naver_API extends Thread
 {
     // AsyncTask는  http://mailmail.tistory.com/12 참조
-    private final String clientId = "VgVlGnfsifjWb55DM4s_";//애플리케이션 클라이언트 아이디값";
-    private final String clientSecret = "uw7_JLBNnh";//애플리케이션 클라이언트 시크릿값";
+    private final String clientId = "tFZOEVXrE7b672z3YZ5L";//애플리케이션 클라이언트 아이디값";
+    private final String clientSecret = "S2m9hxStjR";//애플리케이션 클라이언트 시크릿값";
     private String returnString = null;
 
     public Naver_API(final String query)//class constructor

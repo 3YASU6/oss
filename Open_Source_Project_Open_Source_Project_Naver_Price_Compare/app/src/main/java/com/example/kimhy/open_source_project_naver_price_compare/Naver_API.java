@@ -26,62 +26,56 @@ public class Naver_API extends Thread
     String printString = null; //thread print variable
     private String keyword;
     StringBuilder output;
+
     public Naver_API(final String keyword)//class constructor
     {
-         output = new StringBuilder();
+        output = new StringBuilder();
         this.keyword = keyword;
     }
-            public void run()
-            {
-                try
-                {
 
-                    try
-                    {
-                        String text = URLEncoder.encode(keyword, "UTF-8");
-                        String apiURL = "https://openapi.naver.com/v1/search/shop?query=" + text; // json 결과
-                        //String apiURL = "https://openapi.naver.com/v1/search/shop.xml?query="+ text; // xml 결과
-                        URL url = new URL(apiURL);
-                        HttpURLConnection con = (HttpURLConnection) url.openConnection();
-                        con.setRequestMethod("GET");
-                        con.setRequestProperty("X-Naver-Client-Id", clientId);
-                        con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
-                        int responseCode = con.getResponseCode();
-                        BufferedReader br;
-                        if (responseCode == 200)
-                        { // 정상 호출
-                            br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-                        }
-                        else
-                        {  // 에러 발생
-                            br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
-                        }
-                        String inputLine;
-                        //StringBuffer response = new StringBuffer();
-                        while ((inputLine = br.readLine()) != null)
-                        {
-                            output.append(inputLine);
-                        }
-                        br.close();
+    public void run()
+    {
+        try
+        {
 
-                       // System.out.println("naver_API_Call class "+output.toString());// 테스트 완료 후 삭제 혹은 주석처리
-                    }
-                    catch (Exception e)
-                    {
-                        System.out.println(e);
-                    }
-
+                String text = URLEncoder.encode(keyword, "UTF-8");
+                String apiURL = "https://openapi.naver.com/v1/search/shop?query=" + text; // json 결과
+                //String apiURL = "https://openapi.naver.com/v1/search/shop.xml?query="+ text; // xml 결과
+                URL url = new URL(apiURL);
+                HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                con.setRequestMethod("GET");
+                con.setRequestProperty("X-Naver-Client-Id", clientId);
+                con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
+                int responseCode = con.getResponseCode();
+                BufferedReader br;
+                if (responseCode == 200)
+                { // 정상 호출
+                    br = new BufferedReader(new InputStreamReader(con.getInputStream()));
                 }
-                catch (Exception e)
-                {
-                    e.printStackTrace();
+                else
+                {  // 에러 발생
+                    br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
                 }
+                String inputLine;
+                //StringBuffer response = new StringBuffer();
+                while ((inputLine = br.readLine()) != null)
+                {
+                    output.append(inputLine);
+                }
+                br.close();
 
-            }
-public String  getResult()
-{
-    return output.toString();
-}
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+    }
+
+    public String getResult()
+    {
+        return output.toString();
+    }
 
 /*
     private String naver_API_Call(String keyword)
@@ -136,8 +130,6 @@ public String  getResult()
         return clientSecret;
     }
 }
-
-
 
 
 //var clientId = "VgVlGnfsifjWb55DM4s_"//애플리케이션 클라이언트 아이디값";

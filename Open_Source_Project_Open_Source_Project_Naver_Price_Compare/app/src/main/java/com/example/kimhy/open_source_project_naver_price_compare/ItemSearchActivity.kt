@@ -9,8 +9,10 @@ import android.widget.SearchView
 import kotlinx.android.synthetic.main.activity_item_search.*
 import kotlinx.android.synthetic.main.activity_item_search.view.*
 
-class ItemSearchActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
+class ItemSearchActivity : AppCompatActivity()
+{
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_item_search)
 
@@ -24,30 +26,33 @@ class ItemSearchActivity : AppCompatActivity() {
 
         //https://stackoverflow.com/questions/47303819/kotlin-how-to-get-searchview-submit
 
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener
+        {
 
-            override fun onQueryTextChange(newText: String): Boolean {
+            override fun onQueryTextChange(newText: String): Boolean
+            {
                 //검색어 입력시 : onQueryTextChange
                 return false
             }
 
-            override fun onQueryTextSubmit(query: String): Boolean {
+            override fun onQueryTextSubmit(query: String): Boolean
+            {
                 //검색어 완료시 : onQueryTextSubmit
                 //Task HERE
 
-                //thread 만들어서 불러옴
+                //thread 만들어서 불러옴 http://plaboratory.org/archives/108 참조
                 val thread = Naver_API(query)
                 thread.start()
                 try
                 {
-                    thread.join()
+                    thread.join()// API 요청 후 데이터를 다 가져올때까지 대기
                 }
-                catch (e:Exception)
+                catch (e: Exception)
                 {
                     e.printStackTrace()
                 }
                 var result = thread.getResult()
-                println("ItemSearch "+result)
+                println("ItemSearch " + result)
                 //쓰레드 처리 끝
 
                 return false

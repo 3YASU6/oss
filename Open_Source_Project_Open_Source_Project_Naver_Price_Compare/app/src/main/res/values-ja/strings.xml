@@ -3,7 +3,7 @@
 
     <!-- Strings related to login -->
     <string name="prompt_email">Eメール</string>
-    <string name="prompt_password">パスワード (optional)</string>
+    <string name="prompt_password">パスワード</string>
     <string name="action_sign_in">ログインまたは新規登録</string>
     <string name="action_sign_in_short">ログイン</string>
     <string name="error_invalid_email">入力されたメールアドレスが正しいか確認してください。</string>
@@ -12,7 +12,8 @@
     <string name="error_field_required">This field is required</string>
     <string name="permission_rationale">"Eメールの完了を提供するには連絡先権限が必要です。"
     </string>
-    <string name="search">Search</string>
+    <string name="search">検索</string>
+    <string name="serchViewText">検索ワード</string>
     <string name="item_add_button">item_add_button</string>
     <string name="addButton_text">追 加</string>
     <string name="wish_text">WISH LIST 価格変動グラフ表示</string>

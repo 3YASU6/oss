@@ -22,7 +22,8 @@ class ItemSearchActivity : AppCompatActivity()
         listView.adapter = adapter
 
         //검색창을 누르면 보이는 값 입력시 사라짐
-        searchView.setQueryHint("검색어를 입력하세요")
+        val seachViewText: String = getString(R.string.serchViewText)
+        searchView.setQueryHint(seachViewText) //검색어를 입력하세요")
 
         //https://stackoverflow.com/questions/47303819/kotlin-how-to-get-searchview-submit
 

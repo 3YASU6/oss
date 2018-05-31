@@ -19,31 +19,71 @@ import android.widget.TextView;
 public class Naver_API extends Thread
 {
     // AsyncTask는  http://mailmail.tistory.com/12 참조
+    //thread로 처리한 값을 넘기기 위해서 http://plaboratory.org/archives/108 참조
     private final String clientId = "tFZOEVXrE7b672z3YZ5L";//애플리케이션 클라이언트 아이디값";
     private final String clientSecret = "S2m9hxStjR";//애플리케이션 클라이언트 시크릿값";
     private String returnString = null;// naver_API_Call return variable
     String printString = null; //thread print variable
-    public Naver_API(final String query)//class constructor
+    private String keyword;
+    StringBuilder output;
+    public Naver_API(final String keyword)//class constructor
     {
-        new Thread()
-        {
-
+         output = new StringBuilder();
+        this.keyword = keyword;
+    }
             public void run()
             {
                 try
                 {
-                    String printString = naver_API_Call(query);
+
+                    try
+                    {
+                        String text = URLEncoder.encode(keyword, "UTF-8");
+                        String apiURL = "https://openapi.naver.com/v1/search/shop?query=" + text; // json 결과
+                        //String apiURL = "https://openapi.naver.com/v1/search/shop.xml?query="+ text; // xml 결과
+                        URL url = new URL(apiURL);
+                        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                        con.setRequestMethod("GET");
+                        con.setRequestProperty("X-Naver-Client-Id", clientId);
+                        con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
+                        int responseCode = con.getResponseCode();
+                        BufferedReader br;
+                        if (responseCode == 200)
+                        { // 정상 호출
+                            br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                        }
+                        else
+                        {  // 에러 발생
+                            br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+                        }
+                        String inputLine;
+                        //StringBuffer response = new StringBuffer();
+                        while ((inputLine = br.readLine()) != null)
+                        {
+                            output.append(inputLine);
+                        }
+                        br.close();
+
+                       // System.out.println("naver_API_Call class "+output.toString());// 테스트 완료 후 삭제 혹은 주석처리
+                    }
+                    catch (Exception e)
+                    {
+                        System.out.println(e);
+                    }
+
                 }
                 catch (Exception e)
                 {
                     e.printStackTrace();
                 }
 
-                System.out.println("thread print "+printString);//test완료 후 삭제
             }
-        }.start();
-    }
+public String  getResult()
+{
+    return output.toString();
+}
 
+/*
     private String naver_API_Call(String keyword)
     {
         try
@@ -84,6 +124,7 @@ public class Naver_API extends Thread
         return returnString;
 
     }
+    */
 
     public String getClientId()
     {

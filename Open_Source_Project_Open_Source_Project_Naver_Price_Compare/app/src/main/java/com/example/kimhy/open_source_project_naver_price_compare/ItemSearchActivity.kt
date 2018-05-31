@@ -34,10 +34,21 @@ class ItemSearchActivity : AppCompatActivity() {
             override fun onQueryTextSubmit(query: String): Boolean {
                 //검색어 완료시 : onQueryTextSubmit
                 //Task HERE
-                //println("Hello World!")
-                var apiCall = Naver_API(query)
-                println(apiCall)
 
+                //thread 만들어서 불러옴
+                val thread = Naver_API(query)
+                thread.start()
+                try
+                {
+                    thread.join()
+                }
+                catch (e:Exception)
+                {
+                    e.printStackTrace()
+                }
+                var result = thread.getResult()
+                println("ItemSearch "+result)
+                //쓰레드 처리 끝
 
                 return false
             }

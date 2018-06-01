@@ -21,6 +21,8 @@ class ItemSearchActivity : AppCompatActivity()
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
         listView.adapter = adapter
 
+        searchView.setSubmitButtonEnabled(true)
+        searchView.isSubmitButtonEnabled()
         //검색창을 누르면 보이는 값 입력시 사라짐
         val seachViewText: String = getString(R.string.serchViewText)
         searchView.setQueryHint(seachViewText) //검색어를 입력하세요")

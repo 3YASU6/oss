@@ -18,73 +18,29 @@ import android.widget.TextView;
 //NetworkOnMainThreadException AsyncTask
 public class Naver_API extends Thread
 {
-    // AsyncTask는  http://mailmail.tistory.com/12 참조
     //thread로 처리한 값을 넘기기 위해서 http://plaboratory.org/archives/108 참조
     private final String clientId = "tFZOEVXrE7b672z3YZ5L";//애플리케이션 클라이언트 아이디값";
     private final String clientSecret = "S2m9hxStjR";//애플리케이션 클라이언트 시크릿값";
     private String returnString = null;// naver_API_Call return variable
     String printString = null; //thread print variable
     private String keyword;
-    StringBuilder output;
+    StringBuilder laminatingData;
+    private int display = 10;// display 10(기본값), 100(최대)	검색 결과 출력 건수 지정
 
     public Naver_API(final String keyword)//class constructor
     {
-        output = new StringBuilder();
+        laminatingData = new StringBuilder();
         this.keyword = keyword;
     }
 
     public void run()
     {
         try
-        {
+            {
 
-                String text = URLEncoder.encode(keyword, "UTF-8");
-                String apiURL = "https://openapi.naver.com/v1/search/shop?query=" + text; // json 결과
-                //String apiURL = "https://openapi.naver.com/v1/search/shop.xml?query="+ text; // xml 결과
-                URL url = new URL(apiURL);
-                HttpURLConnection con = (HttpURLConnection) url.openConnection();
-                con.setRequestMethod("GET");
-                con.setRequestProperty("X-Naver-Client-Id", clientId);
-                con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
-                int responseCode = con.getResponseCode();
-                BufferedReader br;
-                if (responseCode == 200)
-                { // 정상 호출
-                    br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-                }
-                else
-                {  // 에러 발생
-                    br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
-                }
-                String inputLine;
-                //StringBuffer response = new StringBuffer();
-                while ((inputLine = br.readLine()) != null)
-                {
-                    output.append(inputLine + "\n");
-                }
-                br.close();
-                con.disconnect();
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-
-    }
-
-    public String getResult()
-    {
-        return output.toString();
-    }
-
-/*
-    private String naver_API_Call(String keyword)
-    {
-        try
-        {
             String text = URLEncoder.encode(keyword, "UTF-8");
-            String apiURL = "https://openapi.naver.com/v1/search/shop?query=" + text; // json 결과
-            //String apiURL = "https://openapi.naver.com/v1/search/shop.xml?query="+ text; // xml 결과
+            String apiURL = "https://openapi.naver.com/v1/search/shop?query=" + text + "&display=" + display + "&"; // json 결과
+            //String apiURL = "https://openapi.naver.com/v1/search/shop.xml?query="+ text + "&display=" + display + "&"; // xml 결과
             URL url = new URL(apiURL);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("GET");
@@ -93,32 +49,47 @@ public class Naver_API extends Thread
             int responseCode = con.getResponseCode();
             BufferedReader br;
             if (responseCode == 200)
-            { // 정상 호출
+                { // 정상 호출
                 br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            }
+                }
             else
-            {  // 에러 발생
+                {  // 에러 발생
                 br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
-            }
+                }
             String inputLine;
-            StringBuffer response = new StringBuffer();
+            //StringBuffer response = new StringBuffer();
             while ((inputLine = br.readLine()) != null)
-            {
-                response.append(inputLine);
-            }
+                {
+                laminatingData.append(inputLine + "\n");
+                }
             br.close();
-
-            returnString = response.toString();
-            System.out.println("naver_API_Call class "+response.toString());// 테스트 완료 후 삭제 혹은 주석처리
-        }
+            con.disconnect();
+            }
         catch (Exception e)
-        {
-            System.out.println(e);
-        }
-        return returnString;
+            {
+            e.printStackTrace();
+            }
+
+        //reference http://wowon.tistory.com/122
+        //String parse part start
+        String data = laminatingData.toString();
+        String[] array;
+        array = data.split("\""); // "로 절단
+
+        //String parse part end
 
     }
-    */
+    static String getString(String input, String data) // API에서 필요한 문자 자르기. http://wowon.tistory.com/122
+    {
+        String[] dataSplit = data.split("{" + input + "}");
+        String[] dataSplit2 = dataSplit[1].split("\"" + input + "\"");
+        return dataSplit2[0];
+    }
+
+    public String getResult()
+    {
+        return laminatingData.toString();
+    }// 파서 부분 완료 후 제거 결정하기
 
     public String getClientId()
     {

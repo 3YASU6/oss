@@ -1,8 +1,12 @@
 <resources>
-    <string name="app_name">NAVER Shopping 가격 변동 알림</string>
+    <string name="app_name">NAVER 쇼핑 가격 변동 알림앱</string>
 
     <string name="frame_name_login">로그인</string>
-    <string name="frame_name_graph">Wish List - 상품상세정보</string>
+    <string name="frame_name_graph">상품 가격 그래프</string>
+    <string name="frame_name_item_search">상품 검색</string>
+    <string name="frame_name_item_list">Wish List</string>
+    <string name="frame_name_search_result">검색 결과</string>
+    <string name="frame_name_item_show_more_item_info">상품 상세 정보</string>
 
 
     <!-- Strings related to login -->

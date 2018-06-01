@@ -2,7 +2,11 @@
     <string name="app_name">NAVER Shopping Price Change Notifications </string>
 
     <string name="frame_name_login">Login</string>
-    <string name="frame_name_graph">Wish List Items - more infomation</string>
+    <string name="frame_name_graph">Item Price Graph</string>
+    <string name="frame_name_item_search">Search items</string>
+    <string name="frame_name_item_list">Wish List</string>
+    <string name="frame_name_search_result">Search Result</string>
+    <string name="frame_name_item_show_more_item_info">Item information</string>
 
 
     <!-- Strings related to login -->

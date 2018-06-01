@@ -14,9 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".LoginActivity"
-            android:label="@string/frame_name_login">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -27,16 +28,23 @@
             android:name=".GraphActivity"
             android:label="@string/frame_name_graph"/>
 
-        <activity android:name=".SearchResultListActivity" />
+        <activity
+            android:name=".ShowMoreItemInfoActivity"
+            android:label="@string/frame_name_item_show_more_item_info"/>
 
-        <activity android:name=".ShowMoreItemInfoActivity" />
+        <activity
+            android:name=".ItemSearchActivity"
+            android:label="@string/frame_name_item_search"/>
 
-        <activity android:name=".ItemSearchActivity" />
+        <activity
+            android:name=".ItemListActivity"
+            android:label="@string/frame_name_item_list"/>
 
-        <activity android:name=".ItemListActivity" />
     </application>
 
-</manifest><!--
+</manifest>
+
+    <!--
 2018.05.24(추후에 액티비티 추가 할 경우 그 점까지 생각하여 추가한 후 원복시킬것)
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"

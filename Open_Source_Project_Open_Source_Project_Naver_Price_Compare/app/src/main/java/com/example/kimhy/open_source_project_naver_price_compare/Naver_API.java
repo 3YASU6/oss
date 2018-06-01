@@ -60,10 +60,10 @@ public class Naver_API extends Thread
                 //StringBuffer response = new StringBuffer();
                 while ((inputLine = br.readLine()) != null)
                 {
-                    output.append(inputLine);
+                    output.append(inputLine + "\n");
                 }
                 br.close();
-
+                con.disconnect();
         }
         catch (Exception e)
         {

@@ -1,5 +1,8 @@
 <resources>
-    <string name="app_name">NAVER 가격 비교</string>
+    <string name="app_name">NAVER Shopping 価格変動通知</string>
+
+    <string name="frame_name_login">ログイン</string>
+    <string name="frame_name_graph">Wish List - 商品詳細情報</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Eメール</string>

@@ -16,16 +16,23 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".LoginActivity"
-            android:label="@string/app_name">
+            android:label="@string/frame_name_login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GraphActivity" />
+
+        <activity
+            android:name=".GraphActivity"
+            android:label="@string/frame_name_graph"/>
+
         <activity android:name=".SearchResultListActivity" />
+
         <activity android:name=".ShowMoreItemInfoActivity" />
+
         <activity android:name=".ItemSearchActivity" />
+
         <activity android:name=".ItemListActivity" />
     </application>
 

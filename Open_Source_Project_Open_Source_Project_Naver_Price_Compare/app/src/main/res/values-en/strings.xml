@@ -34,4 +34,11 @@
     <string name="title">title</string>
     <string name="lprice">lprice</string>
     <string name="mallName">mallName</string>
+
+    <!-- wish list 상품 상세 정보 (가격 변동 그래프 표시) 화면 string 정의 -->
+    <string name="buyButtonText">go to buy</string>
+    <string name="titleText">title</string>
+    <string name="lpriceText">lprice</string>
+    <string name="dateText">date</string>
+
 </resources>

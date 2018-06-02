@@ -7,7 +7,6 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.SearchView
 import kotlinx.android.synthetic.main.activity_item_search.*
-import kotlinx.android.synthetic.main.activity_item_search.view.*
 
 class ItemSearchActivity : AppCompatActivity()
 {

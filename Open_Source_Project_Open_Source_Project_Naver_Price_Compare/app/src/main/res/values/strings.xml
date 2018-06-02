@@ -28,10 +28,16 @@
     <string name="wish_text">WISH LIST 가격 변동 정보</string>
     <string name="search_item_more_info">검색결과 상품의 상세 정보</string>
 
-    <!-- 검색 결과 상품 상세 정보 화면 text 정의 -->
+    <!-- 검색 결과 상품 상세 정보 화면 string 정의 -->
     <string name="addToWishListButtonText">Add to WishList</string>
     <string name="title">title</string>
     <string name="lprice">lprice</string>
     <string name="mallName">mallName</string>
+
+    <!-- wish list 상품 상세 정보 (가격 변동 그래프 표시) 화면 string 정의 -->
+    <string name="buyButtonText">go to buy</string>
+    <string name="titleText">title</string>
+    <string name="lpriceText">lprice</string>
+    <string name="dateText">date</string>
 
 </resources>

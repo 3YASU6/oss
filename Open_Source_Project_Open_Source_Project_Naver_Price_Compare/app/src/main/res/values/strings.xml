@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">NAVER 쇼핑 가격 변동 알림앱</string>
 
+    <!-- 화면 이름 -->
     <string name="frame_name_login">로그인</string>
     <string name="frame_name_graph">상품 가격 그래프</string>
     <string name="frame_name_item_search">상품 검색</string>
@@ -8,8 +9,7 @@
     <string name="frame_name_search_result">검색 결과</string>
     <string name="frame_name_item_show_more_item_info">상품 상세 정보</string>
 
-
-    <!-- Strings related to login -->
+    <!-- 로그인 화면의 text 정의 -->
     <string name="prompt_email">이메일</string>
     <string name="prompt_password">비밀번호</string>
     <string name="action_sign_in">로그인 or 신규등록</string>
@@ -18,13 +18,20 @@
     <string name="error_invalid_password">비밀번호가 너무 짧습니다.</string>
     <string name="error_incorrect_password">비밀번호를 잘못 입력하셨습니다.</string>
     <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"이메일 완료를 제공하려면 연락처 권한이 필요합니다."
-    </string>
+    <string name="permission_rationale">"이메일 완료를 제공하려면 연락처 권한이 필요합니다."</string>
+
+
     <string name="search">검색</string>
-    <string name="serchViewText">검색어를 입력하세요</string>
+    <string name="searchViewText">검색어를 입력하세요</string>
     <string name="item_add_button">item_add_button</string>
     <string name="addButton_text">추 가</string>
     <string name="wish_text">WISH LIST 가격 변동 정보</string>
     <string name="search_item_more_info">검색결과 상품의 상세 정보</string>
+
+    <!-- 검색 결과 상품 상세 정보 화면 text 정의 -->
+    <string name="addToWishListButtonText">Add to WishList</string>
+    <string name="title">title</string>
+    <string name="lprice">lprice</string>
+    <string name="mallName">mallName</string>
 
 </resources>

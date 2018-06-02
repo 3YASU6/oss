@@ -8,7 +8,6 @@
     <string name="frame_name_search_result">Search Result</string>
     <string name="frame_name_item_show_more_item_info">Item information</string>
 
-
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -21,10 +20,18 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+
+
     <string name="search">Search</string>
     <string name="serchViewText">Please type your keyword</string>
     <string name="item_add_button">item_add_button</string>
     <string name="addButton_text">Add New Item</string>
     <string name="wish_text">Show users wish list Graph and Info</string>
     <string name="search_item_more_info">Show more information of the item of result of search</string>
+
+    <!-- Strings related to "search result items" -->
+    <string name="addToWishListButtonText">Add to WishList</string>
+    <string name="title">title</string>
+    <string name="lprice">lprice</string>
+    <string name="mallName">mallName</string>
 </resources>

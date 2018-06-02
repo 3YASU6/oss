@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">NAVERショッピング価格変動アプリ</string>
 
+    <!-- 画面の名前に関するstring定義 -->
     <string name="frame_name_login">ログイン</string>
     <string name="frame_name_graph">商品価格グラフ</string>
     <string name="frame_name_item_search">商品検索</string>
@@ -8,7 +9,7 @@
     <string name="frame_name_search_result">検索結果</string>
     <string name="frame_name_item_show_more_item_info">商品詳細情報</string>
 
-    <!-- Strings related to login -->
+    <!-- ログインに関するstring定義 -->
     <string name="prompt_email">Eメール</string>
     <string name="prompt_password">パスワード</string>
     <string name="action_sign_in">ログインまたは新規登録</string>
@@ -17,12 +18,18 @@
     <string name="error_invalid_password">パスワードが短すぎます。</string>
     <string name="error_incorrect_password">パスワードが正しくありません。</string>
     <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Eメールの完了を提供するには連絡先権限が必要です。"
-    </string>
+    <string name="permission_rationale">Eメールの完了を提供するには連絡先権限が必要です。</string>
+
     <string name="search">検索</string>
     <string name="serchViewText">検索ワード</string>
     <string name="item_add_button">item_add_button</string>
     <string name="addButton_text">追 加</string>
     <string name="wish_text">WISH LIST 価格変動グラフ表示</string>
     <string name="search_item_more_info">検索結果のアイテムの詳細情報</string>
+
+    <!-- 検索結果の商品の詳細情報に関するstring定義 -->
+    <string name="addToWishListButtonText">Add to WishList</string>
+    <string name="title">title</string>
+    <string name="lprice">lprice</string>
+    <string name="mallName">mallName</string>
 </resources>

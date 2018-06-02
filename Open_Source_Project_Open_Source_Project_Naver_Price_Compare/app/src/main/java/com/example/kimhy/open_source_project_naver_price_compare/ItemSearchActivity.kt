@@ -60,19 +60,13 @@ class ItemSearchActivity : AppCompatActivity()
 
                 return false
             }
-
         })
 
-
-
-
+        //아이템 클릭시 화면이동
         searchListView.setOnItemClickListener { _, _, _, _ ->
-
             val intent = Intent(this, ShowMoreItemInfoActivity::class.java)
             startActivity(intent)
-
         }
-
 
     }
 }

@@ -47,14 +47,14 @@ class ItemSearchActivity : AppCompatActivity()
                 thread.start()
                 try
                 {
-                    thread.join()// API 요청 후 데이터를 다 가져올때까지 대기
+                    thread.join()// API 요청 후 데이터를 다 가져올때까지 대기 반드시 사용할 것
                 }
                 catch (e: Exception)
                 {
                     e.printStackTrace()
                 }
                 var result = thread.getResult()
-                println("ItemSearch " + result)
+                //println("ItemSearch " + result)
                 //쓰레드 처리 끝
 
                 return false

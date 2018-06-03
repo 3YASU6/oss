@@ -39,7 +39,7 @@ public class Naver_API extends Thread
             {
 
             String text = URLEncoder.encode(keyword, "UTF-8");
-            String apiURL = "https://openapi.naver.com/v1/search/local?query=" + text + "&display=" + display + "&"; // json 결과
+            String apiURL = "https://openapi.naver.com/v1/search/shop?query=" + text + "&display=" + display + "&"; // json 결과 "sort=asc&" : 가격 오름차순 정렬
             //String apiURL = "https://openapi.naver.com/v1/search/shop.xml?query="+ text + "&display=" + display + "&"; // xml 결과
             URL url = new URL(apiURL);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -110,7 +110,7 @@ public class Naver_API extends Thread
 
         for(int i = 0;i < display;i++)
             {
-            System.out.println((i+1)+"번째 타이틀: " + title[i]);
+            System.out.println((i+1)+"번째 타이틀: " + title[i] + "\nprice : " + lprice[i]);
             //System.out.println("두번째 타이틀: " + title[1]);
             }
 

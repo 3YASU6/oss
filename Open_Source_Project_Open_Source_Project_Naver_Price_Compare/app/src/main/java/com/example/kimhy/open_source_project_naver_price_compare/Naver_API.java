@@ -25,7 +25,7 @@ public class Naver_API extends Thread
     String printString = null; //thread print variable
     private String keyword;
     StringBuilder laminatingData;
-    private int display = 10;// display 10(기본값), 100(최대)	검색 결과 출력 건수 지정
+    private int display = 20;// display 10(기본값), 100(최대)	검색 결과 출력 건수 지정
 
     public Naver_API(final String keyword)//class constructor
     {
@@ -39,7 +39,7 @@ public class Naver_API extends Thread
             {
 
             String text = URLEncoder.encode(keyword, "UTF-8");
-            String apiURL = "https://openapi.naver.com/v1/search/shop?query=" + text + "&display=" + display + "&"; // json 결과
+            String apiURL = "https://openapi.naver.com/v1/search/local?query=" + text + "&display=" + display + "&"; // json 결과
             //String apiURL = "https://openapi.naver.com/v1/search/shop.xml?query="+ text + "&display=" + display + "&"; // xml 결과
             URL url = new URL(apiURL);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -74,17 +74,48 @@ public class Naver_API extends Thread
         //String parse part start
         String data = laminatingData.toString();
         String[] array;
-        array = data.split("\""); // "로 절단
-
+        array = data.split("\"");
+        String[] title = new String[display];
+        String[] link = new String[display];
+        String[] image = new String[display];
+        String[] lprice = new String[display];
+        String[] hprice = new String[display];
+        String[] mallName = new String[display];
+        String[] produceId = new String[display];
+        String[] productType = new String[display];
+        int k = 0;
+        for (int i = 0; i < array.length; i++) {
+        if (array[i].equals("title"))
+            title[k] = array[i + 2];
+        if (array[i].equals("link"))
+            link[k] = array[i + 2];
+        if (array[i].equals("image"))
+            image[k] = array[i + 2];
+        if (array[i].equals("lprice"))
+            lprice[k] = array[i + 2];
+        if (array[i].equals("hprice"))
+            hprice[k] = array[i + 2];
+        if (array[i].equals("mallName"))
+            mallName[k] = array[i + 2];
+        if (array[i].equals("produceId"))
+            produceId[k] = array[i + 2];
+        if (array[i].equals("productType")) {
+        productType[k] = array[i + 2];
+        k++;
+        }
+        }
         //String parse part end
 
+        //test
+
+        for(int i = 0;i < display;i++)
+            {
+            System.out.println((i+1)+"번째 타이틀: " + title[i]);
+            //System.out.println("두번째 타이틀: " + title[1]);
+            }
+
     }
-    static String getString(String input, String data) // API에서 필요한 문자 자르기. http://wowon.tistory.com/122
-    {
-        String[] dataSplit = data.split("{" + input + "}");
-        String[] dataSplit2 = dataSplit[1].split("\"" + input + "\"");
-        return dataSplit2[0];
-    }
+
 
     public String getResult()
     {
@@ -102,123 +133,3 @@ public class Naver_API extends Thread
     }
 }
 
-
-//var clientId = "VgVlGnfsifjWb55DM4s_"//애플리케이션 클라이언트 아이디값";
-//        var clientSecret = "uw7_JLBNnh"//애플리케이션 클라이언트 시크릿값";
-/*
-public class Naver_API
-{
-
-
-    public static StringBuilder sb;//
-
-    static String getString(String input, String data) // API에서 필요한 문자 자르기. 파싱
-    {
-        String[] dataSplit = data.split("{" + input + "}");
-        String[] dataSplit2 = dataSplit[1].split("\"" + input + "\"");
-        return dataSplit2[0];
-    }
-
-    public static StringBuilder Naver_Search_API(String search_keyword)
-    {
-
-        // TODO Auto-generated method stub
-        String clientId = "VgVlGnfsifjWb55DM4s_";
-        String clientSecret = "uw7_JLBNnh";
-        int display = 2;
-
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter an search keyword : ");//consol input keyword
-        String search = sc.next();
-
-        try
-            {
-            String text = URLEncoder.encode(search_keyword, "UTF-8");
-            String apiURL = "https://openapi.naver.com/v1/search/shop?query=" + text + "&display=" + display + "&";
-            URL url = new URL(apiURL);
-            HttpURLConnection con = (HttpURLConnection) url.openConnection();
-            con.setRequestMethod("GET");
-            con.setRequestProperty("X-Naver-Client-Id", clientId);
-            con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
-            int responseCode = con.getResponseCode();
-            BufferedReader br;
-            if (responseCode == 200)
-                {
-                br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-                }
-            else
-                {
-                br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
-                }
-            sb = new StringBuilder();
-            String line;
-
-            while ((line = br.readLine()) != null)
-                {
-                sb.append(line + "\n");
-                }
-
-            br.close();
-            con.disconnect();
-            System.out.println(sb);
-            String data = sb.toString();
-            String[] array;
-            array = data.split("\"");
-            String[] title = new String[display];
-            String[] link = new String[display];
-            String[] category = new String[display];
-            String[] description = new String[display];
-            String[] telephone = new String[display];
-            String[] address = new String[display];
-            String[] mapx = new String[display];
-            String[] mapy = new String[display];
-            int k = 0;
-            for (int i = 0; i < array.length; i++)
-                {
-                if (array[i].equals("title"))
-                    {
-                    title[k] = array[i + 2];
-                    }
-                if (array[i].equals("link"))
-                    {
-                    link[k] = array[i + 2];
-                    }
-                if (array[i].equals("category"))
-                    {
-                    category[k] = array[i + 2];
-                    }
-                if (array[i].equals("description"))
-                    {
-                    description[k] = array[i + 2];
-                    }
-                if (array[i].equals("telephone"))
-                    {
-                    telephone[k] = array[i + 2];
-                    }
-                if (array[i].equals("address"))
-                    {
-                    address[k] = array[i + 2];
-                    }
-                if (array[i].equals("mapx"))
-                    {
-                    mapx[k] = array[i + 2];
-                    }
-                if (array[i].equals("mapy"))
-                    {
-                    mapy[k] = array[i + 2];
-                    k++;
-                    }
-                }
-            System.out.println(sb);
-            System.out.println("----------------------------");
-            System.out.println("first title : " + title[0]);
-            System.out.println("second title : " + title[1]);
-            } catch (Exception e)
-            {
-            System.out.println(e);
-            }
-        return sb;//test 후 삭제 혹은 수정할 것
-    }
-
-}
-*/

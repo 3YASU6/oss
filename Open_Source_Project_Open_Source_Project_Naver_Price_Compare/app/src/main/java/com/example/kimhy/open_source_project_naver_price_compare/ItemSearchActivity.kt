@@ -57,7 +57,8 @@ class ItemSearchActivity : AppCompatActivity()
                 var result = thread.getResult()
                 //println("ItemSearch " + result)
                 //쓰레드 처리 끝
-
+                var title = thread.getTitle();
+                println("test"+title)
                 return false
             }
         })

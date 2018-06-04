@@ -29,14 +29,14 @@ public class Naver_API extends Thread
 
 
     //parse variable
-    String[] title;
-    String[] link;
-    String[] image;
-    String[] lprice;
-    String[] hprice;
-    String[] mallName;
-    String[] produceId;
-    String[] productType;
+    static String[] title;
+    static String[] link;
+    static String[] image;
+    static String[] lprice;
+    static String[] hprice;
+    static String[] mallName;
+    static String[] produceId;
+    static String[] productType;
 
     public Naver_API(final String keyword)//class constructor
     {

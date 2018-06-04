@@ -20,14 +20,15 @@ class ItemSearchActivity : AppCompatActivity()
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
         listView.adapter = adapter
 
+        //searchView 설정 (참고사이트 : https://stackoverflow.com/questions/47303819/kotlin-how-to-get-searchview-submit)
         searchView.setSubmitButtonEnabled(true)
         searchView.isSubmitButtonEnabled()
-        //검색창을 누르면 보이는 값 입력시 사라짐
+        //검색창을 누르면 보이는 (값 입력시 사라짐)
         val seachViewText: String = getString(R.string.serchViewText)
-        searchView.setQueryHint(seachViewText) //검색어를 입력하세요")
+        searchView.setQueryHint(seachViewText)
 
-        //https://stackoverflow.com/questions/47303819/kotlin-how-to-get-searchview-submit
 
+        //searchView 검색 버튼을 눌렀을때 발생하는 event
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener
         {
 

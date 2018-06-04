@@ -31,13 +31,11 @@ class ItemSearchActivity : AppCompatActivity()
         //searchView 검색 버튼을 눌렀을때 발생하는 event
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener
         {
-
             override fun onQueryTextChange(newText: String): Boolean
             {
                 //검색어 입력시 : onQueryTextChange
                 return false
             }
-
             override fun onQueryTextSubmit(query: String): Boolean
             {
                 //검색어 완료시 : onQueryTextSubmit

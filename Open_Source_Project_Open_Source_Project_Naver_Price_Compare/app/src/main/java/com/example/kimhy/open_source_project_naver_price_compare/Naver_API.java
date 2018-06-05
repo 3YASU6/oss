@@ -84,8 +84,13 @@ public class Naver_API extends Thread
             //reference http://wowon.tistory.com/122
         //String parse part start
         String data = laminatingData.toString();
+        data = data.replaceAll("<b>","");//<b> 제거
+        data = data.replaceAll("</b>","");//</b>제거
+
+        System.out.println(data);//테스트 완료 후 삭제
         String[] array;
         array = data.split("\"");
+
         title = new String[display];
         link = new String[display];
         image = new String[display];

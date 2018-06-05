@@ -27,6 +27,17 @@ public class Naver_API extends Thread
     StringBuilder laminatingData;
     private int display = 20;// display 10(기본값), 100(최대)	검색 결과 출력 건수 지정
 
+
+    //parse variable
+    static String[] title;
+    static String[] link;
+    static String[] image;
+    static String[] lprice;
+    static String[] hprice;
+    static String[] mallName;
+    static String[] produceId;
+    static String[] productType;
+
     public Naver_API(final String keyword)//class constructor
     {
         laminatingData = new StringBuilder();
@@ -36,7 +47,7 @@ public class Naver_API extends Thread
     public void run()
     {
         try
-            {
+        {
 
             String text = URLEncoder.encode(keyword, "UTF-8");
             String apiURL = "https://openapi.naver.com/v1/search/shop?query=" + text + "&display=" + display + "&"; // json 결과 "sort=asc&" : 가격 오름차순 정렬
@@ -49,73 +60,92 @@ public class Naver_API extends Thread
             int responseCode = con.getResponseCode();
             BufferedReader br;
             if (responseCode == 200)
-                { // 정상 호출
+            { // 정상 호출
                 br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-                }
+            }
             else
-                {  // 에러 발생
+            {  // 에러 발생
                 br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
-                }
+            }
             String inputLine;
             //StringBuffer response = new StringBuffer();
             while ((inputLine = br.readLine()) != null)
-                {
+            {
                 laminatingData.append(inputLine + "\n");
-                }
+            }
             br.close();
             con.disconnect();
-            }
+        }
         catch (Exception e)
-            {
+        {
             e.printStackTrace();
-            }
+        }
 
-        //reference http://wowon.tistory.com/122
+            //reference http://wowon.tistory.com/122
         //String parse part start
         String data = laminatingData.toString();
         String[] array;
         array = data.split("\"");
-        String[] title = new String[display];
-        String[] link = new String[display];
-        String[] image = new String[display];
-        String[] lprice = new String[display];
-        String[] hprice = new String[display];
-        String[] mallName = new String[display];
-        String[] produceId = new String[display];
-        String[] productType = new String[display];
+        title = new String[display];
+        link = new String[display];
+        image = new String[display];
+        lprice = new String[display];
+        hprice = new String[display];
+        mallName = new String[display];
+        produceId = new String[display];
+        productType = new String[display];
         int k = 0;
-        for (int i = 0; i < array.length; i++) {
-        if (array[i].equals("title"))
-            title[k] = array[i + 2];
-        if (array[i].equals("link"))
-            link[k] = array[i + 2];
-        if (array[i].equals("image"))
-            image[k] = array[i + 2];
-        if (array[i].equals("lprice"))
-            lprice[k] = array[i + 2];
-        if (array[i].equals("hprice"))
-            hprice[k] = array[i + 2];
-        if (array[i].equals("mallName"))
-            mallName[k] = array[i + 2];
-        if (array[i].equals("produceId"))
-            produceId[k] = array[i + 2];
-        if (array[i].equals("productType")) {
-        productType[k] = array[i + 2];
-        k++;
-        }
+        for (int i = 0; i < array.length; i++)
+        {
+            if (array[i].equals("title"))
+            {
+                title[k] = array[i + 2];
+            }
+            if (array[i].equals("link"))
+            {
+                link[k] = array[i + 2];
+            }
+            if (array[i].equals("image"))
+            {
+                image[k] = array[i + 2];
+            }
+            if (array[i].equals("lprice"))
+            {
+                lprice[k] = array[i + 2];
+            }
+            if (array[i].equals("hprice"))
+            {
+                hprice[k] = array[i + 2];
+            }
+            if (array[i].equals("mallName"))
+            {
+                mallName[k] = array[i + 2];
+            }
+            if (array[i].equals("produceId"))
+            {
+                produceId[k] = array[i + 2];
+            }
+            if (array[i].equals("productType"))
+            {
+                productType[k] = array[i + 2];
+                k++;
+            }
         }
         //String parse part end
 
         //test
 
-        for(int i = 0;i < display;i++)
-            {
-            System.out.println((i+1)+"번째 타이틀: " + title[i] + "\nprice : " + lprice[i]);
+        for (int i = 0; i < display; i++)
+        {
+            //System.out.println((i + 1) + "번째 타이틀: " + title[i] + "\nprice : " + lprice[i]);
             //System.out.println("두번째 타이틀: " + title[1]);
-            }
+        }
 
     }
-
+    public String[] getTitle()
+    {
+        return title;
+    }
 
     public String getResult()
     {

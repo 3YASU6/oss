@@ -10,6 +10,7 @@ import kotlinx.android.synthetic.main.activity_item_search.*
 
 class ItemSearchActivity : AppCompatActivity()
 {
+    var display = 20;
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
@@ -55,7 +56,21 @@ class ItemSearchActivity : AppCompatActivity()
                 var result = thread.getResult()
                 //println("ItemSearch " + result)
                 //쓰레드 처리 끝
+                var title:Array<String>? = null
+                title = thread.getTitle()
+                var titles = thread.getTitle()
+                println("test"+title)
+                println("test"+titles)
 
+                var i =0
+                for (index in title)
+                {
+                    i++
+                    //println((index+1) + " "+title[index])
+                    print(i)
+                    println("번째 상품명: ${index}")
+
+                }
                 return false
             }
         })

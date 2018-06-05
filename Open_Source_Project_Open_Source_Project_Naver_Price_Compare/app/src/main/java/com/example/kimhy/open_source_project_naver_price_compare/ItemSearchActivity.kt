@@ -63,9 +63,8 @@ class ItemSearchActivity : AppCompatActivity() {
                     data_array_items.set()
                 }*/
 
-                for ((index, value) in title.withIndex())
-                {
-                    data_array_items.set(index,value)
+                for ((index, value) in title.withIndex()) {
+                    data_array_items.set(index, value)
                     println("the element at $index is $value")
                 }
 

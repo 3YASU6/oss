@@ -21,6 +21,8 @@ class ItemListActivity : AppCompatActivity() {
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
         thisView.adapter = adapter
 
+
+
         // item click시 발생하는 event를 추가
         thisView.setOnItemClickListener { _, view, _, _ ->
             // Toast 표시

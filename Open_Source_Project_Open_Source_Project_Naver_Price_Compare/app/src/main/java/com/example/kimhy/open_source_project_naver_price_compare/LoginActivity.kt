@@ -25,6 +25,9 @@ import android.Manifest.permission.READ_CONTACTS
 import android.content.Intent
 
 import kotlinx.android.synthetic.main.activity_login.*
+import com.google.firebase.firestore.FirebaseFirestore
+
+
 
 /**
  * A login screen that offers login via email/password.
@@ -36,6 +39,8 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
     private var mAuthTask: UserLoginTask? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         // Set up the login form.

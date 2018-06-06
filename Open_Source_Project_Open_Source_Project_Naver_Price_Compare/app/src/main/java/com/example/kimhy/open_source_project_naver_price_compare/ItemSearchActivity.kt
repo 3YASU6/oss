@@ -7,17 +7,37 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.SearchView
 import kotlinx.android.synthetic.main.activity_item_search.*
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.firestore.FirebaseFirestore
 
-class ItemSearchActivity : AppCompatActivity()
-{
+
+
+
+class ItemSearchActivity : AppCompatActivity() {
     var display = 20;
-    override fun onCreate(savedInstanceState: Bundle?)
-    {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_item_search)
+//        val db = FirebaseFirestore.getInstance()
+//
+//
+//        val user = HashMap<String, Any>()
+//        user.put("first", "Ada");
+//        user.put("last", "Lovelace");
+//        user.put("born", 1815);
+
+   //     db.collection("users").add(user)
+
+
+        // val database = FirebaseDatabase.getInstance()
+      //  val myRef = database.getReference("message")
+
+        //myRef.setValue("Hello, World!")
 
         val listView = findViewById(R.id.searchListView) as ListView
-        val data_array_items = Array(20, { i -> "Title-$i" })
+        var data_array_items = Array(20, { i -> "Title-$i" })
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
         listView.adapter = adapter
 
@@ -30,49 +50,46 @@ class ItemSearchActivity : AppCompatActivity()
 
 
         //searchView 검색 버튼을 눌렀을때 발생하는 event
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener
-        {
-
-            override fun onQueryTextChange(newText: String): Boolean
-            {
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextChange(newText: String): Boolean {
                 //검색어 입력시 : onQueryTextChange
                 return false
             }
 
-            override fun onQueryTextSubmit(query: String): Boolean
-            {
+            override fun onQueryTextSubmit(query: String): Boolean {
                 //검색어 완료시 : onQueryTextSubmit
                 //Task HERE
 
                 //thread 만들어서 불러옴 http://plaboratory.org/archives/108 참조
                 val thread = Naver_API(query)
                 thread.start()
-                try
-                {
+                try {
                     thread.join()// API 요청 후 데이터를 다 가져올때까지 대기 반드시 사용할 것
-                }
-                catch (e: Exception)
-                {
+                } catch (e: Exception) {
                     e.printStackTrace()
                 }
                 var result = thread.getResult()
                 //println("ItemSearch " + result)
                 //쓰레드 처리 끝
-                var title:Array<String>? = null
+                var title: Array<String>? = null
                 title = thread.getTitle()
-                var titles = thread.getTitle()
-                println("test"+title)
-                println("test"+titles)
 
-                var i =0
+                //https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html
+                //https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/with-index.html
+                //http://codetravel.tistory.com/17
+                /*
                 for (index in title)
                 {
-                    i++
-                    //println((index+1) + " "+title[index])
-                    print(i)
-                    println("번째 상품명: ${index}")
 
+                    println("\n "+index+" 번째 상품명: ${index}")
+                    data_array_items.set()
+                }*/
+
+                for ((index, value) in title.withIndex()) {
+                    data_array_items.set(index, value)
+                    println("the element at $index is $value")
                 }
+
                 return false
             }
         })

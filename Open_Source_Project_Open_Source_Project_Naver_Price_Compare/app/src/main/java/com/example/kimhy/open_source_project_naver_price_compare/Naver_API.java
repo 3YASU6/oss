@@ -47,7 +47,7 @@ public class Naver_API extends Thread
     public void run()
     {
         try
-        {
+            {
 
             String text = URLEncoder.encode(keyword, "UTF-8");
             String apiURL = "https://openapi.naver.com/v1/search/shop?query=" + text + "&display=" + display + "&"; // json 결과 "sort=asc&" : 가격 오름차순 정렬
@@ -60,32 +60,37 @@ public class Naver_API extends Thread
             int responseCode = con.getResponseCode();
             BufferedReader br;
             if (responseCode == 200)
-            { // 정상 호출
+                { // 정상 호출
                 br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            }
+                }
             else
-            {  // 에러 발생
+                {  // 에러 발생
                 br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
-            }
+                }
             String inputLine;
             //StringBuffer response = new StringBuffer();
             while ((inputLine = br.readLine()) != null)
-            {
+                {
                 laminatingData.append(inputLine + "\n");
-            }
+                }
             br.close();
             con.disconnect();
-        }
+            }
         catch (Exception e)
-        {
+            {
             e.printStackTrace();
-        }
+            }
 
-            //reference http://wowon.tistory.com/122
+        //reference http://wowon.tistory.com/122
         //String parse part start
         String data = laminatingData.toString();
+        data = data.replaceAll("<b>", "");//<b> 제거
+        data = data.replaceAll("</b>", "");//</b>제거
+
+        System.out.println(data);//테스트 완료 후 삭제
         String[] array;
         array = data.split("\"");
+
         title = new String[display];
         link = new String[display];
         image = new String[display];
@@ -96,52 +101,53 @@ public class Naver_API extends Thread
         productType = new String[display];
         int k = 0;
         for (int i = 0; i < array.length; i++)
-        {
+            {
             if (array[i].equals("title"))
-            {
+                {
                 title[k] = array[i + 2];
-            }
+                }
             if (array[i].equals("link"))
-            {
+                {
                 link[k] = array[i + 2];
-            }
+                }
             if (array[i].equals("image"))
-            {
+                {
                 image[k] = array[i + 2];
-            }
+                }
             if (array[i].equals("lprice"))
-            {
+                {
                 lprice[k] = array[i + 2];
-            }
+                }
             if (array[i].equals("hprice"))
-            {
+                {
                 hprice[k] = array[i + 2];
-            }
+                }
             if (array[i].equals("mallName"))
-            {
+                {
                 mallName[k] = array[i + 2];
-            }
+                }
             if (array[i].equals("produceId"))
-            {
+                {
                 produceId[k] = array[i + 2];
-            }
+                }
             if (array[i].equals("productType"))
-            {
+                {
                 productType[k] = array[i + 2];
                 k++;
+                }
             }
-        }
         //String parse part end
 
         //test
 
         for (int i = 0; i < display; i++)
-        {
+            {
             //System.out.println((i + 1) + "번째 타이틀: " + title[i] + "\nprice : " + lprice[i]);
             //System.out.println("두번째 타이틀: " + title[1]);
-        }
+            }
 
     }
+
     public String[] getTitle()
     {
         return title;

@@ -3,9 +3,11 @@ package com.example.kimhy.open_source_project_naver_price_compare
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.SearchView
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_item_search.*
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.DatabaseReference
@@ -20,9 +22,9 @@ class ItemSearchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_item_search)
-//        val db = FirebaseFirestore.getInstance()
-//
-//
+   //     val db = FirebaseFirestore.getInstance()
+
+
 //        val user = HashMap<String, Any>()
 //        user.put("first", "Ada");
 //        user.put("last", "Lovelace");
@@ -38,6 +40,8 @@ class ItemSearchActivity : AppCompatActivity() {
 
         val listView = findViewById(R.id.searchListView) as ListView
         var data_array_items = Array(20, { i -> "Title-$i" })
+        var data_array_iprice = Array(20, { i -> "Price-$i" })
+        var data_array_mallname = Array(20, { i -> "Mallname-$i" })
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
         listView.adapter = adapter
 
@@ -74,6 +78,9 @@ class ItemSearchActivity : AppCompatActivity() {
                 var title: Array<String>? = null
                 title = thread.getTitle()
 
+                var iprice: Array<String>? = null
+                iprice = thread.getIprice()
+
                 //https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html
                 //https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/with-index.html
                 //http://codetravel.tistory.com/17
@@ -89,16 +96,34 @@ class ItemSearchActivity : AppCompatActivity() {
                     data_array_items.set(index, value)
                     println("the element at $index is $value")
                 }
+                for ((index, value) in iprice.withIndex()) {
+                    data_array_iprice.set(index, value)
 
+                }
+                val fix: Array<String>? = title
                 return false
             }
         })
 
         //아이템 클릭시 화면이동
-        searchListView.setOnItemClickListener { _, _, _, _ ->
-            val intent = Intent(this, ShowMoreItemInfoActivity::class.java)
-            startActivity(intent)
+        searchListView.setOnItemClickListener {parent, view, position, id ->
+            adapter.getItem(position)
+            data_array_items.get(position)
+            val a: String = data_array_items.get(position)
+            val iprice: String = data_array_iprice.get(position)
+            val mallname: String = data_array_mallname.get(position)
+                Toast.makeText(this, "Position Clicked:"+" "+a,Toast.LENGTH_SHORT).show()
+            val detailintent = Intent(this, ShowMoreItemInfoActivity::class.java)
+            detailintent.putExtra("title", a);
+            detailintent.putExtra("iprice", iprice);
+            detailintent.putExtra("mallname", mallname);
+            startActivity(detailintent)
+            }
+
+
+//            val intent = Intent(this, ShowMoreItemInfoActivity::class.java)
+//            startActivity(intent)
         }
 
     }
-}
+

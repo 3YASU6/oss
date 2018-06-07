@@ -152,6 +152,18 @@ public class Naver_API extends Thread
     {
         return title;
     }
+    public String[] getIprice()
+    {
+        return lprice;
+    }
+    public String[] getMallName()
+    {
+        return mallName;
+    }
+    public String[] getImage()
+    {
+        return getImage();
+    }
 
     public String getResult()
     {

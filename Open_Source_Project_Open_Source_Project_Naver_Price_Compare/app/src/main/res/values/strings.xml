@@ -40,4 +40,10 @@
     <string name="lpriceText">lprice</string>
     <string name="dateText">date</string>
 
+    <!-- 위시 리스트 Item 삭제시 확인 Dialog 의 Strings 정의 -->
+    <string name="messageOfDeleteDialog">이 상품을 위시리스트에서 삭제 하시겠습니까？</string>
+    <string name="titleOfDeleteDialog">확인</string>
+    <string name="deleteFinishedMessage">삭제 되었습니다.</string>
+
+
 </resources>

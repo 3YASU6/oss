@@ -142,22 +142,10 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             mAuthTask!!.execute(null as Void?)
         }
 */
-        // 화면 전이 확인 용 다이어로그
-//        val builder = AlertDialog.Builder(this@LoginActivity)
-//        // Set the alert dialog title
-//        builder.setTitle("Itemlist")
-//        // Display a message on alert dialog
-//        builder.setMessage("This is Itemlist")
-//        // Set a positive button and its click listener on alert dialog
-//        builder.setPositiveButton("YES") { dialog, which ->
-//            // Do something when user press the positive button
-//            Toast.makeText(applicationContext, "Ok", Toast.LENGTH_SHORT).show()
-//        }
 
         // 화면 전환 부분
         val mainIntent = Intent(this, ItemListActivity::class.java)
         startActivity(mainIntent)
-
 
     }
 

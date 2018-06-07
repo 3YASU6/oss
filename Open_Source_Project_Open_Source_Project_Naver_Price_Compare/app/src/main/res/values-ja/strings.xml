@@ -39,4 +39,9 @@
     <string name="lpriceText">lprice</string>
     <string name="dateText">date</string>
 
+    <!-- アイテム削除確認 string 定義 -->
+    <string name="messageOfDeleteDialog">この商品を削除しても良ろしいですか？</string>
+    <string name="titleOfDeleteDialog">確認</string>
+    <string name="deleteFinishedMessage">削除されました</string>
+
 </resources>

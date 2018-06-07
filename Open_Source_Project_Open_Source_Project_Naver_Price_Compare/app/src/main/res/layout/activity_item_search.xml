@@ -6,16 +6,27 @@
     android:orientation="vertical"
     tools:context=".ItemSearchActivity">
 
-    <SearchView
-        android:id="@+id/searchView"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-    </SearchView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <ListView
-        android:id="@+id/searchListView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+            <SearchView
+                android:id="@+id/searchView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </SearchView>
+
+            <ListView
+                android:id="@+id/searchListView"
+                android:layout_width="match_parent"
+                android:layout_height="465dp" />
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

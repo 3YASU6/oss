@@ -16,7 +16,7 @@
     <Button
         android:id="@+id/addButton"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="67dp"
         android:background="@color/colorPrimaryDark"
         android:text="@string/addButton_text"
         android:textColor="@android:color/background_light"

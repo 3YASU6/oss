@@ -9,7 +9,7 @@ import android.widget.ListView
 import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_item_list.*
-import com.google.firebase.database.DatabaseReference
+//import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_show_more_item_info.*
 import org.json.JSONException
@@ -55,8 +55,8 @@ class ItemListActivity : AppCompatActivity() {
         }
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
         thisView.adapter = adapter
-//        val database = FirebaseDatabase.getInstance()
-////        val ref = database.getReference("server/saving-data/fireblog")
+        val database = FirebaseDatabase.getInstance()
+//        val ref = database.getReference("server/saving-data/fireblog")
 //        val myRef = database.getReference("message")
 //
 //        myRef.setValue("Hello, World!")

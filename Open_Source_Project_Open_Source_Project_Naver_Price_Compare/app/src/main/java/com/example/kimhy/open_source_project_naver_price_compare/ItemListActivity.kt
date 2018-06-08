@@ -15,11 +15,11 @@ import kotlinx.android.synthetic.main.activity_show_more_item_info.*
 import org.json.JSONException
 
 
+class ItemListActivity : AppCompatActivity()
+{
 
-
-class ItemListActivity : AppCompatActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_item_list)
 
@@ -28,25 +28,30 @@ class ItemListActivity : AppCompatActivity() {
 
         val intent = intent
         val bd = intent.extras
-        if (bd != null) {
-            val getName = bd.get("title") as String
-            for (i in 0 until data_array_items.size){
+
+        if (bd != null)
+        {
+            val getName = bd.get("title") as String?
+            for (i in 0 until data_array_items.size)
+            {
                 data_array_items[i]
 
             }
-      //      tileText.setText(getName)
-    }
+            //      tileText.setText(getName)
+        }
 
-     //   val values = arrayOf("Android", "iPhone", "WindowsMobile", "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X", "Linux", "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux", "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux", "OS/2", "Android", "iPhone", "WindowsMobile")
+        //   val values = arrayOf("Android", "iPhone", "WindowsMobile", "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X", "Linux", "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux", "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux", "OS/2", "Android", "iPhone", "WindowsMobile")
 
         val ti = intent.getStringExtra("title")
 
 
         val listView = ArrayList<String>()
-        for (i in 0 until data_array_items.size) {
-            if(i!=0) {
+        for (i in 0 until data_array_items.size)
+        {
+            if (i != 0)
+            {
 
-                data_array_items[i]==ti
+                data_array_items[i] == ti
 //                listView.add(data_array_items[i])
                 listView.add(data_array_items[i])
 
@@ -60,37 +65,44 @@ class ItemListActivity : AppCompatActivity() {
         val myRef = database.getReference("message")
 //
 //        myRef.setValue("Hello, World!")
-      //  val users = ArrayList<User>()
+        //  val users = ArrayList<User>()
 
 
-        class product {
+        class product
+        {
 
             var title: String? = null
             var iprice: String? = null
             var mallname: String? = null
 
-            constructor(dateOfBirth: String, fullName: String) {
+            constructor(dateOfBirth: String, fullName: String)
+            {
                 // ...
             }
 
-            constructor(dateOfBirth: String, fullName: String, nickname: String) {
+            constructor(dateOfBirth: String, fullName: String, nickname: String)
+            {
                 // ...
             }
 
         }
 
-  //      val productRef = ref.child("product")
+        //      val productRef = ref.child("product")
 //        val intent = intent
 //        val bd = intent.extras
 //        val item = HashMap<String, Any>()
 
 
 //        val gettitle = bd.get("title") as String
-      //  listView.setText
-        for (i in 0 until 20) {
-            try {
-       //         data_array_items.get()
-            } catch (e: JSONException) {
+        //  listView.setText
+        for (i in 0 until 20)
+        {
+            try
+            {
+                //         data_array_items.get()
+            }
+            catch (e: JSONException)
+            {
                 e.printStackTrace()
             }
 

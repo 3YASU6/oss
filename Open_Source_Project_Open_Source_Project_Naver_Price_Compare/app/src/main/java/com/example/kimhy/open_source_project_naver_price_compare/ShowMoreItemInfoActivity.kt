@@ -3,6 +3,7 @@ package com.example.kimhy.open_source_project_naver_price_compare
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_show_more_item_info.*
 
 class ShowMoreItemInfoActivity : AppCompatActivity() {
@@ -21,7 +22,9 @@ class ShowMoreItemInfoActivity : AppCompatActivity() {
             val getmallname = bd.get("mallname") as String
             mallNameText.setText(getmallname)
 //            val getimage = bd.get("image") as String
-//            itemImage.setImageURI(xgetimage)
+     //       itemImage.setImageURI(getimage)
+         //   Picasso.get().load(url).into(view);
+
         }
 //        itemImage.seton(object : SearchView.OnQueryTextListener {
 //            override fun onQueryTextChange(newText: String): Boolean {
@@ -68,6 +71,10 @@ class ShowMoreItemInfoActivity : AppCompatActivity() {
         // addToWishListButton click시 발생하는 event를 추가
         addToWishListButton.setOnClickListener {
             val intent = Intent(this, ItemListActivity::class.java)
+            intent.putExtra("title", tileText.getText());
+            intent.putExtra("iprice", lpriceText.getText());
+            intent.putExtra("mallname",  mallNameText.getText());
+
             startActivity(intent)
         }
 

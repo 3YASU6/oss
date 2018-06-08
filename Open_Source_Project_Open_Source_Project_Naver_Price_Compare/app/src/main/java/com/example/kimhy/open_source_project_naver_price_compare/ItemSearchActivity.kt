@@ -22,7 +22,7 @@ class ItemSearchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_item_search)
-   //     val db = FirebaseFirestore.getInstance()
+        //     val db = FirebaseFirestore.getInstance()
 
 
 //        val user = HashMap<String, Any>()
@@ -30,11 +30,11 @@ class ItemSearchActivity : AppCompatActivity() {
 //        user.put("last", "Lovelace");
 //        user.put("born", 1815);
 
-   //     db.collection("users").add(user)
+        //     db.collection("users").add(user)
 
 
         // val database = FirebaseDatabase.getInstance()
-      //  val myRef = database.getReference("message")
+        //  val myRef = database.getReference("message")
 
         //myRef.setValue("Hello, World!")
 
@@ -81,13 +81,15 @@ class ItemSearchActivity : AppCompatActivity() {
                 var iprice: Array<String>? = null
                 iprice = thread.getIprice()
 
+                var mallname: Array<String>? = null
+                mallname = thread.getMallName()
+
                 //https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html
                 //https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/with-index.html
                 //http://codetravel.tistory.com/17
                 /*
                 for (index in title)
                 {
-
                     println("\n "+index+" 번째 상품명: ${index}")
                     data_array_items.set()
                 }*/
@@ -97,6 +99,10 @@ class ItemSearchActivity : AppCompatActivity() {
                     println("the element at $index is $value")
                 }
                 for ((index, value) in iprice.withIndex()) {
+                    data_array_iprice.set(index, value)
+
+                }
+                for ((index, value) in mallname.withIndex()) {
                     data_array_iprice.set(index, value)
 
                 }
@@ -112,18 +118,17 @@ class ItemSearchActivity : AppCompatActivity() {
             val a: String = data_array_items.get(position)
             val iprice: String = data_array_iprice.get(position)
             val mallname: String = data_array_mallname.get(position)
-                Toast.makeText(this, "Position Clicked:"+" "+a,Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Position Clicked:"+" "+a,Toast.LENGTH_SHORT).show()
             val detailintent = Intent(this, ShowMoreItemInfoActivity::class.java)
             detailintent.putExtra("title", a);
             detailintent.putExtra("iprice", iprice);
             detailintent.putExtra("mallname", mallname);
             startActivity(detailintent)
-            }
+        }
 
 
 //            val intent = Intent(this, ShowMoreItemInfoActivity::class.java)
 //            startActivity(intent)
-        }
-
     }
 
+}

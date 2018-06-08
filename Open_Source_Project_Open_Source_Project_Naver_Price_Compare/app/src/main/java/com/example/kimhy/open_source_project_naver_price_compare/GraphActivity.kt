@@ -1,6 +1,7 @@
 package com.example.kimhy.open_source_project_naver_price_compare
 
 import android.graphics.Color
+import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
@@ -15,6 +16,7 @@ import com.github.mikephil.charting.formatter.PercentFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
 
 import kotlinx.android.synthetic.main.activity_graph.*
+import retrofit2.http.Url
 
 class GraphActivity : AppCompatActivity() {
 
@@ -65,10 +67,12 @@ class GraphActivity : AppCompatActivity() {
 
 
 
+        //buyButton click시 발생하는 event
         buyButton.setOnClickListener{
-            // Toast 표시
-            val message = "link to shopping site"
-            Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+            // 해당 상품에 이동
+            //Naver_API.link
+            //Uri.parse("https://developer.android.com/reference/android/net/Uri")
+
         }
 
         //delete button click시 발생하는 event
@@ -79,6 +83,14 @@ class GraphActivity : AppCompatActivity() {
             builder.setPositiveButton("YES"){dialog, which ->
                 // YES를 눌렀을 때 발생돼는 event를 여기에 기술
                 // Item을 DB에서 삭제
+
+
+
+
+
+
+
+
 
                 // Toast로 삭제 완료됐음을 표시
                 Toast.makeText(applicationContext, getString(R.string.deleteFinishedMessage), Toast.LENGTH_SHORT).show()

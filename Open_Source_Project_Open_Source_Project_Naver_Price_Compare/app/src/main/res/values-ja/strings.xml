@@ -34,7 +34,7 @@
     <string name="mallName">mallName</string>
 
     <!-- wish list 商品詳細情報 (価格変動グラフ表示) 画面 string 定義 -->
-    <string name="buyButtonText">go to buy</string>
+    <string name="buyButtonText">商品購入</string>
     <string name="titleText">title</string>
     <string name="lpriceText">lprice</string>
     <string name="dateText">date</string>

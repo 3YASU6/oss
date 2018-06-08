@@ -71,7 +71,7 @@ class GraphActivity : AppCompatActivity() {
         buyButton.setOnClickListener{
             // 해당 상품에 이동
             //Naver_API.link
-            //Uri.parse("https://developer.android.com/reference/android/net/Uri")
+            Uri.parse("https://developer.android.com/reference/android/net/Uri")
 
         }
 

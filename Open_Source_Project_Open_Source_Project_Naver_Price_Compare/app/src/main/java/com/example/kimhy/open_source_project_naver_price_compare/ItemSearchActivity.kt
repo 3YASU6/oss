@@ -39,9 +39,9 @@ class ItemSearchActivity : AppCompatActivity() {
         //myRef.setValue("Hello, World!")
 
         val listView = findViewById(R.id.searchListView) as ListView
-        var data_array_items = Array(20, { i -> "Title-$i" })
-        var data_array_iprice = Array(20, { i -> "Price-$i" })
-        var data_array_mallname = Array(20, { i -> "Mallname-$i" })
+        var data_array_items = Array(display, { i -> "Title-$i" })
+        var data_array_iprice = Array(display, { i -> "Price-$i" })
+        var data_array_mallname = Array(display, { i -> "Mallname-$i" })
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
         listView.adapter = adapter
 
@@ -125,10 +125,5 @@ class ItemSearchActivity : AppCompatActivity() {
             detailintent.putExtra("mallname", mallname);
             startActivity(detailintent)
         }
-
-
-//            val intent = Intent(this, ShowMoreItemInfoActivity::class.java)
-//            startActivity(intent)
     }
-
 }

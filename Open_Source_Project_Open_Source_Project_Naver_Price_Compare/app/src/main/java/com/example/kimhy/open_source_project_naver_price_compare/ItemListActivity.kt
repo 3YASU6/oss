@@ -11,119 +11,100 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_item_list.*
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_show_more_item_info.*
 import org.json.JSONException
+import kotlin.coroutines.experimental.EmptyCoroutineContext
 
 
-class ItemListActivity : AppCompatActivity()
-{
+class ItemListActivity : AppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?)
-    {
+    lateinit var db: DocumentReference
+
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_item_list)
-
+        db = FirebaseFirestore.getInstance().document("items/detail")
         val thisView = findViewById(R.id.listView) as ListView
         val data_array_items = Array(20, { i -> "Title-$i" })
 
+        val aa:String
+        val i_price:String
+        val mall_name:String
         val intent = intent
         val bd = intent.extras
-
-        if (bd != null)
-        {
-            val getName = bd.get("title") as String?
-            for (i in 0 until data_array_items.size)
-            {
-                data_array_items[i]
-
-            }
-            //      tileText.setText(getName)
-        }
-
-        //   val values = arrayOf("Android", "iPhone", "WindowsMobile", "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X", "Linux", "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux", "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux", "OS/2", "Android", "iPhone", "WindowsMobile")
-
         val ti = intent.getStringExtra("title")
+        val listview = ArrayList<String>()
 
+        //===============================================
+//set the text in the textview
+        if (bd != null) {
+            val getName = bd.get("title") as String?
+            trytext.setText(getName)
+//            val getiprice = bd.get("iprice") as String
+//            lpriceText.setText(getiprice)
+//            val getmallname = bd.get("mallname") as String
+//            mallNameText.setText(getmallname)
 
-        val listView = ArrayList<String>()
-        for (i in 0 until data_array_items.size)
-        {
-            if (i != 0)
-            {
+            var flavour = trytext.text.toString().trim()
+            aa = trytext.getText().toString()
+            i_price = trytext.getText().toString()
+            mall_name = trytext.getText().toString()
 
-                data_array_items[i] == ti
-//                listView.add(data_array_items[i])
-                listView.add(data_array_items[i])
-
-                i.inc()
+           //========================================
+ //add to database
+            if (flavour!=null) {
+                try {
+                    val items = HashMap<String, Any>()
+           //         items.put("detail", trytext)
+                    db.collection(aa).document("detail").set(items).addOnSuccessListener {
+                        void: Void? -> Toast.makeText(this, "Successfully uploaded to the database :)", Toast.LENGTH_LONG).show()
+                    }.addOnFailureListener {
+                        exception: java.lang.Exception -> Toast.makeText(this, exception.toString(), Toast.LENGTH_LONG).show()
+                    }
+                }catch (e:Exception) {
+                    Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show()
+                }
+            }else {
+                Toast.makeText(this, "Please fill up the fields :(", Toast.LENGTH_LONG).show()
             }
-        }
-        val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
-        thisView.adapter = adapter
-        val database = FirebaseDatabase.getInstance()
-        val ref = database.getReference("server/saving-data/fireblog")
-        val myRef = database.getReference("message")
+
+
+
+
+
+
+
+
+
+
+
+
+
+            }
+            val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
+            thisView.adapter = adapter
+            val database = FirebaseDatabase.getInstance()
+            val ref = database.getReference("server/saving-data/fireblog")
+            val myRef = database.getReference("message")
 //
-//        myRef.setValue("Hello, World!")
-        //  val users = ArrayList<User>()
 
-
-        class product
-        {
-
-            var title: String? = null
-            var iprice: String? = null
-            var mallname: String? = null
-
-            constructor(dateOfBirth: String, fullName: String)
-            {
-                // ...
+            // item click시 발생하는 event
+            thisView.setOnItemClickListener { _, view, _, _ ->
+                // activity_graph 화면에 이동
+                val intent = Intent(this, GraphActivity::class.java)
+                startActivity(intent)
             }
 
-            constructor(dateOfBirth: String, fullName: String, nickname: String)
-            {
-                // ...
+
+            // add button click시 발생하는 event
+            addButton.setOnClickListener {
+                val intent = Intent(this, ItemSearchActivity::class.java)
+                startActivity(intent)
             }
 
-        }
-
-        //      val productRef = ref.child("product")
-//        val intent = intent
-//        val bd = intent.extras
-//        val item = HashMap<String, Any>()
-
-
-//        val gettitle = bd.get("title") as String
-        //  listView.setText
-        for (i in 0 until 20)
-        {
-            try
-            {
-                //         data_array_items.get()
-            }
-            catch (e: JSONException)
-            {
-                e.printStackTrace()
-            }
 
         }
-
-        //item.put("gracehop", User("December 9, 1906", "Grace Hopper"))
-
-        // item click시 발생하는 event
-        thisView.setOnItemClickListener { _, view, _, _ ->
-            // activity_graph 화면에 이동
-            val intent = Intent(this, GraphActivity::class.java)
-            startActivity(intent)
-        }
-
-
-        // add button click시 발생하는 event
-        addButton.setOnClickListener {
-            val intent = Intent(this, ItemSearchActivity::class.java)
-            startActivity(intent)
-        }
-
-
     }
-}
+

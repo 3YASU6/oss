@@ -12,6 +12,7 @@ class ShowMoreItemInfoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_show_more_item_info)
 
+//============set the text in the textview
         val intent = intent
         val bd = intent.extras
         if (bd != null) {
@@ -71,6 +72,7 @@ class ShowMoreItemInfoActivity : AppCompatActivity() {
         // addToWishListButton click시 발생하는 event를 추가
         addToWishListButton.setOnClickListener {
             val intent = Intent(this, ItemListActivity::class.java)
+            //=========prepare the text, so it can be taken in ItemList
             intent.putExtra("title", tileText.getText());
             intent.putExtra("iprice", lpriceText.getText());
             intent.putExtra("mallname",  mallNameText.getText());

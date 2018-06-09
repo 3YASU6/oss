@@ -25,18 +25,6 @@ class ItemSearchActivity : AppCompatActivity() {
         //     val db = FirebaseFirestore.getInstance()
 
 
-//        val user = HashMap<String, Any>()
-//        user.put("first", "Ada");
-//        user.put("last", "Lovelace");
-//        user.put("born", 1815);
-
-        //     db.collection("users").add(user)
-
-
-        // val database = FirebaseDatabase.getInstance()
-        //  val myRef = database.getReference("message")
-
-        //myRef.setValue("Hello, World!")
 
         val listView = findViewById(R.id.searchListView) as ListView
         var data_array_items = Array(display, { i -> "Title-$i" })
@@ -120,6 +108,8 @@ class ItemSearchActivity : AppCompatActivity() {
             val mallname: String = data_array_mallname.get(position)
             Toast.makeText(this, "Position Clicked:"+" "+a,Toast.LENGTH_SHORT).show()
             val detailintent = Intent(this, ShowMoreItemInfoActivity::class.java)
+
+            //=========prepare the text, so it can be taken in ShowMoreItemInfo
             detailintent.putExtra("title", a);
             detailintent.putExtra("iprice", iprice);
             detailintent.putExtra("mallname", mallname);

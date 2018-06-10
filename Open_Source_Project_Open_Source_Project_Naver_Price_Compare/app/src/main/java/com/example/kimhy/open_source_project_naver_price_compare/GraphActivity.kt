@@ -20,8 +20,11 @@ import kotlinx.android.synthetic.main.activity_graph.*
 import retrofit2.http.Url
 import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.components.Legend
+import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.data.LineRadarDataSet
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 
 
 class GraphActivity : AppCompatActivity() {
@@ -46,7 +49,20 @@ class GraphActivity : AppCompatActivity() {
         // 대체 배경색을 설정
         mChart.setBackgroundColor(Color.LTGRAY)
 
-        val data = LineData()
+        val y_data = ArrayList<Entry>()
+        y_data.add(Entry(0f, 1000f))
+        y_data.add(Entry(1f, 1000f))
+        y_data.add(Entry(2f, 1000f))
+        y_data.add(Entry(3f, 1200f))
+        y_data.add(Entry(4f, 1200f))
+        y_data.add(Entry(5f, 1200f))
+        y_data.add(Entry(6f, 1200f))
+
+        val set = LineDataSet(y_data, "Price_Data")
+
+        val dataSet = ArrayList<ILineDataSet>()
+        dataSet.add(set)
+        val data = LineData(dataSet)
         data.setValueTextColor(Color.BLACK)
 
         // 데이터 추가

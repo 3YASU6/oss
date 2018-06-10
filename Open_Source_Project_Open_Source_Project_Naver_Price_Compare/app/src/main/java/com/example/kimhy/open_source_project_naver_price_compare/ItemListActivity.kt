@@ -23,10 +23,10 @@ import kotlin.coroutines.experimental.EmptyCoroutineContext
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.DocumentSnapshot
-
-
-
-
+//import jdk.nashorn.internal.runtime.ECMAException.getException
+//import org.junit.experimental.results.ResultMatchers.isSuccessful
+import android.support.annotation.NonNull
+import com.google.android.gms.tasks.Task
 
 
 class ItemListActivity : AppCompatActivity() {
@@ -39,9 +39,10 @@ class ItemListActivity : AppCompatActivity() {
         db = FirebaseFirestore.getInstance().document("items/detail")
         val thisView = findViewById(R.id.listView) as ListView
         val data_array_items = Array(20, { i -> "Title-$i" })
-        val listvieww = Array(20, {  })
+        val listvieww = Array(5, {  })
 
-
+        val count:Int
+        val idnum:Int
         val aa:String
         val i_price:String
         val mall_name:String
@@ -85,40 +86,56 @@ class ItemListActivity : AppCompatActivity() {
                 Toast.makeText(this, "Please fill up the fields :(", Toast.LENGTH_LONG).show()
             }
 
-
-
+//            val docRef = db.collection("items").document("detail")
+//            docRef.get().addOnSuccessListener { documentSnapshot -> val items = documentSnapshot.toObject<ItemListActivity>(ItemListActivity::class.java!!) }
 //=======================================================================================================================================
-            //==================get data from database (ERROR)
-            val docReff = db.collection("items").document("detail")
-            docReff.get().addOnCompleteListener(OnCompleteListener<DocumentSnapshot> { task ->
-                if (task.isSuccessful) {
-                    val document = task.result
-                    if (document != null) {
-
-                        Log.d("TAG", "before")
-                        //try to print data
-                        for ( i in listvieww.indices) {
-                            println(task.result)
-                            Toast.makeText(this, "DocumentSnapshot data: " + listvieww[i]
-                                    , Toast.LENGTH_LONG).show()
-                        }
-
-                        Log.d("TAG", "message")
-
-                    } else {
-                        Toast.makeText(this, "no such a data", Toast.LENGTH_LONG).show()
-
-                    }
-                } else {
-                    Toast.makeText(this, "get failed with" + task.exception, Toast.LENGTH_LONG).show()
-                }
-            })
+            //==================get data from database
+          //  val docReff = db.collection("Price-10").document("detail")
+//            db.get().addOnCompleteListener(OnCompleteListener<DocumentSnapshot> { task ->
+//                if (task.isSuccessful) {
+//                    val document = task.getResult()
+//                    println(document)
+//                    println("=========================")
+//                    if (document!=null) {
+//
+//                        Log.d("TAG", "before")
+//                        //try to print data
+//                        for ( i in listvieww.indices) {
+//                            println("iya ========== "+ document.data)
+//                            Toast.makeText(this, "DocumentSnapshot data: " + document.data
+//                                    , Toast.LENGTH_LONG).show()
+//                        }
+//
+//                        Log.d("TAG", "message")
+//
+//                    } else {
+//                        Toast.makeText(this, "no such a data", Toast.LENGTH_LONG).show()
+//
+//                    }
+//                } else {
+//                    Toast.makeText(this, "get failed with" + task.exception, Toast.LENGTH_LONG).show()
+//                }
+//            })
 
         //=================== custom object
-            val docRef = db.collection("items").document("detail")
-            docRef.get().addOnSuccessListener(OnSuccessListener<DocumentSnapshot> { documentSnapshot ->
-                val note = documentSnapshot.toObject(ItemListActivity::class.java)
-            })
+//            val docRef = db.collection("items").document("detail")
+//            docRef.get().addOnSuccessListener(OnSuccessListener<DocumentSnapshot> { documentSnapshot ->
+//                val note = documentSnapshot.toObject(ItemListActivity::class.java)
+//                println("this note "+note)
+//            })
+
+            db.collection("items")
+                    .get()
+                    .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
+                        if (task.isSuccessful) {
+                            for (document in task.result) {
+                              //  println("==============================")
+                                Log.d("tag", document.id + " => " + document.data)
+                            }
+                        } else {
+                            Log.d("tag", "Error getting documents: ", task.exception)
+                        }
+                    })
 
 //================================================================================================================
 

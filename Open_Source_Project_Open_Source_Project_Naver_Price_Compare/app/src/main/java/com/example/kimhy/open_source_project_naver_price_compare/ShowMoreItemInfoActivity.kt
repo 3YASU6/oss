@@ -22,9 +22,7 @@ class ShowMoreItemInfoActivity : AppCompatActivity() {
             lpriceText.setText(getiprice)
             val getmallname = bd.get("mallname") as String
             mallNameText.setText(getmallname)
-//            val getimage = bd.get("image") as String
-     //       itemImage.setImageURI(getimage)
-         //   Picasso.get().load(url).into(view);
+
 
         }
 //        itemImage.seton(object : SearchView.OnQueryTextListener {

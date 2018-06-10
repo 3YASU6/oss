@@ -46,26 +46,34 @@ class GraphActivity : AppCompatActivity() {
         // 비활성화 된 경우 배율을 x 축과 y 축에서 개별적으로 수행 할 수 있습니다.
         mChart.setPinchZoom(true)
 
-        // 대체 배경색을 설정
-        mChart.setBackgroundColor(Color.LTGRAY)
+        // 배경색을 설정
+        mChart.setBackgroundColor(Color.WHITE)
 
-        val y_data = ArrayList<Entry>()
-        y_data.add(Entry(0f, 1000f))
-        y_data.add(Entry(1f, 1000f))
-        y_data.add(Entry(2f, 1000f))
-        y_data.add(Entry(3f, 1200f))
-        y_data.add(Entry(4f, 1200f))
-        y_data.add(Entry(5f, 1200f))
-        y_data.add(Entry(6f, 1200f))
+        // TODO: FireBase에서 끌고 온 상품 가격변동 정보들을 저장 (가격 = price)  ※지금은 더미
+        val price_from_fireBase = arrayOf(900f,900f,1000f,1200f,1200f,800f,750f)
+        // TODO: FireBase에서 끌고 온 상품 가격변동 정보들을 저장 (날짜 = date)  ※지금은 더미
+        val date_from_fireBase = arrayOf(1f, 2f, 3f,4f,5f,6f,7f)
 
-        val set = LineDataSet(y_data, "Price_Data")
+        // 그래프의 Point가 되는 데이터 배열
+        val xy_data = ArrayList<Entry>()
 
+        // FireBase에서 끌고 온 Date, Price를 그래프 Point(x값, y값)로 설정
+        for(i in date_from_fireBase.indices) {
+            xy_data.add(Entry(date_from_fireBase[i],price_from_fireBase[i])) // xy값(=Entry)를 xy_data에 설정 (X = date_data, Y = price_data)
+        }
+
+        // xy_data를 LineDataSet인 set에 저장
+        val set = LineDataSet(xy_data, "Price_History")
+
+        //LineDataSet를 생성하고 set를 놓기
         val dataSet = ArrayList<ILineDataSet>()
         dataSet.add(set)
+
+        //  LineData인 data에 dataSet 놓기
         val data = LineData(dataSet)
         data.setValueTextColor(Color.BLACK)
 
-        // 데이터 추가
+        // 그래프에 데이터를 추가
         mChart.setData(data)
 
         //  라인의 rabel를 설정
@@ -74,14 +82,12 @@ class GraphActivity : AppCompatActivity() {
         l.setTextColor(Color.BLACK)
 
         val xl = mChart.getXAxis()
+        xl.setLabelCount(9)
+        xl.setPosition(XAxis.XAxisPosition.BOTTOM)
         xl.setTextColor(Color.BLACK)
-        //xl.setLabelsToSkip(9)
 
         val leftAxis = mChart.getAxisLeft()
         leftAxis.setTextColor(Color.BLACK)
-        leftAxis.setAxisMaxValue(3.0f)
-        leftAxis.setAxisMinValue(-3.0f)
-        leftAxis.setStartAtZero(false)
         leftAxis.setDrawGridLines(true)
 
         val rightAxis = mChart.getAxisRight()

@@ -84,7 +84,7 @@ class ItemListActivity : AppCompatActivity() {
                     items.put("iprice", i_price)
                     items.put("mall_name", mall_name)
                     // insert the database to firebase
-                    db.collection("aa").document("").set(items).addOnSuccessListener {
+                    db.set(items).addOnSuccessListener {
                         void: Void? -> Toast.makeText(this, "Successfully uploaded to the database :)", Toast.LENGTH_LONG).show()
                     }.addOnFailureListener {
                         // if the data failure

@@ -1,6 +1,7 @@
 package com.example.kimhy.open_source_project_naver_price_compare
 
 import android.content.Intent
+import android.icu.util.ULocale
 import android.nfc.Tag
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -36,13 +37,18 @@ class ItemListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_item_list)
-        db = FirebaseFirestore.getInstance().document("items/detail")
+       // val db = FirebaseFirestore.getInstance()
+      val  db = FirebaseFirestore.getInstance()
+                .document("items/detail")
         val thisView = findViewById(R.id.listView) as ListView
         val data_array_items = Array(20, { i -> "Title-$i" })
         val listvieww = Array(5, {  })
 
         val count:Int
         val idnum:Int
+        val name:String
+        val price:String
+        val mall:String
         val aa:String
         val i_price:String
         val mall_name:String
@@ -73,8 +79,10 @@ class ItemListActivity : AppCompatActivity() {
             if (flavour!=null) {
                 try {
                     val items = HashMap<String, Any>()
-           //         items.put("detail", trytext)
-                    db.collection(aa).document("detail").collection(i_price).document("detailprice").set(items).addOnSuccessListener {
+                    items.put("name", aa)
+                    items.put("iprice", i_price)
+                    items.put("mall_name", mall_name)
+                    db.set(items).addOnSuccessListener {
                         void: Void? -> Toast.makeText(this, "Successfully uploaded to the database :)", Toast.LENGTH_LONG).show()
                     }.addOnFailureListener {
                         exception: java.lang.Exception -> Toast.makeText(this, exception.toString(), Toast.LENGTH_LONG).show()
@@ -86,63 +94,35 @@ class ItemListActivity : AppCompatActivity() {
                 Toast.makeText(this, "Please fill up the fields :(", Toast.LENGTH_LONG).show()
             }
 
-//            val docRef = db.collection("items").document("detail")
-//            docRef.get().addOnSuccessListener { documentSnapshot -> val items = documentSnapshot.toObject<ItemListActivity>(ItemListActivity::class.java!!) }
 //=======================================================================================================================================
             //==================get data from database
-          //  val docReff = db.collection("Price-10").document("detail")
-//            db.get().addOnCompleteListener(OnCompleteListener<DocumentSnapshot> { task ->
-//                if (task.isSuccessful) {
-//                    val document = task.getResult()
-//                    println(document)
-//                    println("=========================")
-//                    if (document!=null) {
-//
-//                        Log.d("TAG", "before")
-//                        //try to print data
-//                        for ( i in listvieww.indices) {
-//                            println("iya ========== "+ document.data)
-//                            Toast.makeText(this, "DocumentSnapshot data: " + document.data
-//                                    , Toast.LENGTH_LONG).show()
-//                        }
-//
-//                        Log.d("TAG", "message")
-//
-//                    } else {
-//                        Toast.makeText(this, "no such a data", Toast.LENGTH_LONG).show()
-//
-//                    }
-//                } else {
-//                    Toast.makeText(this, "get failed with" + task.exception, Toast.LENGTH_LONG).show()
-//                }
-//            })
+            db.get().addOnCompleteListener(OnCompleteListener<DocumentSnapshot> { task ->
+                if (task.isSuccessful) {
+                    val document = task.getResult()
+                    println(task.result.data)
+                    println("=========================")
+                    if (document!=null) {
+                        Log.d("tag", "DocumentSnapshot data: " + task.result.data)
 
-        //=================== custom object
-//            val docRef = db.collection("items").document("detail")
-//            docRef.get().addOnSuccessListener(OnSuccessListener<DocumentSnapshot> { documentSnapshot ->
-//                val note = documentSnapshot.toObject(ItemListActivity::class.java)
-//                println("this note "+note)
-//            })
+                        Log.d("TAG", "before")
+                        println("iya ========== "+ document.data)
+                        //try to print data
+//
 
-            db.collection("items")
-                    .get()
-                    .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
-                        if (task.isSuccessful) {
-                            for (document in task.result) {
-                              //  println("==============================")
-                                Log.d("tag", document.id + " => " + document.data)
-                            }
-                        } else {
-                            Log.d("tag", "Error getting documents: ", task.exception)
-                        }
-                    })
+
+                        Log.d("TAG", "message")
+
+                    } else {
+                        Toast.makeText(this, "no such a data", Toast.LENGTH_LONG).show()
+
+                    }
+                } else {
+                    Toast.makeText(this, "get failed with" + task.exception, Toast.LENGTH_LONG).show()
+                }
+            })
+
 
 //================================================================================================================
-
-
-
-
-
 
 
             }

@@ -148,16 +148,6 @@ public class Naver_API extends Thread
 //
     }
 
-/*
-    title = new String[display];
-    link = new String[display];
-    image = new String[display];
-    lprice = new String[display];
-    hprice = new String[display];
-    mallName = new String[display];
-    produceId = new String[display];
-    productType = new String[display];
-    */
     public String[] getTitle()
     {
         return title;
@@ -170,7 +160,7 @@ public class Naver_API extends Thread
     {
         return getImage();
     }
-    public String[] getLprice()
+    public String[] getIprice()
     {
         return lprice;
     }

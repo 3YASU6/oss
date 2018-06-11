@@ -30,6 +30,7 @@ class ItemSearchActivity : AppCompatActivity() {
         var data_array_items = Array(display, { i -> "Title-$i" })
         var data_array_iprice = Array(display, { i -> "Price-$i" })
         var data_array_mallname = Array(display, { i -> "Mallname-$i" })
+        var data_array_link = Array(display, { i -> "Link-$i" })
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
         listView.adapter = adapter
 
@@ -72,6 +73,9 @@ class ItemSearchActivity : AppCompatActivity() {
                 var mallname: Array<String>? = null
                 mallname = thread.getMallName()
 
+                var link: Array<String>? = null
+                link = thread.getLink()
+
                 //https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html
                 //https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/with-index.html
                 //http://codetravel.tistory.com/17
@@ -94,6 +98,10 @@ class ItemSearchActivity : AppCompatActivity() {
                     data_array_mallname.set(index, value)
 
                 }
+                for ((index, value) in link.withIndex()) {
+                    data_array_link.set(index, value)
+
+                }
 
                 val fix: Array<String>? = title
                 return false
@@ -104,14 +112,14 @@ class ItemSearchActivity : AppCompatActivity() {
         searchListView.setOnItemClickListener {parent, view, position, id ->
             adapter.getItem(position)
             data_array_items.get(position)
-            val a: String = data_array_items.get(position)
+            val title_sub: String = data_array_items.get(position)
             val iprice: String = data_array_iprice.get(position)
             val mallname: String = data_array_mallname.get(position)
-            Toast.makeText(this, "Position Clicked:"+" "+a,Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Position Clicked:"+" "+title_sub,Toast.LENGTH_SHORT).show()
             val detailintent = Intent(this, ShowMoreItemInfoActivity::class.java)
 
             //=========prepare the text, so it can be taken in ShowMoreItemInfo
-            detailintent.putExtra("title", a);
+            detailintent.putExtra("title", title_sub);
             detailintent.putExtra("iprice", iprice);
             detailintent.putExtra("mallname", mallname);
             startActivity(detailintent)

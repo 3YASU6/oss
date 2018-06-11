@@ -14,13 +14,13 @@ class ShowMoreItemInfoActivity : AppCompatActivity() {
 
 //============set the text in the textview
         val intent = intent
-        val bd = intent.extras
-        if (bd != null) {
-            val getName = bd.get("title") as String
+        val swapVariable = intent.extras
+        if (swapVariable != null) {
+            val getName = swapVariable.get("title") as String
             tileText.setText(getName)
-            val getiprice = bd.get("iprice") as String
+            val getiprice = swapVariable.get("iprice") as String
             lpriceText.setText(getiprice)
-            val getmallname = bd.get("mallname") as String
+            val getmallname = swapVariable.get("mallname") as String
             mallNameText.setText(getmallname)
 
 

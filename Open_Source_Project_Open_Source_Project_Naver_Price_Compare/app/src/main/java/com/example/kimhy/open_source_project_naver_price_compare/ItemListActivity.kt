@@ -58,7 +58,7 @@ class ItemListActivity : AppCompatActivity() {
 
 
         //===============================================
-//set the text in the textview
+        //set the text in the textview
         if (bd != null) {
             val getName = bd.get("title") as String?
             trytext.setText(getName)
@@ -67,7 +67,7 @@ class ItemListActivity : AppCompatActivity() {
             val get_imall = bd.get("mallname") as String?
             trytextmall.setText(get_imall)
 
-
+            //to take the data into string
             var flavour = trytext.text.toString().trim()
             aa = trytext.getText().toString()
             i_price = trytextprice.getText().toString()
@@ -78,19 +78,23 @@ class ItemListActivity : AppCompatActivity() {
  //==============add and insert to database
             if (flavour!=null) {
                 try {
+                    // put the data in string database
                     val items = HashMap<String, Any>()
                     items.put("name", aa)
                     items.put("iprice", i_price)
                     items.put("mall_name", mall_name)
-                    db.set(items).addOnSuccessListener {
+                    // insert the database to firebase
+                    db.collection("aa").document("").set(items).addOnSuccessListener {
                         void: Void? -> Toast.makeText(this, "Successfully uploaded to the database :)", Toast.LENGTH_LONG).show()
                     }.addOnFailureListener {
+                        // if the data failure
                         exception: java.lang.Exception -> Toast.makeText(this, exception.toString(), Toast.LENGTH_LONG).show()
                     }
                 }catch (e:Exception) {
                     Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show()
                 }
             }else {
+                //if can't read the data
                 Toast.makeText(this, "Please fill up the fields :(", Toast.LENGTH_LONG).show()
             }
 
@@ -102,6 +106,7 @@ class ItemListActivity : AppCompatActivity() {
                     println(task.result.data)
                     println("=========================")
                     if (document!=null) {
+                        //get data from firebase
                         Log.d("tag", "DocumentSnapshot data: " + task.result.data)
 
                         Log.d("TAG", "before")
@@ -111,7 +116,7 @@ class ItemListActivity : AppCompatActivity() {
 
 
                         Log.d("TAG", "message")
-
+                    //if can't read the data
                     } else {
                         Toast.makeText(this, "no such a data", Toast.LENGTH_LONG).show()
 

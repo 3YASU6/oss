@@ -60,7 +60,7 @@ class ItemSearchActivity : AppCompatActivity() {
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
-                var result = thread.getResult()
+                //var result = thread.getResult()
                 //println("ItemSearch " + result)
                 //쓰레드 처리 끝
                 var title: Array<String>? = null

@@ -10,16 +10,19 @@
 
     <application
         android:allowBackup="true"
+        android:clearTaskOnLaunch="true"
         android:icon="@mipmap/icon2"
         android:label="@string/app_name"
+        android:launchMode="singleTask"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+
         <activity
             android:name=".LoginActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -28,23 +31,23 @@
 
         <activity
             android:name=".GraphActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/frame_name_graph"/>
+            android:label="@string/frame_name_graph"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".ShowMoreItemInfoActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/frame_name_item_show_more_item_info"/>
+            android:label="@string/frame_name_item_show_more_item_info"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".ItemSearchActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/frame_name_item_search"/>
+            android:label="@string/frame_name_item_search"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".ItemListActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/frame_name_item_list"/>
+            android:label="@string/frame_name_item_list"
+            android:screenOrientation="portrait" />
 
     </application>
 

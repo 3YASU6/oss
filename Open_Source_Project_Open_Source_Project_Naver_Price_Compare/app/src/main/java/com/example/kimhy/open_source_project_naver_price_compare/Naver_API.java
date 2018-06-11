@@ -147,39 +147,51 @@ public class Naver_API extends Thread
 //            }
 //
     }
+
     public String getResult()
     {
         return laminatingData.toString();
     }
+
     public String[] getTitle()
     {
         return title;
     }
+
     public String[] getLink()
     {
         return link;
     }
+
     public String[] getImage()
     {
         return getImage();
     }
+
     public String[] getIprice()
     {
         return lprice;
     }
+
     public String[] getHprice()
     {
         return hprice;
     }
+
     public String[] getMallName()
     {
         return mallName;
     }
-    public String[] getProduceId(){ return  produceId;}
-    public String[] getProductType(){return  productType;}
 
+    public String[] getProduceId()
+    {
+        return produceId;
+    }
 
-
+    public String[] getProductType()
+    {
+        return productType;
+    }
 
 
     public String getClientId()

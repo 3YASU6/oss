@@ -60,7 +60,7 @@ class ItemSearchActivity : AppCompatActivity() {
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
-                //var result = thread.getResult()
+                var result = thread.getResult()
                 //println("ItemSearch " + result)
                 //쓰레드 처리 끝
                 var title: Array<String>? = null
@@ -75,13 +75,13 @@ class ItemSearchActivity : AppCompatActivity() {
                 //https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html
                 //https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/with-index.html
                 //http://codetravel.tistory.com/17
-                /*
+/*
                 for (index in title)
                 {
                     println("\n "+index+" 번째 상품명: ${index}")
-                    data_array_items.set()
-                }*/
-
+                    data_array_items.set(index, title)
+                }
+*/
                 for ((index, value) in title.withIndex()) {
                     data_array_items.set(index, value)
                     println("the element at $index is $value")
@@ -94,6 +94,7 @@ class ItemSearchActivity : AppCompatActivity() {
                     data_array_iprice.set(index, value)
 
                 }
+
                 val fix: Array<String>? = title
                 return false
             }

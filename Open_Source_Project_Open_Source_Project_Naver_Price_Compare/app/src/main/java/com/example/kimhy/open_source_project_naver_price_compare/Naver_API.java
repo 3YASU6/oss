@@ -147,7 +147,10 @@ public class Naver_API extends Thread
 //            }
 //
     }
-
+    public String getResult()
+    {
+        return laminatingData.toString();
+    }
     public String[] getTitle()
     {
         return title;

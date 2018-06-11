@@ -91,7 +91,7 @@ class ItemSearchActivity : AppCompatActivity() {
 
                 }
                 for ((index, value) in mallname.withIndex()) {
-                    data_array_iprice.set(index, value)
+                    data_array_mallname.set(index, value)
 
                 }
 

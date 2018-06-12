@@ -37,12 +37,9 @@ class ItemListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_item_list)
-       // val db = FirebaseFirestore.getInstance()
-      val  db = FirebaseFirestore.getInstance()
-                .document("items/detail")
-        val thisView = findViewById(R.id.listView) as ListView
-        val data_array_items = Array(20, { i -> "Title-$i" })
-        val listvieww = Array(5, {  })
+
+        // db에 DB의 Instance 취득
+        val  db = FirebaseFirestore.getInstance().document("items/detail")
 
         val count:Int
         val idnum:Int
@@ -57,57 +54,56 @@ class ItemListActivity : AppCompatActivity() {
         val ti = intent.getStringExtra("title")
 
 
-        //===============================================
+
+        // ListView 를 취득
+        val thisView = findViewById(R.id.listView) as ListView
+
+        // ListView의 Item 에 놓는 데이터 배열를 초기화
+        var data_array_items = Array(20, { i -> "Title-$i" })
+
+        var ItemTitle = "" as String?
+
+
         //set the text in the textview
         if (bd != null) {
-            val getName = bd.get("title") as String?
-           // trytext.setText(getName)
-            val get_iprice = bd.get("iprice") as String?
-           // trytextprice.setText(get_iprice)
-            val get_imall = bd.get("mallname") as String?
-           // trytextmall.setText(get_imall)
-
-//
-
-//=======================================================================================================================================
-            //==================get data from database
+            //  get data from database
             db.get().addOnCompleteListener(OnCompleteListener<DocumentSnapshot> { task ->
                 if (task.isSuccessful) {
-                    val document = task.getResult()
-                    println(task.result.data)
-                    println("=========================")
-                    if (document!=null) {
-                        //get data from firebase
-                        Log.d("tag", "DocumentSnapshot data: " + task.result.data)
-                        trytext.setText(task.result.data.toString())
-                        Log.d("TAG", "before")
-                        println("iya ========== "+ document.data)
-                        //try to print data
-//
+                    //FireBase에서 전체 데이터를 취득
+                    val ALL_DB_Data = task.result.data.toString()
 
+                    if (ALL_DB_Data.isNullOrEmpty()) { // ALL_DB_Data가 null아님 비어있을때
 
-                        Log.d("TAG", "message")
-                    //if can't read the data
-                    } else {
                         Toast.makeText(this, "no such a data", Toast.LENGTH_LONG).show()
 
+                    } else {
+                        // ALL_DB_Data 내용 : name*****=*****,mall_name1=***,iprice1=****
+                        // temp 내용 : name***** ↓첫번째 = 이전 문자를 취득
+                        val temp = ALL_DB_Data.substringBefore("=")
+
+                        // Item_name 내용 : ***** ↓앞에서 5번째 문자 이후의 문자열을 취득
+                        val Item_name = temp.substring(5)
+
+                        // data_array_items[0] 에 item_name를 set
+                        data_array_items.set(1,Item_name)
+
+                        Toast.makeText(this,Item_name, Toast.LENGTH_LONG).show()
                     }
                 } else {
                     Toast.makeText(this, "get failed with" + task.exception, Toast.LENGTH_LONG).show()
                 }
             })
 
+        }
+        val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
+        thisView.adapter = adapter
 
-//================================================================================================================
+        val database = FirebaseDatabase.getInstance()
+        val ref = database.getReference("server/saving-data/fireblog")
+        val myRef = database.getReference("message")
 
 
-            }
-            val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
-            thisView.adapter = adapter
-            val database = FirebaseDatabase.getInstance()
-            val ref = database.getReference("server/saving-data/fireblog")
-            val myRef = database.getReference("message")
-//
+
 
             // item click시 발생하는 event
             thisView.setOnItemClickListener { _, view, _, _ ->

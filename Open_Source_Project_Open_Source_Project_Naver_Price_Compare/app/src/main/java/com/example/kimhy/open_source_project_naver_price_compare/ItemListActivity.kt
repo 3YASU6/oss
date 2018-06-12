@@ -98,9 +98,9 @@ class ItemListActivity : AppCompatActivity() {
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
         thisView.adapter = adapter
 
-        val database = FirebaseDatabase.getInstance()
-        val ref = database.getReference("server/saving-data/fireblog")
-        val myRef = database.getReference("message")
+//        val database = FirebaseDatabase.getInstance()
+//        val ref = database.getReference("server/saving-data/fireblog")
+//        val myRef = database.getReference("message")
 
 
 

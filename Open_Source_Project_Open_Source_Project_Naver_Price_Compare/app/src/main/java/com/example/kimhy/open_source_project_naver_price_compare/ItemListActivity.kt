@@ -61,42 +61,13 @@ class ItemListActivity : AppCompatActivity() {
         //set the text in the textview
         if (bd != null) {
             val getName = bd.get("title") as String?
-            trytext.setText(getName)
+           // trytext.setText(getName)
             val get_iprice = bd.get("iprice") as String?
-            trytextprice.setText(get_iprice)
+           // trytextprice.setText(get_iprice)
             val get_imall = bd.get("mallname") as String?
-            trytextmall.setText(get_imall)
+           // trytextmall.setText(get_imall)
 
-            //to take the data into string
-            var flavour = trytext.text.toString().trim()
-            aa = trytext.getText().toString()
-            i_price = trytextprice.getText().toString()
-            mall_name = trytextmall.getText().toString()
-
-
-           //========================================
- //==============add and insert to database
-            if (flavour!=null) {
-                try {
-                    // put the data in string database
-                    val items = HashMap<String, Any>()
-                    items.put("name", aa)
-                    items.put("iprice", i_price)
-                    items.put("mall_name", mall_name)
-                    // insert the database to firebase
-                    db.collection("aa").document("").set(items).addOnSuccessListener {
-                        void: Void? -> Toast.makeText(this, "Successfully uploaded to the database :)", Toast.LENGTH_LONG).show()
-                    }.addOnFailureListener {
-                        // if the data failure
-                        exception: java.lang.Exception -> Toast.makeText(this, exception.toString(), Toast.LENGTH_LONG).show()
-                    }
-                }catch (e:Exception) {
-                    Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show()
-                }
-            }else {
-                //if can't read the data
-                Toast.makeText(this, "Please fill up the fields :(", Toast.LENGTH_LONG).show()
-            }
+//
 
 //=======================================================================================================================================
             //==================get data from database
@@ -108,7 +79,7 @@ class ItemListActivity : AppCompatActivity() {
                     if (document!=null) {
                         //get data from firebase
                         Log.d("tag", "DocumentSnapshot data: " + task.result.data)
-
+                        trytext.setText(task.result.data.toString())
                         Log.d("TAG", "before")
                         println("iya ========== "+ document.data)
                         //try to print data

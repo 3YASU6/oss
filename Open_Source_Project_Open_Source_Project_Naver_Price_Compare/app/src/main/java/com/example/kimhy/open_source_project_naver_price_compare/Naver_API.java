@@ -12,6 +12,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -165,7 +166,7 @@ public class Naver_API extends Thread
 
     public String[] getImage()
     {
-        return getImage();
+        return image;
     }
 
     public String[] getIprice()

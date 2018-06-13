@@ -27,8 +27,10 @@ import com.google.firebase.firestore.DocumentSnapshot
 //import jdk.nashorn.internal.runtime.ECMAException.getException
 //import org.junit.experimental.results.ResultMatchers.isSuccessful
 import android.support.annotation.NonNull
+import android.support.v7.widget.DefaultItemAnimator
 import com.google.android.gms.tasks.Task
-import com.example.kimhy.open_source_project_naver_price_compare.ShowMoreItemInfoActivity
+import java.util.*
+
 
 class ItemListActivity : AppCompatActivity() {
 
@@ -37,24 +39,25 @@ class ItemListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_item_list)
-<<<<<<< HEAD
-      val  db = FirebaseFirestore.getInstance()
-              //  .document("items/detail")
 
+        // 화면에 표시 되는 상품 수
+        val display = 20
+
+
+
+        // ListView 를 취득
         val thisView = findViewById(R.id.listView) as ListView
-        val data_array_items = Array(20, { i -> "Title-$i" })
-        val listvieww = Array(5, {  })
-=======
+        // ListView의 Item 에 놓는 데이터 배열를 초기화
+        var data_array_items = Array(display, { i -> "Title-$i" })
+        var data_array_iprice = Array(display, { i -> "Price-$i" })
 
+        val itemsAdapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
+        val listView = findViewById(R.id.listView) as ListView
+        listView.adapter = itemsAdapter
         // db에 DB의 Instance 취득
-        val  db = FirebaseFirestore.getInstance().document("items/detail")
->>>>>>> 04cc56fc165975eafce402604089f6866060be91
+        val  db = FirebaseFirestore.getInstance()
+                //.document("items")
 
-        val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
-        listView.adapter = adapter
-        val database = FirebaseDatabase.getInstance()
-        val ref = database.getReference("server/saving-data/fireblog")
-        val myRef = database.getReference("message")
 
         val count:Int
         val idnum:Int
@@ -64,99 +67,96 @@ class ItemListActivity : AppCompatActivity() {
         val aa:String
         val i_price:String
         val mall_name:String
-
         val intent = intent
         val bd = intent.extras
         val ti = intent.getStringExtra("title")
 
-        // 화면에 표시 되는 상품 수
-        val display = 20
-
-        // ListView 를 취득
-        val thisView = findViewById(R.id.listView) as ListView
-
-        // ListView의 Item 에 놓는 데이터 배열를 초기화
-        var data_array_items = Array(display, { i -> "Title-$i" })
-        var data_array_iprice = Array(display, { i -> "Price-$i" })
-
-<<<<<<< HEAD
-
-//=======================================================================================================================================
-            //==================get data from database
-            var list_member= mutableListOf<Item>()
-//
-//            db.collection("items")
-//                    .get()
-//                    .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
-//                        if (task.isSuccessful) {
-//                            val notesList = mutableListOf<ItemListActivity>()
-//                            for (document in task.result) {
-//
-//                                Log.d("tag", document.id + " => " + document.data)
-//                                list_member.add(Item(document.get("%name%").toString()))
-//                                println(document.data.toString())
-//
-//                            }
-//                            val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
-//                            listView.setAdapter(adapter)
-//                        } else {
-//                            Log.d("tag", "Error getting documents: ", task.exception)
-//                        }
-//                    })
-//            val item = HashMap<String, Any>()
-            db.collection("items").document("Title").get().addOnCompleteListener(OnCompleteListener<DocumentSnapshot> { task ->
-                if (task.isSuccessful) {
-                    val document = task.getResult()
-                    println(task.result.data)
-                    var list_member= mutableListOf<Item>()
-
-                    if (document!=null) {
-                        //get data from firebase
-
-                        Log.d("tag", "DocumentSnapshot data: " + task.result.data)
-                        Log.d("TAG", "before")
-                        //try to print data
 
 
-                        Log.d("TAG", "message")
-                    //if can't read the data
-                    } else {
-=======
+
         //set the text in the textview
-        if (bd != null) {
-            //  get data from database
-            db.get().addOnCompleteListener(OnCompleteListener<DocumentSnapshot> { task ->
-                if (task.isSuccessful) {
-                    //FireBase에서 전체 데이터를 취득
-                    var ALL_DB_Data = task.result.data.toString()
-                    ALL_DB_Data = ""
+//        if (bd != null) {
+//            //  get data from database
+//            db.collection("items").document().get().addOnCompleteListener(OnCompleteListener<DocumentSnapshot> { task ->
+//                if (task.isSuccessful) {
+//                    //FireBase에서 전체 데이터를 취득
+//                    var ALL_DB_Data = task.result.data.toString()
+//
+//                    ALL_DB_Data = ""
+//
+//                    if (ALL_DB_Data.isNullOrEmpty()) { // ALL_DB_Data가 null or 비어있을때
+//
+//                        Toast.makeText(this, "no such a data", Toast.LENGTH_LONG).show()
+//
+//                    } else {
+//                        // ALL_DB_Data 내용 : name*****=*****,mall_name1=***,iprice1=****
+//                        // name_temp 내용 : name***** ↓첫번째 = 이전 문자를 취득
+//                        val name_temp = ALL_DB_Data.substringBefore('=')
+//                        // Item_name 내용 : ***** ↓앞에서 5번째 문자 이후의 문자열을 취득
+//                        val item_name = name_temp.substring(5)
+//
+//                        // Item_price 내용 : **** ↓마지막 = 이후 문자를 취득
+//                        val Item_price = ALL_DB_Data.substringAfter('=')
+//
+//
+//
+//
+//                        Toast.makeText(this,item_name, Toast.LENGTH_LONG).show()
+//                    }
+//                } else {
+//                    Toast.makeText(this, "get failed with" + task.exception, Toast.LENGTH_LONG).show()
+//                }
+//            })
+//
+//        }
 
-                    if (ALL_DB_Data.isNullOrEmpty()) { // ALL_DB_Data가 null or 비어있을때
 
->>>>>>> 04cc56fc165975eafce402604089f6866060be91
-                        Toast.makeText(this, "no such a data", Toast.LENGTH_LONG).show()
+        val list: ArrayList<String> = ArrayList()
+        list.add("text")
+        println(list)
+
+        val itemAdapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
+        // get all the firebse's document
+        db.collection("items")
+                .get()
+                .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
+                    // if it succesfully can read database
+                    if (task.isSuccessful) {
+                        for (document in task.result) {
+                            //add datalist into Arraylist
+                            list.add(document.data.toString())
+                            println(list)
+                            Log.d("tag", document.id + " => " + document.data)
+//                             //add data ArrayList into ListView
+//                            val itemAdapter = ArrayAdapter<String>(this, R.layout.activity_item_search, list)
+//                            listView.setAdapter(itemAdapter);
+
+                        }
 
                     } else {
-                        // ALL_DB_Data 내용 : name*****=*****,mall_name1=***,iprice1=****
-                        // name_temp 내용 : name***** ↓첫번째 = 이전 문자를 취득
-                        val name_temp = ALL_DB_Data.substringBefore('=')
-                        // Item_name 내용 : ***** ↓앞에서 5번째 문자 이후의 문자열을 취득
-                        val item_name = name_temp.substring(5)
-
-                        // Item_price 내용 : **** ↓마지막 = 이후 문자를 취득
-                        val Item_price = ALL_DB_Data.substringAfter('=')
-
-
-
-
-                        Toast.makeText(this,item_name, Toast.LENGTH_LONG).show()
+                        Log.d("tag", "Error getting documents: ", task.exception)
                     }
-                } else {
-                    Toast.makeText(this, "get failed with" + task.exception, Toast.LENGTH_LONG).show()
-                }
-            })
+                })
 
-        }
+
+//        db.collection("items")
+//                .get()
+//                .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
+//                    if (task.isSuccessful) {
+//                        val notesList = mutableListOf<ItemListActivity>()
+//                        for (document in task.result) {
+//                            val note = document.toObject<ItemListActivity>(ItemListActivity::class.java)
+//                            note.title = document.id
+//                            notesList.add(note)
+//                            Log.d("tag", document.id + " => " + document.data)
+//                        }
+//                        val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
+//                        listView.adapter = adapter
+//                    } else {
+//                        Log.d("tag", "Error getting documents: ", task.exception)
+//                    }
+//                })
+
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
         thisView.adapter = adapter
 
@@ -166,16 +166,13 @@ class ItemListActivity : AppCompatActivity() {
 
 
 
-<<<<<<< HEAD
-            }
-=======
->>>>>>> 04cc56fc165975eafce402604089f6866060be91
 
-//
             // item click시 발생하는 event
             thisView.setOnItemClickListener { parent, view, position, id ->
+                // activity_graph 화면에 이동
                 adapter.getItem(position)
                 data_array_items.get(position)
+<<<<<<< HEAD
                 val title_sub: String = data_array_items.get(position)
              //   val iprice: String = data_array_iprice.get(position)
              //   val mallname: String = data_array_mallname.get(position)
@@ -193,18 +190,51 @@ class ItemListActivity : AppCompatActivity() {
              //   detailintent.putExtra("mallname", mallname);
               //  detailintent.putExtra("image", image);
                 startActivity(detailintent)
+=======
+               // val hprice: String = data_array_hprice.get(position)
+               // detailintent.putExtra("hprice", hprice);
+                val intent = Intent(this, GraphActivity::class.java)
+                startActivity(intent)
+>>>>>>> fb5babcb6fff51caeb78691e022fc307c64383ec
             }
 
 
             // add button click시 발생하는 event
             addButton.setOnClickListener {
                 val intent = Intent(this, ItemSearchActivity::class.java)
+
                 startActivity(intent)
             }
 
 
         }
     }
-class Item(
-        var item: String
-)
+
+class Note {
+
+    var id: String? = null
+    var title: String? = null
+    var content: String? = null
+
+    constructor() {}
+
+    constructor(id: String, title: String, content: String) {
+        this.id = id
+        this.title = title
+        this.content = content
+    }
+
+    constructor(title: String, content: String) {
+        this.title = title
+        this.content = content
+    }
+
+    fun toMap(): Map<String, Any> {
+
+        val result = HashMap<String, Any>()
+        result.put("title", title!!)
+        result.put("content", content!!)
+
+        return result
+    }
+}

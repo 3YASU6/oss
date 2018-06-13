@@ -12,41 +12,65 @@
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="15dp"
-        android:text="@string/addToWishListButtonText" />
+        android:background="@color/colorPrimary"
+        android:text="@string/addToWishListButtonText"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/imageurl"
+        android:layout_alignTop="@+id/lpriceText"
+        android:text="@string/won"
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/lpriceText"
-        android:layout_width="341dp"
-        android:layout_height="45dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="146dp"
-        android:text="@string/lprice" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="137dp"
+        android:layout_marginEnd="106dp"
+        android:text="@string/lprice"
+        android:textSize="30sp" />
+
 
     <TextView
         android:id="@+id/tileText"
-        android:layout_width="341dp"
-        android:layout_height="61dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="207dp"
-        android:text="@string/title" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/imageurl"
+        android:layout_centerVertical="true"
+        android:text="@string/title"
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/mallNameText"
-        android:layout_width="341dp"
-        android:layout_height="31dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="100dp"
-        android:text="@string/mallName" />
+        android:layout_alignStart="@+id/tileText"
+        android:layout_marginBottom="95dp"
+        android:text="@string/mallName"
+        android:textSize="24sp" />
 
     <WebView
         android:id="@+id/imageurl"
         android:layout_width="333dp"
         android:layout_height="200dp"
-        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="30dp" />
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/hprice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="12dp"
+        android:text="TextView"
+        android:visibility="invisible" />
 </RelativeLayout>

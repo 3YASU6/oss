@@ -34,6 +34,7 @@ class GraphActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_graph)
 
+        val l_price:String
         val mChart = findViewById(R.id.chart) as LineChart
 
         val l_price : String
@@ -68,14 +69,18 @@ class GraphActivity : AppCompatActivity() {
             // TODO: FireBase에서 끌고 온 상품 가격변동 정보들을 저장 (가격 = price)  ※지금은 더미
             val price_from_fireBase = arrayOf(l_price, 900f, 1000f, 1200f, 1200f, 800f, 750f)
             // TODO: FireBase에서 끌고 온 상품 가격변동 정보들을 저장 (날짜 = date)  ※지금은 더미
-            val date_from_fireBase = arrayOf(1f, 2f, 3f, 4f, 5f, 6f, 7f)
+            val date_from_fireBase = arrayOf(dateText, 2f, 3f, 4f, 5f, 6f, 7f)
 
             // 그래프의 Point가 되는 데이터 배열
             val xy_data = ArrayList<Entry>()
 
             // FireBase에서 끌고 온 Date, Price를 그래프 Point(x값, y값)로 설정
             for (i in date_from_fireBase.indices) {
+<<<<<<< HEAD
             //    xy_data.add(Entry(date_from_fireBase[i], price_from_fireBase[i])) // xy값(=Entry)를 xy_data에 설정 (X = date_data, Y = price_data)
+=======
+      //          xy_data.add(Entry(date_from_fireBase[i], price_from_fireBase[i])) // xy값(=Entry)를 xy_data에 설정 (X = date_data, Y = price_data)
+>>>>>>> fb5babcb6fff51caeb78691e022fc307c64383ec
             }
 
             // xy_data를 LineDataSet인 set에 저장
@@ -112,6 +117,8 @@ class GraphActivity : AppCompatActivity() {
 
             //buyButton click시 발생하는 event
             buyButton.setOnClickListener {
+                val webview: String
+                webview = "http://search.shopping.naver.com/gate.nhn?id=12830391037"
                 // 해당 상품에 이동
                 //Naver_API.link
                 //  Uri.parse("https://developer.android.com/reference/android/net/Uri")

@@ -15,9 +15,13 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
+<<<<<<< HEAD
 //import jdk.nashorn.internal.objects.NativeDate.getTime
 import java.util.*
 
+=======
+import java.util.*
+>>>>>>> fb5babcb6fff51caeb78691e022fc307c64383ec
 
 class ShowMoreItemInfoActivity : AppCompatActivity() {
 
@@ -34,12 +38,13 @@ class ShowMoreItemInfoActivity : AppCompatActivity() {
         val mall:String
         val name_item:String
         val i_price:String
+        val h_price:String
         val mall_name:String
         val intent = intent
         val bd = intent.extras
         val ti = intent.getStringExtra("title")
-//============set the text in the textview
 
+//============set the text in the textview
         val swapVariable = intent.extras
         if (swapVariable != null) {
             val getName = swapVariable.get("title") as String
@@ -48,64 +53,58 @@ class ShowMoreItemInfoActivity : AppCompatActivity() {
             lpriceText.setText(getiprice)
             val getmallname = swapVariable.get("mallname") as String
             mallNameText.setText(getmallname)
+            val gethprice = swapVariable.get("hprice") as String
+            hprice.setText(gethprice)
             val getimage = swapVariable.get("image") as String
-            println("===================="+getimage)
             imageurl.loadUrl(getimage)
 
 
+
         }
+<<<<<<< HEAD
         val calendar = Calendar.getInstance()
         val date = calendar.getTime()
         println(date)
+=======
+        val date : String
+         android.text.format.DateFormat.format("yyyy-MM-dd ", java.util.Date())
+
+//       val calendar = Calendar.getInstance()
+//        val date = calendar.getTime()
+//        println(date)
+>>>>>>> fb5babcb6fff51caeb78691e022fc307c64383ec
 
         //to take the data into string
         var flavour = tileText.text.toString().trim()
         name_item = tileText.getText().toString()
         i_price = lpriceText.getText().toString()
         mall_name = mallNameText.getText().toString()
+        h_price = hprice.getText().toString()
 
-//        titleitem = trytext.getText().toString()
-
-//        val itemss = HashMap<String, Any>()
-//        if (flavour!=null) {
-//            try {
-//                // put the data in string database
-//
-//                itemss.put("name", "Samsung")
-//                // insert the database to firebase
-//                db.collection("itemName").document("detail").set(itemss).addOnSuccessListener {
-//                    void: Void? -> Toast.makeText(this, "Successfully uploaded to the database :)", Toast.LENGTH_LONG).show()
-//
-//                }.addOnFailureListener {
-//                    // if the data failure
-//                    exception: java.lang.Exception -> Toast.makeText(this, exception.toString(), Toast.LENGTH_LONG).show()
-//                }
-//            }catch (e:Exception) {
-//                Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show()
-//            }
-//        }else {
-//            //if can't read the data
-//            Toast.makeText(this, "Please fill up the fields :(", Toast.LENGTH_LONG).show()
-//        }
-        //========================================
         //==============add and insert to database
 
         val items = HashMap<String, Any>()
         val item = HashMap<String, Any>()
         if (flavour!=null) {
             try {
-                // put the data in string database
 
+                // put the data in string database
                 items.put("name", name_item)
                 item.put("name", name_item)
                 items.put("iprice", i_price)
                 items.put("mall_name", mall_name)
+<<<<<<< HEAD
                 items.put("date", date)
                 // insert the database to firebase
+=======
+           //     items.put("date", date)
+                items.put("hprice", h_price)
+>>>>>>> fb5babcb6fff51caeb78691e022fc307c64383ec
 
+                // insert the database to firebase
                 db.collection("items").document(name_item).set(items).addOnSuccessListener {
                     void: Void? -> Toast.makeText(this, "Successfully uploaded to the database :)", Toast.LENGTH_LONG).show()
-
+                //if failed to insert the data
                 }.addOnFailureListener {
                     // if the data failure
                     exception: java.lang.Exception -> Toast.makeText(this, exception.toString(), Toast.LENGTH_LONG).show()
@@ -117,6 +116,7 @@ class ShowMoreItemInfoActivity : AppCompatActivity() {
                     // if the data failure
                     exception: java.lang.Exception -> Toast.makeText(this, exception.toString(), Toast.LENGTH_LONG).show()
                 }
+                //if there is no data in the String
             }catch (e:Exception) {
                 Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show()
             }
@@ -125,8 +125,6 @@ class ShowMoreItemInfoActivity : AppCompatActivity() {
             Toast.makeText(this, "Please fill up the fields :(", Toast.LENGTH_LONG).show()
         }
 
-
-
         // addToWishListButton click시 발생하는 event를 추가
         addToWishListButton.setOnClickListener {
             val intent = Intent(this, ItemListActivity::class.java)
@@ -134,7 +132,11 @@ class ShowMoreItemInfoActivity : AppCompatActivity() {
             intent.putExtra("title", tileText.getText());
             intent.putExtra("iprice", lpriceText.getText());
             intent.putExtra("mallname",  mallNameText.getText());
+<<<<<<< HEAD
             intent.putExtra("date",  date);
+=======
+            intent.putExtra("hprice",  hprice.getText());
+>>>>>>> fb5babcb6fff51caeb78691e022fc307c64383ec
 
             startActivity(intent)
         }

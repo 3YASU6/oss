@@ -35,31 +35,36 @@
 
     <Button
         android:id="@+id/buyButton"
-        android:layout_width="142dp"
+        android:layout_width="128dp"
         android:layout_height="58dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="37dp"
+        android:layout_marginBottom="27dp"
         android:autoLink="web"
-        android:text="@string/buyButtonText" />
+        android:background="@color/colorPrimary"
+        android:text="@string/buyButtonText"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/priceText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/chart"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="120dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="121dp"
+        android:layout_marginEnd="65dp"
         android:text="@string/lpriceText"
         android:textSize="30sp" />
 
     <ImageButton
         android:id="@+id/deleteButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
         android:layout_alignParentEnd="true"
         android:layout_alignTop="@+id/buyButton"
-        android:layout_marginEnd="38dp"
+        android:layout_marginEnd="27dp"
+        android:background="@color/colorPrimary"
         app:srcCompat="@android:drawable/ic_menu_delete" />
 
 </RelativeLayout>

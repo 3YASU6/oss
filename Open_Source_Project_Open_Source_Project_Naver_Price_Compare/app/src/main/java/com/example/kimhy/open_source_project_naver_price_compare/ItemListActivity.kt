@@ -32,17 +32,18 @@ import com.google.android.gms.tasks.Task
 import java.util.*
 
 
-class ItemListActivity : AppCompatActivity() {
+class ItemListActivity : AppCompatActivity()
+{
 
     lateinit var db: DocumentReference
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_item_list)
 
         // 화면에 표시 되는 상품 수
         val display = 20
-
 
 
         // ListView 를 취득
@@ -55,23 +56,29 @@ class ItemListActivity : AppCompatActivity() {
         val listView = findViewById(R.id.listView) as ListView
         listView.adapter = itemsAdapter
         // db에 DB의 Instance 취득
-        val  db = FirebaseFirestore.getInstance()
-                //.document("items")
+        // val  db = FirebaseFirestore.getInstance()
+        //.document("items")
 
 
-        val count:Int
-        val idnum:Int
-        val name:String
-        val price:String
-        val mall:String
-        val aa:String
-        val i_price:String
-        val mall_name:String
+        val count: Int
+        val idnum: Int
+        val name: String
+        val price: String
+        val mall: String
+        val aa: String
+        val i_price: String
+        val mall_name: String
         val intent = intent
         val bd = intent.extras
         val ti = intent.getStringExtra("title")
 
 
+
+
+
+
+        var fileIO = FileIO(data_array_items);
+        data_array_items = fileIO.loadItemsFromFile(this);
 
 
         //set the text in the textview
@@ -165,70 +172,74 @@ class ItemListActivity : AppCompatActivity() {
 //        val myRef = database.getReference("message")
 
 
-
-
-            // item click시 발생하는 event
-            thisView.setOnItemClickListener { parent, view, position, id ->
-                // activity_graph 화면에 이동
-                adapter.getItem(position)
-                data_array_items.get(position)
-               val title_sub: String = data_array_items.get(position)
-             //   val iprice: String = data_array_iprice.get(position)
-             //   val mallname: String = data_array_mallname.get(position)
-              //  val image: String = data_array_image.get(position)
-                Toast.makeText(this, "Position Clicked:"+" "+title_sub,Toast.LENGTH_SHORT).show()
+        // item click시 발생하는 event
+        thisView.setOnItemClickListener { parent, view, position, id ->
+            // activity_graph 화면에 이동
+            adapter.getItem(position)
+            data_array_items.get(position)
+            val title_sub: String = data_array_items.get(position)
+            //   val iprice: String = data_array_iprice.get(position)
+            //   val mallname: String = data_array_mallname.get(position)
+            //  val image: String = data_array_image.get(position)
+            Toast.makeText(this, "Position Clicked:" + " " + title_sub, Toast.LENGTH_SHORT).show()
 //                detailintent.putExtra("title", title_sub);
 //                detailintent.putExtra("iprice", iprice);
 //                detailintent.putExtra("mallname", mallname);
 //                detailintent.putExtra("date", date);
-                // activity_graph 화면에 이동
+            // activity_graph 화면에 이동
 
-                val detailintent = Intent(this, GraphActivity::class.java)
-                detailintent.putExtra("title", title_sub);
-           //     detailintent.putExtra("iprice", iprice);
-             //   detailintent.putExtra("mallname", mallname);
-              //  detailintent.putExtra("image", image);
-                startActivity(detailintent)
+            val detailintent = Intent(this, GraphActivity::class.java)
+            detailintent.putExtra("title", title_sub);
+            //     detailintent.putExtra("iprice", iprice);
+            //   detailintent.putExtra("mallname", mallname);
+            //  detailintent.putExtra("image", image);
+            startActivity(detailintent)
 
-               // val hprice: String = data_array_hprice.get(position)
-               // detailintent.putExtra("hprice", hprice);
-                val intent = Intent(this, GraphActivity::class.java)
-                startActivity(intent)
-
-            }
-
-
-            // add button click시 발생하는 event
-            addButton.setOnClickListener {
-                val intent = Intent(this, ItemSearchActivity::class.java)
-
-                startActivity(intent)
-            }
-
+            // val hprice: String = data_array_hprice.get(position)
+            // detailintent.putExtra("hprice", hprice);
+            val intent = Intent(this, GraphActivity::class.java)
+            startActivity(intent)
 
         }
-    }
 
-class Note {
+
+        // add button click시 발생하는 event
+        addButton.setOnClickListener {
+            val intent = Intent(this, ItemSearchActivity::class.java)
+
+            startActivity(intent)
+        }
+
+
+    }
+}
+
+class Note
+{
 
     var id: String? = null
     var title: String? = null
     var content: String? = null
 
-    constructor() {}
+    constructor()
+    {
+    }
 
-    constructor(id: String, title: String, content: String) {
+    constructor(id: String, title: String, content: String)
+    {
         this.id = id
         this.title = title
         this.content = content
     }
 
-    constructor(title: String, content: String) {
+    constructor(title: String, content: String)
+    {
         this.title = title
         this.content = content
     }
 
-    fun toMap(): Map<String, Any> {
+    fun toMap(): Map<String, Any>
+    {
 
         val result = HashMap<String, Any>()
         result.put("title", title!!)

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class FileIO
 {
-    private final String fileName = "Items.list";
+    private final String fileName = "Items.txt";
     FileReader reader = null;
     BufferedReader bufferedReader = null;
     FileWriter writer = null;
@@ -27,10 +27,24 @@ public class FileIO
 
 
     }
+    public FileIO(String[] items)
+    {
+        this.items = new ArrayList<String>();
+        for (String temp:items)
+        {
+            this.items.add(temp);
+        }
 
-    public void loadItemsFromFile(Context context)
+        //this.items = items;
+
+
+    }
+
+
+    public String[] loadItemsFromFile(Context context)
     {
         File file = new File(context.getFilesDir(), fileName);//file object Create
+        System.out.println("file location "+context.getFilesDir());
         if (file.exists())
         {
             try
@@ -54,6 +68,16 @@ public class FileIO
             }
         }
 
+        int size = 0;
+        String[] arrayReturn = new String[items.size()];
+        for (String temp : items)
+        {
+
+            arrayReturn[size++] = temp;
+
+        }
+
+        return arrayReturn;
     }
 
     public void storeItemsToFile(Context context)

@@ -37,8 +37,8 @@ class ShowMoreItemInfoActivity : AppCompatActivity() {
         val intent = intent
         val bd = intent.extras
         val ti = intent.getStringExtra("title")
-//============set the text in the textview
 
+//============set the text in the textview
         val swapVariable = intent.extras
         if (swapVariable != null) {
             val getName = swapVariable.get("title") as String
@@ -55,9 +55,12 @@ class ShowMoreItemInfoActivity : AppCompatActivity() {
 
 
         }
-       val calendar = Calendar.getInstance()
-        val date = calendar.getTime()
-        println(date)
+        val date : String
+         android.text.format.DateFormat.format("yyyy-MM-dd ", java.util.Date())
+
+//       val calendar = Calendar.getInstance()
+//        val date = calendar.getTime()
+//        println(date)
 
         //to take the data into string
         var flavour = tileText.text.toString().trim()
@@ -66,49 +69,25 @@ class ShowMoreItemInfoActivity : AppCompatActivity() {
         mall_name = mallNameText.getText().toString()
         h_price = hprice.getText().toString()
 
-//        titleitem = trytext.getText().toString()
-
-//        val itemss = HashMap<String, Any>()
-//        if (flavour!=null) {
-//            try {
-//                // put the data in string database
-//
-//                itemss.put("name", "Samsung")
-//                // insert the database to firebase
-//                db.collection("itemName").document("detail").set(itemss).addOnSuccessListener {
-//                    void: Void? -> Toast.makeText(this, "Successfully uploaded to the database :)", Toast.LENGTH_LONG).show()
-//
-//                }.addOnFailureListener {
-//                    // if the data failure
-//                    exception: java.lang.Exception -> Toast.makeText(this, exception.toString(), Toast.LENGTH_LONG).show()
-//                }
-//            }catch (e:Exception) {
-//                Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show()
-//            }
-//        }else {
-//            //if can't read the data
-//            Toast.makeText(this, "Please fill up the fields :(", Toast.LENGTH_LONG).show()
-//        }
-        //========================================
         //==============add and insert to database
 
         val items = HashMap<String, Any>()
         val item = HashMap<String, Any>()
         if (flavour!=null) {
             try {
-                // put the data in string database
 
+                // put the data in string database
                 items.put("name", name_item)
                 item.put("name", name_item)
                 items.put("iprice", i_price)
                 items.put("mall_name", mall_name)
-                items.put("date", date)
+           //     items.put("date", date)
                 items.put("hprice", h_price)
-                // insert the database to firebase
 
+                // insert the database to firebase
                 db.collection("items").document(name_item).set(items).addOnSuccessListener {
                     void: Void? -> Toast.makeText(this, "Successfully uploaded to the database :)", Toast.LENGTH_LONG).show()
-
+                //if failed to insert the data
                 }.addOnFailureListener {
                     // if the data failure
                     exception: java.lang.Exception -> Toast.makeText(this, exception.toString(), Toast.LENGTH_LONG).show()
@@ -120,6 +99,7 @@ class ShowMoreItemInfoActivity : AppCompatActivity() {
                     // if the data failure
                     exception: java.lang.Exception -> Toast.makeText(this, exception.toString(), Toast.LENGTH_LONG).show()
                 }
+                //if there is no data in the String
             }catch (e:Exception) {
                 Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show()
             }

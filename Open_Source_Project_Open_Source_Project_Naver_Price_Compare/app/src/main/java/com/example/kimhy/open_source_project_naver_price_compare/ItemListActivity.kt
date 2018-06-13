@@ -111,32 +111,32 @@ class ItemListActivity : AppCompatActivity() {
 //        }
 
 
-        val list: ArrayList<String> = ArrayList()
-        list.add("text")
-        println(list)
-
-        val itemAdapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
-        // get all the firebse's document
-        db.collection("items")
-                .get()
-                .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
-                    // if it succesfully can read database
-                    if (task.isSuccessful) {
-                        for (document in task.result) {
-                            //add datalist into Arraylist
-                            list.add(document.data.toString())
-                            println(list)
-                            Log.d("tag", document.id + " => " + document.data)
-//                             //add data ArrayList into ListView
-//                            val itemAdapter = ArrayAdapter<String>(this, R.layout.activity_item_search, list)
-//                            listView.setAdapter(itemAdapter);
-
-                        }
-
-                    } else {
-                        Log.d("tag", "Error getting documents: ", task.exception)
-                    }
-                })
+//        val list: ArrayList<String> = ArrayList()
+//        list.add("text")
+//        println(list)
+//
+//        val itemAdapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
+//        // get all the firebse's document
+//        db.collection("items")
+//                .get()
+//                .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
+//                    // if it succesfully can read database
+//                    if (task.isSuccessful) {
+//                        for (document in task.result) {
+//                            //add datalist into Arraylist
+//                            list.add(document.data.toString())
+//                            println(list)
+//                            Log.d("tag", document.id + " => " + document.data)
+////                             //add data ArrayList into ListView
+////                            val itemAdapter = ArrayAdapter<String>(this, R.layout.activity_item_search, list)
+////                            listView.setAdapter(itemAdapter);
+//
+//                        }
+//
+//                    } else {
+//                        Log.d("tag", "Error getting documents: ", task.exception)
+//                    }
+//                })
 
 
 //        db.collection("items")
@@ -172,8 +172,7 @@ class ItemListActivity : AppCompatActivity() {
                 // activity_graph 화면에 이동
                 adapter.getItem(position)
                 data_array_items.get(position)
-<<<<<<< HEAD
-                val title_sub: String = data_array_items.get(position)
+               val title_sub: String = data_array_items.get(position)
              //   val iprice: String = data_array_iprice.get(position)
              //   val mallname: String = data_array_mallname.get(position)
               //  val image: String = data_array_image.get(position)
@@ -190,12 +189,12 @@ class ItemListActivity : AppCompatActivity() {
              //   detailintent.putExtra("mallname", mallname);
               //  detailintent.putExtra("image", image);
                 startActivity(detailintent)
-=======
+
                // val hprice: String = data_array_hprice.get(position)
                // detailintent.putExtra("hprice", hprice);
                 val intent = Intent(this, GraphActivity::class.java)
                 startActivity(intent)
->>>>>>> fb5babcb6fff51caeb78691e022fc307c64383ec
+
             }
 
 

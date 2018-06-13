@@ -76,15 +76,13 @@ class GraphActivity : AppCompatActivity() {
 
             // FireBase에서 끌고 온 Date, Price를 그래프 Point(x값, y값)로 설정
             for (i in date_from_fireBase.indices) {
-<<<<<<< HEAD
+
                 xy_data.add(Entry(date_from_fireBase[i], price_from_fireBase[i])) // xy값(=Entry)를 xy_data에 설정 (X = date_data, Y = price_data)
-=======
-<<<<<<< HEAD
+
             //    xy_data.add(Entry(date_from_fireBase[i], price_from_fireBase[i])) // xy값(=Entry)를 xy_data에 설정 (X = date_data, Y = price_data)
-=======
+
       //          xy_data.add(Entry(date_from_fireBase[i], price_from_fireBase[i])) // xy값(=Entry)를 xy_data에 설정 (X = date_data, Y = price_data)
->>>>>>> fb5babcb6fff51caeb78691e022fc307c64383ec
->>>>>>> d723d0f2b9d5794863b660de2b52b3ec9cb727d4
+
             }
 
             // xy_data를 LineDataSet인 set에 저장

@@ -28,7 +28,7 @@ import com.google.firebase.firestore.DocumentSnapshot
 //import org.junit.experimental.results.ResultMatchers.isSuccessful
 import android.support.annotation.NonNull
 import com.google.android.gms.tasks.Task
-
+import com.example.kimhy.open_source_project_naver_price_compare.ShowMoreItemInfoActivity
 
 class ItemListActivity : AppCompatActivity() {
 
@@ -37,12 +37,18 @@ class ItemListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_item_list)
-       // val db = FirebaseFirestore.getInstance()
       val  db = FirebaseFirestore.getInstance()
-                .document("items/detail")
+              //  .document("items/detail")
+
         val thisView = findViewById(R.id.listView) as ListView
         val data_array_items = Array(20, { i -> "Title-$i" })
         val listvieww = Array(5, {  })
+
+        val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
+        listView.adapter = adapter
+        val database = FirebaseDatabase.getInstance()
+        val ref = database.getReference("server/saving-data/fireblog")
+        val myRef = database.getReference("message")
 
         val count:Int
         val idnum:Int
@@ -52,6 +58,7 @@ class ItemListActivity : AppCompatActivity() {
         val aa:String
         val i_price:String
         val mall_name:String
+
         val intent = intent
         val bd = intent.extras
         val ti = intent.getStringExtra("title")
@@ -69,21 +76,42 @@ class ItemListActivity : AppCompatActivity() {
 
 //
 
+
 //=======================================================================================================================================
             //==================get data from database
-            db.get().addOnCompleteListener(OnCompleteListener<DocumentSnapshot> { task ->
+            var list_member= mutableListOf<Item>()
+//
+//            db.collection("items")
+//                    .get()
+//                    .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
+//                        if (task.isSuccessful) {
+//                            val notesList = mutableListOf<ItemListActivity>()
+//                            for (document in task.result) {
+//
+//                                Log.d("tag", document.id + " => " + document.data)
+//                                list_member.add(Item(document.get("%name%").toString()))
+//                                println(document.data.toString())
+//
+//                            }
+//                            val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
+//                            listView.setAdapter(adapter)
+//                        } else {
+//                            Log.d("tag", "Error getting documents: ", task.exception)
+//                        }
+//                    })
+//            val item = HashMap<String, Any>()
+            db.collection("items").document("Title").get().addOnCompleteListener(OnCompleteListener<DocumentSnapshot> { task ->
                 if (task.isSuccessful) {
                     val document = task.getResult()
                     println(task.result.data)
-                    println("=========================")
+                    var list_member= mutableListOf<Item>()
+
                     if (document!=null) {
                         //get data from firebase
+
                         Log.d("tag", "DocumentSnapshot data: " + task.result.data)
-                        trytext.setText(task.result.data.toString())
                         Log.d("TAG", "before")
-                        println("iya ========== "+ document.data)
                         //try to print data
-//
 
 
                         Log.d("TAG", "message")
@@ -102,18 +130,29 @@ class ItemListActivity : AppCompatActivity() {
 
 
             }
-            val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
-            thisView.adapter = adapter
-            val database = FirebaseDatabase.getInstance()
-            val ref = database.getReference("server/saving-data/fireblog")
-            val myRef = database.getReference("message")
-//
 
+//
             // item click시 발생하는 event
-            thisView.setOnItemClickListener { _, view, _, _ ->
+            thisView.setOnItemClickListener { parent, view, position, id ->
+                adapter.getItem(position)
+                data_array_items.get(position)
+                val title_sub: String = data_array_items.get(position)
+             //   val iprice: String = data_array_iprice.get(position)
+             //   val mallname: String = data_array_mallname.get(position)
+              //  val image: String = data_array_image.get(position)
+                Toast.makeText(this, "Position Clicked:"+" "+title_sub,Toast.LENGTH_SHORT).show()
+//                detailintent.putExtra("title", title_sub);
+//                detailintent.putExtra("iprice", iprice);
+//                detailintent.putExtra("mallname", mallname);
+//                detailintent.putExtra("image", image);
                 // activity_graph 화면에 이동
-                val intent = Intent(this, GraphActivity::class.java)
-                startActivity(intent)
+
+                val detailintent = Intent(this, GraphActivity::class.java)
+                detailintent.putExtra("title", title_sub);
+           //     detailintent.putExtra("iprice", iprice);
+             //   detailintent.putExtra("mallname", mallname);
+              //  detailintent.putExtra("image", image);
+                startActivity(detailintent)
             }
 
 
@@ -126,4 +165,6 @@ class ItemListActivity : AppCompatActivity() {
 
         }
     }
-
+class Item(
+        var item: String
+)

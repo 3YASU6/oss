@@ -124,7 +124,6 @@ class ItemSearchActivity : AppCompatActivity() {
             val iprice: String = data_array_iprice.get(position)
             val mallname: String = data_array_mallname.get(position)
             val image: String = data_array_image.get(position)
-            println("==============================="+image+title_sub)
             Toast.makeText(this, "Position Clicked:"+" "+title_sub,Toast.LENGTH_SHORT).show()
             val detailintent = Intent(this, ShowMoreItemInfoActivity::class.java)
 

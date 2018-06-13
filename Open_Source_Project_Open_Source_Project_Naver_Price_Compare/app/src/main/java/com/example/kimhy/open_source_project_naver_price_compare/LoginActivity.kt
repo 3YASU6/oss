@@ -104,58 +104,58 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
      * ↓↓지금은 개발단계니까 로그인 양식 체크 기능은 comment out 합니다. 개발가 어느정도 종료되면 comment 해제 할 것
      */
     private fun attemptLogin() {
-//       if (mAuthTask != null) {
-//            return
-//        }
-//
-//        // 오류 Reset
-//        email.error = null
-//        password.error = null
-//
-//        /** Store values at the time of the login attempt
-//         * 로그인 시도시 값 저장
-//         */
-//        val emailStr = email.text.toString()
-//        val passwordStr = password.text.toString()
-//
-//        var cancel = false
-//        var focusView: View? = null
-//
-//        /** Check for a valid password, if the user entered one.
-//         * 사용자가 암호를 입력 한 경우 올바른 암호인지 확인.
-//         */
-//        if (!TextUtils.isEmpty(passwordStr) && !isPasswordValid(passwordStr)) {
-//            password.error = getString(R.string.error_invalid_password)
-//            focusView = password
-//            cancel = true
-//        }
-//
-//        /** Check for a valid email address.
-//         * 유효한 이메일 주소인지 확인.
-//         */
-//        if (TextUtils.isEmpty(emailStr)) {
-//            email.error = getString(R.string.error_field_required)
-//            focusView = email
-//            cancel = true
-//        } else if (!isEmailValid(emailStr)) {
-//            email.error = getString(R.string.error_invalid_email)
-//            focusView = email
-//            cancel = true
-//        }
-//
-//        if (cancel) {
-//            /** There was an error; don't attempt login and focus the first form field with an error.
-//             *오류가있었음; 로그인을 시도하지 말고 오류가있는 첫 번째 양식 필드에 초점을 맞 춥음.
-//             */
-//            focusView?.requestFocus()
-//        } else {
-//            /** Show a progress spinner, and kick off a background task to perform the user login attempt.
-//             * 진행률을 표시하고 백그라운드 작업을 시작하여 사용자 로그인 시도를 수행
-//             */
-//            showProgress(true)
-//            mAuthTask = UserLoginTask(emailStr, passwordStr)
-//            mAuthTask!!.execute(null as Void?)
-//        }
+       if (mAuthTask != null) {
+            return
+        }
+
+        // 오류 Reset
+        email.error = null
+        password.error = null
+
+        /** Store values at the time of the login attempt
+         * 로그인 시도시 값 저장
+         */
+        val emailStr = email.text.toString()
+        val passwordStr = password.text.toString()
+
+        var cancel = false
+        var focusView: View? = null
+
+        /** Check for a valid password, if the user entered one.
+         * 사용자가 암호를 입력 한 경우 올바른 암호인지 확인.
+         */
+        if (!TextUtils.isEmpty(passwordStr) && !isPasswordValid(passwordStr)) {
+            password.error = getString(R.string.error_invalid_password)
+            focusView = password
+            cancel = true
+        }
+
+        /** Check for a valid email address.
+         * 유효한 이메일 주소인지 확인.
+         */
+        if (TextUtils.isEmpty(emailStr)) {
+            email.error = getString(R.string.error_field_required)
+            focusView = email
+            cancel = true
+        } else if (!isEmailValid(emailStr)) {
+            email.error = getString(R.string.error_invalid_email)
+            focusView = email
+            cancel = true
+        }
+
+        if (cancel) {
+            /** There was an error; don't attempt login and focus the first form field with an error.
+             *오류가있었음; 로그인을 시도하지 말고 오류가있는 첫 번째 양식 필드에 초점을 맞 춥음.
+             */
+            focusView?.requestFocus()
+        } else {
+            /** Show a progress spinner, and kick off a background task to perform the user login attempt.
+             * 진행률을 표시하고 백그라운드 작업을 시작하여 사용자 로그인 시도를 수행
+             */
+            showProgress(true)
+            mAuthTask = UserLoginTask(emailStr, passwordStr)
+            mAuthTask!!.execute(null as Void?)
+        }
 
         // wishList에 이동
         val mainIntent = Intent(this, ItemListActivity::class.java)

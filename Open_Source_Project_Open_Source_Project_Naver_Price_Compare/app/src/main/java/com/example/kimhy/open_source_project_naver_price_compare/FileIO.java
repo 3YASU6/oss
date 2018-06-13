@@ -38,8 +38,8 @@ public class FileIO
 //        //this.items = items;
 //
 
-//    }
-    public  FileIO(Context context)
+    //    }
+    public FileIO(Context context)
     {
         this.context = context;
     }
@@ -49,7 +49,7 @@ public class FileIO
     {
         ArrayList<String> items = new ArrayList<>();
         File file = new File(context.getFilesDir(), fileName);//file object Create
-        System.out.println("file location "+context.getFilesDir());
+        System.out.println("file location " + context.getFilesDir());
         if (file.exists())
         {
             try
@@ -85,10 +85,17 @@ public class FileIO
         return arrayReturn;
     }
 
-    public void storeItemsToFile(Context context)
+    public void storeItemsToFile(String[] argumentTitle)
     {
-        ArrayList<String> items = new ArrayList<>();
 
+
+        ArrayList<String> items = new ArrayList<>();
+        for (String temp : argumentTitle)
+        {
+
+            items.add(temp);
+
+        }
         File file = new File(context.getFilesDir(), fileName);//file object Create
         try
         {

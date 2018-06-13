@@ -36,6 +36,8 @@ class GraphActivity : AppCompatActivity() {
 
         val mChart = findViewById(R.id.chart) as LineChart
 
+        val l_price : String
+
         // 터치 제스처 사용
         mChart.setTouchEnabled(true)
 
@@ -62,8 +64,9 @@ class GraphActivity : AppCompatActivity() {
             println("====================" + getimage)
             imageurl.loadUrl(getimage)
 
+            l_price = lpriceText.getText().toString()
             // TODO: FireBase에서 끌고 온 상품 가격변동 정보들을 저장 (가격 = price)  ※지금은 더미
-            val price_from_fireBase = arrayOf(900f, 900f, 1000f, 1200f, 1200f, 800f, 750f)
+            val price_from_fireBase = arrayOf(l_price, 900f, 1000f, 1200f, 1200f, 800f, 750f)
             // TODO: FireBase에서 끌고 온 상품 가격변동 정보들을 저장 (날짜 = date)  ※지금은 더미
             val date_from_fireBase = arrayOf(1f, 2f, 3f, 4f, 5f, 6f, 7f)
 
@@ -72,7 +75,7 @@ class GraphActivity : AppCompatActivity() {
 
             // FireBase에서 끌고 온 Date, Price를 그래프 Point(x값, y값)로 설정
             for (i in date_from_fireBase.indices) {
-                xy_data.add(Entry(date_from_fireBase[i], price_from_fireBase[i])) // xy값(=Entry)를 xy_data에 설정 (X = date_data, Y = price_data)
+            //    xy_data.add(Entry(date_from_fireBase[i], price_from_fireBase[i])) // xy값(=Entry)를 xy_data에 설정 (X = date_data, Y = price_data)
             }
 
             // xy_data를 LineDataSet인 set에 저장

@@ -15,6 +15,9 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
+//import jdk.nashorn.internal.objects.NativeDate.getTime
+import java.util.*
+
 
 class ShowMoreItemInfoActivity : AppCompatActivity() {
 
@@ -51,8 +54,9 @@ class ShowMoreItemInfoActivity : AppCompatActivity() {
 
 
         }
-//        val today = LocalDate.of(2027, 12, 1)
-//        println(today)
+        val calendar = Calendar.getInstance()
+        val date = calendar.getTime()
+        println(date)
 
         //to take the data into string
         var flavour = tileText.text.toString().trim()
@@ -96,6 +100,7 @@ class ShowMoreItemInfoActivity : AppCompatActivity() {
                 item.put("name", name_item)
                 items.put("iprice", i_price)
                 items.put("mall_name", mall_name)
+                items.put("date", date)
                 // insert the database to firebase
 
                 db.collection("items").document(name_item).set(items).addOnSuccessListener {
@@ -129,6 +134,7 @@ class ShowMoreItemInfoActivity : AppCompatActivity() {
             intent.putExtra("title", tileText.getText());
             intent.putExtra("iprice", lpriceText.getText());
             intent.putExtra("mallname",  mallNameText.getText());
+            intent.putExtra("date",  date);
 
             startActivity(intent)
         }

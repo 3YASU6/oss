@@ -53,16 +53,15 @@ class ItemListActivity : AppCompatActivity() {
         val bd = intent.extras
         val ti = intent.getStringExtra("title")
 
-
+        // 화면에 표시 되는 상품 수
+        val display = 20
 
         // ListView 를 취득
         val thisView = findViewById(R.id.listView) as ListView
 
         // ListView의 Item 에 놓는 데이터 배열를 초기화
-        var data_array_items = Array(20, { i -> "Title-$i" })
-
-        var ItemTitle = "" as String?
-
+        var data_array_items = Array(display, { i -> "Title-$i" })
+        var data_array_iprice = Array(display, { i -> "Price-$i" })
 
         //set the text in the textview
         if (bd != null) {
@@ -70,24 +69,27 @@ class ItemListActivity : AppCompatActivity() {
             db.get().addOnCompleteListener(OnCompleteListener<DocumentSnapshot> { task ->
                 if (task.isSuccessful) {
                     //FireBase에서 전체 데이터를 취득
-                    val ALL_DB_Data = task.result.data.toString()
+                    var ALL_DB_Data = task.result.data.toString()
+                    ALL_DB_Data = ""
 
-                    if (ALL_DB_Data.isNullOrEmpty()) { // ALL_DB_Data가 null아님 비어있을때
+                    if (ALL_DB_Data.isNullOrEmpty()) { // ALL_DB_Data가 null or 비어있을때
 
                         Toast.makeText(this, "no such a data", Toast.LENGTH_LONG).show()
 
                     } else {
                         // ALL_DB_Data 내용 : name*****=*****,mall_name1=***,iprice1=****
-                        // temp 내용 : name***** ↓첫번째 = 이전 문자를 취득
-                        val temp = ALL_DB_Data.substringBefore("=")
-
+                        // name_temp 내용 : name***** ↓첫번째 = 이전 문자를 취득
+                        val name_temp = ALL_DB_Data.substringBefore('=')
                         // Item_name 내용 : ***** ↓앞에서 5번째 문자 이후의 문자열을 취득
-                        val Item_name = temp.substring(5)
+                        val item_name = name_temp.substring(5)
 
-                        // data_array_items[0] 에 item_name를 set
-                        data_array_items.set(1,Item_name)
+                        // Item_price 내용 : **** ↓마지막 = 이후 문자를 취득
+                        val Item_price = ALL_DB_Data.substringAfter('=')
 
-                        Toast.makeText(this,Item_name, Toast.LENGTH_LONG).show()
+
+
+
+                        Toast.makeText(this,item_name, Toast.LENGTH_LONG).show()
                     }
                 } else {
                     Toast.makeText(this, "get failed with" + task.exception, Toast.LENGTH_LONG).show()

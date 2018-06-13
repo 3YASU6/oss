@@ -172,10 +172,30 @@ class ItemListActivity : AppCompatActivity() {
                 // activity_graph 화면에 이동
                 adapter.getItem(position)
                 data_array_items.get(position)
+<<<<<<< HEAD
+                val title_sub: String = data_array_items.get(position)
+             //   val iprice: String = data_array_iprice.get(position)
+             //   val mallname: String = data_array_mallname.get(position)
+              //  val image: String = data_array_image.get(position)
+                Toast.makeText(this, "Position Clicked:"+" "+title_sub,Toast.LENGTH_SHORT).show()
+//                detailintent.putExtra("title", title_sub);
+//                detailintent.putExtra("iprice", iprice);
+//                detailintent.putExtra("mallname", mallname);
+//                detailintent.putExtra("date", date);
+                // activity_graph 화면에 이동
+
+                val detailintent = Intent(this, GraphActivity::class.java)
+                detailintent.putExtra("title", title_sub);
+           //     detailintent.putExtra("iprice", iprice);
+             //   detailintent.putExtra("mallname", mallname);
+              //  detailintent.putExtra("image", image);
+                startActivity(detailintent)
+=======
                // val hprice: String = data_array_hprice.get(position)
                // detailintent.putExtra("hprice", hprice);
                 val intent = Intent(this, GraphActivity::class.java)
                 startActivity(intent)
+>>>>>>> fb5babcb6fff51caeb78691e022fc307c64383ec
             }
 
 

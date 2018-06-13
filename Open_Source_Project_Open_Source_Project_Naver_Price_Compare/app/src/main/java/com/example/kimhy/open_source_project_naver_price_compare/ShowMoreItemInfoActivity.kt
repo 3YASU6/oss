@@ -38,6 +38,7 @@ class ShowMoreItemInfoActivity : AppCompatActivity() {
         val i_price:String
         val h_price:String
         val mall_name:String
+        val link:String
         val intent = intent
         val bd = intent.extras
         val ti = intent.getStringExtra("title")
@@ -55,6 +56,10 @@ class ShowMoreItemInfoActivity : AppCompatActivity() {
             hprice.setText(gethprice)
             val getimage = swapVariable.get("image") as String
             imageurl.loadUrl(getimage)
+            val getlink = swapVariable.get("link") as String
+            linkText.setText(getlink)
+
+
 
 
 
@@ -77,6 +82,8 @@ class ShowMoreItemInfoActivity : AppCompatActivity() {
         i_price = lpriceText.getText().toString()
         mall_name = mallNameText.getText().toString()
         h_price = hprice.getText().toString()
+        link = linkText.getText().toString()
+
 
 //        //==============add and insert to database
 //
@@ -127,8 +134,8 @@ class ShowMoreItemInfoActivity : AppCompatActivity() {
             intent.putExtra("title", tileText.getText());
             intent.putExtra("iprice", lpriceText.getText());
             intent.putExtra("mallname",  mallNameText.getText());
-            intent.putExtra("date",  date);
-
+            intent.putExtra("date",  link);
+            intent.putExtra("link",  date);
             intent.putExtra("hprice",  hprice.getText());
 
 

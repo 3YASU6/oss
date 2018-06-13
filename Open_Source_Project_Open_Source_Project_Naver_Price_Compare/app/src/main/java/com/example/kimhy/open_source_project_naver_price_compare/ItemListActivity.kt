@@ -68,6 +68,13 @@ class ItemListActivity : AppCompatActivity()
        // var data_array_items = Array(display, { i -> "Title-$i" })
         // showMoreItemInfoActivity에서 온 intent값중 "title"를 취득
         val ItemName = intent.getStringExtra( "title" )
+        val ItemLink = intent.getStringExtra( "link" )
+        val ItemLowprice = intent.getStringExtra( "iprice" )
+        val ItemMallname = intent.getStringExtra( "mallname" )
+        val ItemDate = intent.getStringExtra( "date" )
+
+
+        //intent.putExtra("hprice",  hprice.getText());
         // ListView 첫번쩨 요소에 ItemName 추가
 
 
@@ -75,7 +82,8 @@ class ItemListActivity : AppCompatActivity()
         var data_array_items = fileIO.loadItemsFromFile()
         if (ItemName == null)
         {
-            data_array_items.add("samsung notebook")
+            //data_array_items.add("lg gram notebook")
+
         }
         else
         {

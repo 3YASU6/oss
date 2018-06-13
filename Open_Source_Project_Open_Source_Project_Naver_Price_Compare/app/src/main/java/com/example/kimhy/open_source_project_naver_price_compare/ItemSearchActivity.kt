@@ -32,6 +32,7 @@ class ItemSearchActivity : AppCompatActivity() {
         var data_array_mallname = Array(display, { i -> "Mallname-$i" })
         var data_array_link = Array(display, { i -> "Link-$i" })
         var data_array_image = Array(display, { i -> "Image-$i" })
+        var data_array_hprice = Array(display, { i -> "hprice-$i" })
 
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
         listView.adapter = adapter
@@ -81,6 +82,9 @@ class ItemSearchActivity : AppCompatActivity() {
                 var image: Array<String>? = null
                 image = thread.getImage()
 
+                var hprice: Array<String>? = null
+                hprice = thread.getHprice()
+
                 //https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html
                 //https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/with-index.html
                 //http://codetravel.tistory.com/17
@@ -111,6 +115,11 @@ class ItemSearchActivity : AppCompatActivity() {
                     data_array_image.set(index, value)
                 }
 
+                for ((index, value) in hprice.withIndex()) {
+                    data_array_hprice.set(index, value)
+                    println("the element at $index is $value")
+                }
+
                 val fix: Array<String>? = title
                 return false
             }
@@ -124,6 +133,7 @@ class ItemSearchActivity : AppCompatActivity() {
             val iprice: String = data_array_iprice.get(position)
             val mallname: String = data_array_mallname.get(position)
             val image: String = data_array_image.get(position)
+            val hprice: String = data_array_hprice.get(position)
             Toast.makeText(this, "Position Clicked:"+" "+title_sub,Toast.LENGTH_SHORT).show()
             val detailintent = Intent(this, ShowMoreItemInfoActivity::class.java)
 
@@ -132,6 +142,7 @@ class ItemSearchActivity : AppCompatActivity() {
             detailintent.putExtra("iprice", iprice);
             detailintent.putExtra("mallname", mallname);
             detailintent.putExtra("image", image);
+            detailintent.putExtra("hprice", hprice);
             startActivity(detailintent)
         }
     }

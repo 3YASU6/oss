@@ -28,7 +28,7 @@ import com.google.firebase.firestore.DocumentSnapshot
 //import org.junit.experimental.results.ResultMatchers.isSuccessful
 import android.support.annotation.NonNull
 import com.google.android.gms.tasks.Task
-import com.example.kimhy.open_source_project_naver_price_compare.ShowMoreItemInfoActivity
+
 
 class ItemListActivity : AppCompatActivity() {
 
@@ -37,24 +37,9 @@ class ItemListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_item_list)
-<<<<<<< HEAD
-      val  db = FirebaseFirestore.getInstance()
-              //  .document("items/detail")
-
-        val thisView = findViewById(R.id.listView) as ListView
-        val data_array_items = Array(20, { i -> "Title-$i" })
-        val listvieww = Array(5, {  })
-=======
 
         // db에 DB의 Instance 취득
         val  db = FirebaseFirestore.getInstance().document("items/detail")
->>>>>>> 04cc56fc165975eafce402604089f6866060be91
-
-        val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
-        listView.adapter = adapter
-        val database = FirebaseDatabase.getInstance()
-        val ref = database.getReference("server/saving-data/fireblog")
-        val myRef = database.getReference("message")
 
         val count:Int
         val idnum:Int
@@ -64,7 +49,6 @@ class ItemListActivity : AppCompatActivity() {
         val aa:String
         val i_price:String
         val mall_name:String
-
         val intent = intent
         val bd = intent.extras
         val ti = intent.getStringExtra("title")
@@ -79,49 +63,6 @@ class ItemListActivity : AppCompatActivity() {
         var data_array_items = Array(display, { i -> "Title-$i" })
         var data_array_iprice = Array(display, { i -> "Price-$i" })
 
-<<<<<<< HEAD
-
-//=======================================================================================================================================
-            //==================get data from database
-            var list_member= mutableListOf<Item>()
-//
-//            db.collection("items")
-//                    .get()
-//                    .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
-//                        if (task.isSuccessful) {
-//                            val notesList = mutableListOf<ItemListActivity>()
-//                            for (document in task.result) {
-//
-//                                Log.d("tag", document.id + " => " + document.data)
-//                                list_member.add(Item(document.get("%name%").toString()))
-//                                println(document.data.toString())
-//
-//                            }
-//                            val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
-//                            listView.setAdapter(adapter)
-//                        } else {
-//                            Log.d("tag", "Error getting documents: ", task.exception)
-//                        }
-//                    })
-//            val item = HashMap<String, Any>()
-            db.collection("items").document("Title").get().addOnCompleteListener(OnCompleteListener<DocumentSnapshot> { task ->
-                if (task.isSuccessful) {
-                    val document = task.getResult()
-                    println(task.result.data)
-                    var list_member= mutableListOf<Item>()
-
-                    if (document!=null) {
-                        //get data from firebase
-
-                        Log.d("tag", "DocumentSnapshot data: " + task.result.data)
-                        Log.d("TAG", "before")
-                        //try to print data
-
-
-                        Log.d("TAG", "message")
-                    //if can't read the data
-                    } else {
-=======
         //set the text in the textview
         if (bd != null) {
             //  get data from database
@@ -129,11 +70,11 @@ class ItemListActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     //FireBase에서 전체 데이터를 취득
                     var ALL_DB_Data = task.result.data.toString()
+
                     ALL_DB_Data = ""
 
                     if (ALL_DB_Data.isNullOrEmpty()) { // ALL_DB_Data가 null or 비어있을때
 
->>>>>>> 04cc56fc165975eafce402604089f6866060be91
                         Toast.makeText(this, "no such a data", Toast.LENGTH_LONG).show()
 
                     } else {
@@ -166,33 +107,12 @@ class ItemListActivity : AppCompatActivity() {
 
 
 
-<<<<<<< HEAD
-            }
-=======
->>>>>>> 04cc56fc165975eafce402604089f6866060be91
 
-//
             // item click시 발생하는 event
-            thisView.setOnItemClickListener { parent, view, position, id ->
-                adapter.getItem(position)
-                data_array_items.get(position)
-                val title_sub: String = data_array_items.get(position)
-             //   val iprice: String = data_array_iprice.get(position)
-             //   val mallname: String = data_array_mallname.get(position)
-              //  val image: String = data_array_image.get(position)
-                Toast.makeText(this, "Position Clicked:"+" "+title_sub,Toast.LENGTH_SHORT).show()
-//                detailintent.putExtra("title", title_sub);
-//                detailintent.putExtra("iprice", iprice);
-//                detailintent.putExtra("mallname", mallname);
-//                detailintent.putExtra("image", image);
+            thisView.setOnItemClickListener { _, view, _, _ ->
                 // activity_graph 화면에 이동
-
-                val detailintent = Intent(this, GraphActivity::class.java)
-                detailintent.putExtra("title", title_sub);
-           //     detailintent.putExtra("iprice", iprice);
-             //   detailintent.putExtra("mallname", mallname);
-              //  detailintent.putExtra("image", image);
-                startActivity(detailintent)
+                val intent = Intent(this, GraphActivity::class.java)
+                startActivity(intent)
             }
 
 
@@ -205,6 +125,4 @@ class ItemListActivity : AppCompatActivity() {
 
         }
     }
-class Item(
-        var item: String
-)
+

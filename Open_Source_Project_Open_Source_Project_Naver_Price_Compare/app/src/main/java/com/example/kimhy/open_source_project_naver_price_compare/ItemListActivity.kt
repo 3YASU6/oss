@@ -65,14 +65,14 @@ class ItemListActivity : AppCompatActivity()
         val thisView = findViewById(R.id.listView) as ListView
 
         // ListView의 Item 에 놓는 데이터 배열를 초기화
-        var data_array_items = Array(display, { i -> "Title-$i" })
+       // var data_array_items = Array(display, { i -> "Title-$i" })
         // showMoreItemInfoActivity에서 온 intent값중 "title"를 취득
         val ItemName = intent.getStringExtra( "title" )
         // ListView 첫번쩨 요소에 ItemName 추가
        // data_array_items.set(0,ItemName)
 
-        var fileIO = FileIO(this);
-        data_array_items = fileIO.loadItemsFromFile();
+        var fileIO = FileIO(this)
+        var data_array_items = fileIO.loadItemsFromFile()
 
         val itemsAdapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
         thisView.adapter = itemsAdapter

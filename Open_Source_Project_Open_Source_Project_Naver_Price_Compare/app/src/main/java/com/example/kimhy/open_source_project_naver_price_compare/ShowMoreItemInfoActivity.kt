@@ -11,6 +11,10 @@ import kotlinx.android.synthetic.main.activity_item_list.*
 import kotlinx.android.synthetic.main.activity_show_more_item_info.*
 import retrofit2.http.Url
 import java.net.URL
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 
 class ShowMoreItemInfoActivity : AppCompatActivity() {
 
@@ -47,11 +51,15 @@ class ShowMoreItemInfoActivity : AppCompatActivity() {
 
 
         }
+//        val today = LocalDate.of(2027, 12, 1)
+//        println(today)
+
         //to take the data into string
         var flavour = tileText.text.toString().trim()
         name_item = tileText.getText().toString()
         i_price = lpriceText.getText().toString()
         mall_name = mallNameText.getText().toString()
+
 //        titleitem = trytext.getText().toString()
 
 //        val itemss = HashMap<String, Any>()
@@ -84,13 +92,13 @@ class ShowMoreItemInfoActivity : AppCompatActivity() {
             try {
                 // put the data in string database
 
-                items.put("name"+name_item, name_item)
-                item.put("name"+name_item, name_item)
-                items.put("iprice1", i_price)
-                items.put("mall_name1", mall_name)
+                items.put("name", name_item)
+                item.put("name", name_item)
+                items.put("iprice", i_price)
+                items.put("mall_name", mall_name)
                 // insert the database to firebase
 
-                db.collection("items").document("detail").collection(name_item).document("details").set(items).addOnSuccessListener {
+                db.collection("items").document(name_item).set(items).addOnSuccessListener {
                     void: Void? -> Toast.makeText(this, "Successfully uploaded to the database :)", Toast.LENGTH_LONG).show()
 
                 }.addOnFailureListener {

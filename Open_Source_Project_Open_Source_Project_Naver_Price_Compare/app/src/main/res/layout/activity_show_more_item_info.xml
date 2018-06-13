@@ -48,6 +48,16 @@
         android:textSize="24sp" />
 
     <TextView
+        android:id="@+id/linkText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/imageurl"
+        android:layout_centerVertical="true"
+        android:text="@string/title"
+        android:textSize="24sp"
+        android:visibility="invisible" />
+
+    <TextView
         android:id="@+id/mallNameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

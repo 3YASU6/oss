@@ -30,6 +30,7 @@ import android.support.annotation.NonNull
 import android.support.v7.widget.DefaultItemAnimator
 import com.google.android.gms.tasks.Task
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class ItemListActivity : AppCompatActivity()
@@ -80,6 +81,11 @@ class ItemListActivity : AppCompatActivity()
 
         var fileIO = FileIO(this)
         var data_array_items = fileIO.loadItemsFromFile()
+        var data_array_link = ArrayList<String>()
+        var data_array_lprice = ArrayList<String>()
+        var data_array_mallname = ArrayList<String>()
+        var data_array_graphDate = ArrayList<String>()
+        var data_array_graphPriceData = ArrayList<String>()
         if (ItemName == null)
         {
             //data_array_items.add("lg gram notebook")
@@ -87,7 +93,13 @@ class ItemListActivity : AppCompatActivity()
         }
         else
         {
-           // data_array_items.add(ItemName)
+            data_array_items.add(ItemName)
+            data_array_link
+            data_array_lprice
+            data_array_mallname
+            data_array_graphDate
+            data_array_graphPriceData
+
         }
         val itemsAdapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
         thisView.adapter = itemsAdapter

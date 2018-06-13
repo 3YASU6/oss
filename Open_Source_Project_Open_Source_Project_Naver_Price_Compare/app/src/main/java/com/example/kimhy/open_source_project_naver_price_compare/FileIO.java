@@ -18,33 +18,38 @@ public class FileIO
     FileWriter writer = null;
     BufferedWriter bufferedWriter = null;
     String string;
-    ArrayList<String> items;
+    //ArrayList<String> items;
+    Context context;
+//    public FileIO(ArrayList<String> items)
+//        {
+//        this.items = new ArrayList<String>();
+//        this.items = items;
+//
+//
+//    }
+//    public FileIO(String[] items)
+//    {
+//        this.items = new ArrayList<String>();
+//        for (String temp:items)
+//        {
+//            this.items.add(temp);
+//        }
+//
+//        //this.items = items;
+//
 
-    public FileIO(ArrayList<String> items)
+    //    }
+    public FileIO(Context context)
     {
-        this.items = new ArrayList<String>();
-        this.items = items;
-
-
+        this.context = context;
     }
-    public FileIO(String[] items)
+
+
+    public String[] loadItemsFromFile()
     {
-        this.items = new ArrayList<String>();
-        for (String temp:items)
-        {
-            this.items.add(temp);
-        }
-
-        //this.items = items;
-
-
-    }
-
-
-    public String[] loadItemsFromFile(Context context)
-    {
+        ArrayList<String> items = new ArrayList<>();
         File file = new File(context.getFilesDir(), fileName);//file object Create
-        System.out.println("file location "+context.getFilesDir());
+        System.out.println("file location " + context.getFilesDir());
         if (file.exists())
         {
             try
@@ -80,9 +85,17 @@ public class FileIO
         return arrayReturn;
     }
 
-    public void storeItemsToFile(Context context)
+    public void storeItemsToFile(String[] argumentTitle)
     {
 
+
+        ArrayList<String> items = new ArrayList<>();
+        for (String temp : argumentTitle)
+        {
+
+            items.add(temp);
+
+        }
         File file = new File(context.getFilesDir(), fileName);//file object Create
         try
         {

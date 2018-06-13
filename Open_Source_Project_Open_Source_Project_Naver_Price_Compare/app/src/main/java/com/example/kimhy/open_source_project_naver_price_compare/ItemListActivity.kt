@@ -45,20 +45,9 @@ class ItemListActivity : AppCompatActivity()
         // 화면에 표시 되는 상품 수
         val display = 20
 
-
-        // ListView 를 취득
-        val thisView = findViewById(R.id.listView) as ListView
-        // ListView의 Item 에 놓는 데이터 배열를 초기화
-        var data_array_items = Array(display, { i -> "Title-$i" })
-        var data_array_iprice = Array(display, { i -> "Price-$i" })
-
-        val itemsAdapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
-        val listView = findViewById(R.id.listView) as ListView
-        listView.adapter = itemsAdapter
         // db에 DB의 Instance 취득
         // val  db = FirebaseFirestore.getInstance()
         //.document("items")
-
 
         val count: Int
         val idnum: Int
@@ -72,14 +61,21 @@ class ItemListActivity : AppCompatActivity()
         val bd = intent.extras
         val ti = intent.getStringExtra("title")
 
+        // ListView 를 취득
+        val thisView = findViewById(R.id.listView) as ListView
 
-
-
-
+        // ListView의 Item 에 놓는 데이터 배열를 초기화
+        var data_array_items = Array(display, { i -> "Title-$i" })
+        // showMoreItemInfoActivity에서 온 intent값중 "title"를 취득
+        val ItemName = intent.getStringExtra( "title" )
+        // ListView 첫번쩨 요소에 ItemName 추가
+        data_array_items.set(0,ItemName)
 
         var fileIO = FileIO(data_array_items);
         data_array_items = fileIO.loadItemsFromFile(this);
 
+        val itemsAdapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
+        thisView.adapter = itemsAdapter
 
         //set the text in the textview
 //        if (bd != null) {
@@ -164,8 +160,6 @@ class ItemListActivity : AppCompatActivity()
 //                    }
 //                })
 
-        val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
-        thisView.adapter = adapter
 
 //        val database = FirebaseDatabase.getInstance()
 //        val ref = database.getReference("server/saving-data/fireblog")
@@ -175,7 +169,7 @@ class ItemListActivity : AppCompatActivity()
         // item click시 발생하는 event
         thisView.setOnItemClickListener { parent, view, position, id ->
             // activity_graph 화면에 이동
-            adapter.getItem(position)
+            itemsAdapter.getItem(position)
             data_array_items.get(position)
             val title_sub: String = data_array_items.get(position)
             //   val iprice: String = data_array_iprice.get(position)
@@ -211,6 +205,12 @@ class ItemListActivity : AppCompatActivity()
         }
 
 
+
+        @Override fun onBackPressed()
+        {
+            fileIO.storeItemsToFile(this)
+            super.onBackPressed();
+        }
     }
 }
 

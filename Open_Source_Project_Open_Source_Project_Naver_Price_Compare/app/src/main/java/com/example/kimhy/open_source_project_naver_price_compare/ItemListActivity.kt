@@ -184,7 +184,7 @@ class ItemListActivity : AppCompatActivity() {
 //                detailintent.putExtra("title", title_sub);
 //                detailintent.putExtra("iprice", iprice);
 //                detailintent.putExtra("mallname", mallname);
-//                detailintent.putExtra("image", image);
+//                detailintent.putExtra("date", date);
                 // activity_graph 화면에 이동
 
                 val detailintent = Intent(this, GraphActivity::class.java)

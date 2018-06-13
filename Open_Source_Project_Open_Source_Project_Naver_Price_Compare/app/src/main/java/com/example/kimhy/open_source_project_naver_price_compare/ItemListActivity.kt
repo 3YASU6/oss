@@ -69,11 +69,18 @@ class ItemListActivity : AppCompatActivity()
         // showMoreItemInfoActivity에서 온 intent값중 "title"를 취득
         val ItemName = intent.getStringExtra( "title" )
         // ListView 첫번쩨 요소에 ItemName 추가
-       // data_array_items.set(0,ItemName)
+
 
         var fileIO = FileIO(this)
         var data_array_items = fileIO.loadItemsFromFile()
-
+        if (ItemName == null)
+        {
+            data_array_items.add("samsung notebook")
+        }
+        else
+        {
+           // data_array_items.add(ItemName)
+        }
         val itemsAdapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
         thisView.adapter = itemsAdapter
 
@@ -208,9 +215,10 @@ class ItemListActivity : AppCompatActivity()
 
         @Override fun onBackPressed()
         {
-            fileIO.storeItemsToFile(data_array_items)
+
             super.onBackPressed();
         }
+        fileIO.storeItemsToFile(data_array_items)
     }
 }
 

@@ -1,12 +1,14 @@
 package com.example.kimhy.open_source_project_naver_price_compare;
 
 import android.content.Context;
+import android.graphics.Paint;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -18,39 +20,45 @@ public class FileIO
     FileWriter writer = null;
     BufferedWriter bufferedWriter = null;
     String string;
-    //ArrayList<String> items;
     Context context;
-//    public FileIO(ArrayList<String> items)
-//        {
-//        this.items = new ArrayList<String>();
-//        this.items = items;
-//
-//
-//    }
-//    public FileIO(String[] items)
-//    {
-//        this.items = new ArrayList<String>();
-//        for (String temp:items)
-//        {
-//            this.items.add(temp);
-//        }
-//
-//        //this.items = items;
-//
 
-    //    }
     public FileIO(Context context)
     {
+
         this.context = context;
+        System.out.println("context const success");
     }
 
 
-    public String[] loadItemsFromFile()
+    public ArrayList<String> loadItemsFromFile()
     {
         ArrayList<String> items = new ArrayList<>();
         File file = new File(context.getFilesDir(), fileName);//file object Create
         System.out.println("file location " + context.getFilesDir());
+
+        if (!file.exists())
+        {
+            try
+            {
+                file.createNewFile();
+            }
+            catch (IOException e)
+            {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
         if (file.exists())
+        {
+            System.out.println("I find the Items.txt");
+        }
+        else
+        {
+            System.out.println("No, there is not a no file.");
+        }
+
+        if (file.exists() & file.canWrite())
         {
             try
             {
@@ -64,44 +72,49 @@ public class FileIO
                 bufferedReader.close();
                 reader.close();
 
-
+                System.out.println("file read success");//
             }
             catch (Exception e)
             {
                 e.printStackTrace();
 
             }
+            System.out.println("success " + items);
         }
 
-        int size = 0;
-        String[] arrayReturn = new String[items.size()];
-        for (String temp : items)
-        {
+//        int size = 0;
+//        String[] arrayReturn = new String[items.size()];
+//        for (String temp : items)
+//        {
+//
+//            arrayReturn[size++] = temp;
+//
+//        }
 
-            arrayReturn[size++] = temp;
-
-        }
-
-        return arrayReturn;
+        return items;
     }
 
-    public void storeItemsToFile(String[] argumentTitle)
+    public void storeItemsToFile(ArrayList<String> argumentTitle)
     {
 
-
+        System.out.println("storeItemsToFile method load success");
+        System.out.println(argumentTitle);
         ArrayList<String> items = new ArrayList<>();
-        for (String temp : argumentTitle)
-        {
-
-            items.add(temp);
-
-        }
+//        for (String temp : argumentTitle)
+//        {
+//
+//            items.add(temp);
+//
+//        }
         File file = new File(context.getFilesDir(), fileName);//file object Create
+
+
+
         try
         {
             writer = new FileWriter(file);
             bufferedWriter = new BufferedWriter(writer);
-            for (String str : items)
+            for (String str : argumentTitle)//items->argumentTitle
             {
                 bufferedWriter.write(str);
                 bufferedWriter.newLine();
@@ -130,4 +143,6 @@ public class FileIO
             e.printStackTrace();
         }
     }
+
+
 }

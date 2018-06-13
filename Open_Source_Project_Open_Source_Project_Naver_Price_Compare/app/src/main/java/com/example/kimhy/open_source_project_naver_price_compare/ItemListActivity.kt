@@ -211,6 +211,12 @@ class ItemListActivity : AppCompatActivity()
         }
 
 
+
+        @Override fun onBackPressed()
+        {
+            fileIO.storeItemsToFile(this)
+            super.onBackPressed();
+        }
     }
 }
 

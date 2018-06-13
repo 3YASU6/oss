@@ -114,6 +114,7 @@ public class FileIO
         {
             writer = new FileWriter(file);
             bufferedWriter = new BufferedWriter(writer);
+            System.out.println("data" +argumentTitle);
             for (String str : argumentTitle)//items->argumentTitle
             {
                 bufferedWriter.write(str);

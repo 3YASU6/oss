@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">NAVERショッピング価格変動アプリ</string>
 
+    <string name="won">ウォン</string>
+
     <!-- 画面の名前に関するstring定義 -->
     <string name="frame_name_login">ログイン</string>
     <string name="frame_name_graph">商品価格グラフ</string>
@@ -28,7 +30,7 @@
     <string name="search_item_more_info">検索結果のアイテムの詳細情報</string>
 
     <!-- 検索結果の商品の詳細情報に関するstring定義 -->
-    <string name="addToWishListButtonText">Add to WishList</string>
+    <string name="addToWishListButtonText">WishListに追加</string>
     <string name="title">title</string>
     <string name="lprice">lprice</string>
     <string name="mallName">mallName</string>

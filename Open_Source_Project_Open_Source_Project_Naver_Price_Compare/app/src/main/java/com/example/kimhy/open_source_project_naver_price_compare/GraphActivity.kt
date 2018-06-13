@@ -37,6 +37,8 @@ class GraphActivity : AppCompatActivity() {
         val l_price:String
         val mChart = findViewById(R.id.chart) as LineChart
 
+        val l_price : String
+
         // 터치 제스처 사용
         mChart.setTouchEnabled(true)
 
@@ -74,7 +76,11 @@ class GraphActivity : AppCompatActivity() {
 
             // FireBase에서 끌고 온 Date, Price를 그래프 Point(x값, y값)로 설정
             for (i in date_from_fireBase.indices) {
+<<<<<<< HEAD
+            //    xy_data.add(Entry(date_from_fireBase[i], price_from_fireBase[i])) // xy값(=Entry)를 xy_data에 설정 (X = date_data, Y = price_data)
+=======
       //          xy_data.add(Entry(date_from_fireBase[i], price_from_fireBase[i])) // xy값(=Entry)를 xy_data에 설정 (X = date_data, Y = price_data)
+>>>>>>> fb5babcb6fff51caeb78691e022fc307c64383ec
             }
 
             // xy_data를 LineDataSet인 set에 저장
@@ -111,6 +117,8 @@ class GraphActivity : AppCompatActivity() {
 
             //buyButton click시 발생하는 event
             buyButton.setOnClickListener {
+                val webview: String
+                webview = "http://search.shopping.naver.com/gate.nhn?id=12830391037"
                 // 해당 상품에 이동
                 //Naver_API.link
                 //  Uri.parse("https://developer.android.com/reference/android/net/Uri")

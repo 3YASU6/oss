@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">NAVER Shopping Price Change Notifications </string>
 
+    <string name="won">won</string>
+
     <string name="frame_name_login">Login</string>
     <string name="frame_name_graph">Item Price Graph</string>
     <string name="frame_name_item_search">Search items</string>

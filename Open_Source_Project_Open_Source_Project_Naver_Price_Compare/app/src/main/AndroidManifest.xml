@@ -41,6 +41,11 @@
             android:screenOrientation="portrait"
             android:label="@string/frame_name_item_search"/>
 
+        <activity
+            android:name=".WebView"
+            android:screenOrientation="portrait"
+            android:label="@string/frame_name_item_search"/>
+
         <!--
          <activity
              android:name=".ItemListActivity"

@@ -1,5 +1,6 @@
 package com.example.kimhy.open_source_project_naver_price_compare
 
+import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
@@ -13,6 +14,7 @@ import com.github.mikephil.charting.charts.Chart
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.Description
 import com.github.mikephil.charting.components.XAxis
+
 
 import com.github.mikephil.charting.formatter.PercentFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
@@ -99,6 +101,14 @@ class GraphActivity : AppCompatActivity() {
         buyButton.setOnClickListener {
             // 해당 상품 구매 사이트에 이동
             Toast.makeText(this, "해당 상품 구매 사이트에 이동", Toast.LENGTH_SHORT).show()
+
+            val webview: String
+            webview = "http://search.shopping.naver.com/gate.nhn?id=12830391037"
+           // intent.putExtra("link", webview)
+            val detailintent = Intent(this, WebView::class.java)
+            detailintent.putExtra("link", webview)
+            startActivity(detailintent)
+
         }
 
         //val deleteButton = findViewById(R.id.deleteButton) as ImageButton

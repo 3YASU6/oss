@@ -111,6 +111,8 @@ class GraphActivity : AppCompatActivity() {
 
             //buyButton click시 발생하는 event
             buyButton.setOnClickListener {
+                val webview: String
+                webview = "http://search.shopping.naver.com/gate.nhn?id=12830391037"
                 // 해당 상품에 이동
                 //Naver_API.link
                 //  Uri.parse("https://developer.android.com/reference/android/net/Uri")

@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -15,44 +15,43 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".ItemListActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".GraphActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/frame_name_graph"/>
-
+            android:label="@string/frame_name_graph"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ShowMoreItemInfoActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/frame_name_item_show_more_item_info"/>
-
+            android:label="@string/frame_name_item_show_more_item_info"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ItemSearchActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/frame_name_item_search"/>
-
+            android:label="@string/frame_name_item_search"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".WebView"
-            android:screenOrientation="portrait"
-            android:label="@string/frame_name_item_search"/>
+            android:label="@string/frame_name_item_search"
+            android:screenOrientation="portrait" />
 
         <!--
          <activity
              android:name=".ItemListActivity"
              android:screenOrientation="portrait"
              android:label="@string/frame_name_item_list"/>
- -->
-     </application>
+        -->
 
- </manifest>
+        <service
+            android:name=".MyIntentService"
+            android:exported="false"></service>
+    </application>
 
+</manifest>

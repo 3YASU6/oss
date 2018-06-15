@@ -29,6 +29,7 @@ import com.google.firebase.firestore.DocumentSnapshot
 //import org.junit.experimental.results.ResultMatchers.isSuccessful
 import android.support.annotation.NonNull
 import android.support.v7.widget.DefaultItemAnimator
+import com.example.kimhy.open_source_project_naver_price_compare.backGroundTask.setSchedule
 import com.google.android.gms.tasks.Task
 import java.util.*
 import kotlin.collections.ArrayList
@@ -41,8 +42,15 @@ class ItemListActivity : AppCompatActivity()
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_item_list)
+
+        val hoge = "LG 5S sjidfoehif"
+        val piyo = "244000"
+        setSchedule(this, hoge,piyo)
+        //System.out.println("Received")
+        //Toast.makeText(this,"Received", Toast.LENGTH_LONG).show()
 
         // 화면에 표시 되는 상품 수
         val display = 20
@@ -209,36 +217,21 @@ class ItemListActivity : AppCompatActivity()
             itemsAdapter.getItem(position)
             data_array_items.get(position)
             val title_sub: String = data_array_items.get(position)
-            //   val iprice: String = data_array_iprice.get(position)
-            //   val mallname: String = data_array_mallname.get(position)
+            val lprice: String = data_array_lprice.get(position)
             //  val image: String = data_array_image.get(position)
             Toast.makeText(this, "Position Clicked:" + " " + title_sub, Toast.LENGTH_SHORT).show()
-//                detailintent.putExtra("title", title_sub);
-//                detailintent.putExtra("iprice", iprice);
-//                detailintent.putExtra("mallname", mallname);
-//                detailintent.putExtra("date", date);
-            // activity_graph 화면에 이동
 
-            val detailintent = Intent(this, GraphActivity::class.java)
-            detailintent.putExtra("title", title_sub);
-            //     detailintent.putExtra("iprice", iprice);
-            //   detailintent.putExtra("mallname", mallname);
-            //  detailintent.putExtra("image", image);
-            startActivity(detailintent)
-
-            // val hprice: String = data_array_hprice.get(position)
-            // detailintent.putExtra("hprice", hprice);
-            val intent = Intent(this, GraphActivity::class.java)
-            startActivity(intent)
-
+            val graphIntent = Intent(this, GraphActivity::class.java)
+            graphIntent.putExtra("title", title_sub)
+            graphIntent.putExtra("lprice", lprice)
+            startActivity(graphIntent)
         }
 
 
         // add button click시 발생하는 event
         addButton.setOnClickListener {
-            val intent = Intent(this, ItemSearchActivity::class.java)
-
-            startActivity(intent)
+            val searchIntent = Intent(this, ItemSearchActivity::class.java)
+            startActivity(searchIntent)
         }
 
 

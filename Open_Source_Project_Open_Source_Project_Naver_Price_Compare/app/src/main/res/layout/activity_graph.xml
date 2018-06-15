@@ -15,15 +15,6 @@
         android:layout_marginEnd="20dp" />
 
     <TextView
-        android:id="@+id/dateText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/chart"
-        android:layout_centerVertical="true"
-        android:text="@string/dateText"
-        android:textSize="18sp" />
-
-    <TextView
         android:id="@+id/titleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -52,8 +43,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="121dp"
-        android:layout_marginEnd="65dp"
+        android:layout_marginBottom="119dp"
+        android:layout_marginEnd="111dp"
         android:text="@string/lpriceText"
         android:textSize="30sp" />
 
@@ -66,5 +57,14 @@
         android:layout_marginEnd="27dp"
         android:background="@color/colorPrimary"
         app:srcCompat="@android:drawable/ic_menu_delete" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/chart"
+        android:layout_alignTop="@+id/priceText"
+        android:text="@string/won"
+        android:textSize="30sp" />
 
 </RelativeLayout>

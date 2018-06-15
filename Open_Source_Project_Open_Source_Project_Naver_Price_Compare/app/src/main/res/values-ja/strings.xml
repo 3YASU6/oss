@@ -35,11 +35,11 @@
     <string name="lprice">lprice</string>
     <string name="mallName">mallName</string>
 
-    <!-- wish list 商品詳細情報 (価格変動グラフ表示) 画面 string 定義 -->
+    <!-- グラフ 画面 string 定義 -->
     <string name="buyButtonText">商品購入</string>
     <string name="titleText">title</string>
     <string name="lpriceText">lprice</string>
-    <string name="dateText">date</string>
+
 
     <!-- アイテム削除確認 string 定義 -->
     <string name="messageOfDeleteDialog">この商品を削除しても良ろしいですか？</string>

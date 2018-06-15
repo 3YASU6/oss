@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.TextView
 import android.widget.Toast
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.Chart
@@ -36,6 +37,15 @@ class GraphActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_graph)
 
+        val priceText = findViewById(R.id.priceText) as TextView
+        val titleText = findViewById(R.id.titleText) as TextView
+
+        val item_price = intent.getStringExtra("lprice")
+        val item_title = intent.getStringExtra("title")
+
+        priceText.setText(item_price)
+        titleText.setText(item_title)
+
         val mChart = findViewById(R.id.chart) as LineChart
 
         // 터치 제스처 사용
@@ -53,9 +63,9 @@ class GraphActivity : AppCompatActivity() {
         mChart.setBackgroundColor(Color.WHITE)
 
         // TODO: FireBase에서 끌고 온 상품 가격변동 정보들을 저장 (가격 = price)  ※지금은 더미
-        val price_data_array = arrayOf(900f, 1000f, 1200f, 1200f, 800f, 750f)
+        val price_data_array = arrayOf(900f, 1000f, 1200f, 1200f, 800f, 750f) //intent.getStringExtra("lprice")
         // TODO: FireBase에서 끌고 온 상품 가격변동 정보들을 저장 (날짜 = date)  ※지금은 더미
-        val date_data_array = arrayOf(2f, 3f, 4f, 5f, 6f, 7f)
+        val date_data_array = arrayOf(2f, 3f, 4f, 5f, 6f, 7f) // intent.getStringExtra("date")
 
         // 그래프의 Point가 되는 데이터 배열
         val xy_data = ArrayList<Entry>()

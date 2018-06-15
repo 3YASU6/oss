@@ -39,7 +39,7 @@ public class backGroundTask {
 
             Calendar calendar = Calendar.getInstance(); // Calendar取得
             calendar.setTimeInMillis(System.currentTimeMillis()); // 現在時刻を取得
-            calendar.add(Calendar.SECOND, 5); // 現時刻より15秒後を設定
+            calendar.add(Calendar.SECOND, 10); // 現時刻より10秒後を設定
             System.out.println("=======================AlarmManager==========================");
             am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), p); // AlramManagerにPendingIntentを登録
         }

@@ -17,7 +17,6 @@ private const val EXTRA_PARAM_ITEM_NAME = "com.example.kimhy.open_source_project
  */
 class MyIntentService_kt : IntentService("MyIntentService_kt") {
 
-
     // TODO: 제공된 매개 변수를 사용하여 제공된 백그라운드 스레드에서 GetItemInfoFromNaver 액션을 처리.
     override fun onHandleIntent(intent: Intent?) {
         when (intent?.action) {
@@ -35,8 +34,11 @@ class MyIntentService_kt : IntentService("MyIntentService_kt") {
      */
     private fun handleAction_GetItemInfoFromNaver(itemName: String, itemID: String) {
 
+        Toast.makeText(this, "MyIntentService !!!!!"+itemName+" "+ itemID, Toast.LENGTH_LONG).show()
+
+
         //thread 만들어서 불러옴 http://plaboratory.org/archives/108 참조
-//        val thread = Naver_API(param1)
+//        val thread = Naver_API(itemName)
 //        thread.start()
 //
 //        try {
@@ -63,24 +65,23 @@ class MyIntentService_kt : IntentService("MyIntentService_kt") {
 //        var image: Array<String>? = null
 //        image = thread.getImage()
 
-        Toast.makeText(this, "MyIntentService !!!!!"+itemName+" "+ itemID, Toast.LENGTH_LONG).show()
     }
 
 
-//    companion object {
-//        /**
-//         * このサービスを開始して、指定されたパラメータでアクションGetItemInfoFromNaverを実行します。
-//         * サービスが既にタスクを実行している場合、このアクションはキューに入れられます。
-//         * @see IntentService
-//         */
-//        // TODO: ヘルパーメソッドのカスタマイズ
-//        @JvmStatic
-//        fun startActionGetItemInfoFromNaver(context: Context, param1: String) {
-//            val intent = Intent(context, MyIntentService_kt::class.java).apply {
-//                action = ACTION_GetItemInfoFromNaver
-//                putExtra(EXTRA_PARAM_ITEM_NAME, param1)
-//            }
-//            context.startService(intent)
-//        }
-//    }
+    companion object {
+        /**
+         * このサービスを開始して、指定されたパラメータでアクションGetItemInfoFromNaverを実行します。
+         * サービスが既にタスクを実行している場合、このアクションはキューに入れられます。
+         * @see IntentService
+         */
+        // TODO: ヘルパーメソッドのカスタマイズ
+        @JvmStatic
+        fun startActionGetItemInfoFromNaver(context: Context, param1: String) {
+            val intent = Intent(context, MyIntentService_kt::class.java).apply {
+                action = ACTION_GetItemInfoFromNaver
+                putExtra(EXTRA_PARAM_ITEM_NAME, param1)
+            }
+            context.startService(intent)
+        }
+    }
 }

@@ -122,6 +122,7 @@ class ItemListActivity : AppCompatActivity()
         val itemsAdapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
         thisView.adapter = itemsAdapter
 
+        //region DB (FireBase)
         //set the text in the textview
 //        if (bd != null) {
 //            //  get data from database
@@ -209,6 +210,7 @@ class ItemListActivity : AppCompatActivity()
 //        val database = FirebaseDatabase.getInstance()
 //        val ref = database.getReference("server/saving-data/fireblog")
 //        val myRef = database.getReference("message")
+        //endregion
 
 
         // item click시 발생하는 event

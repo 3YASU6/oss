@@ -46,9 +46,9 @@ class ItemListActivity : AppCompatActivity()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_item_list)
 
-        val hoge = "LG 5S sjidfoehif"
-        val piyo = "244000"
-        setSchedule(this, hoge,piyo)
+//        val hoge = "LG 5S sjidfoehif"
+//        val piyo = "244000"
+//        setSchedule(this, hoge,piyo)
         //System.out.println("Received")
         //Toast.makeText(this,"Received", Toast.LENGTH_LONG).show()
 

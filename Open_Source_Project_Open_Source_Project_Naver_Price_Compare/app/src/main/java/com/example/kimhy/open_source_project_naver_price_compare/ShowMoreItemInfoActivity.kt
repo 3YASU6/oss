@@ -53,8 +53,6 @@ class ShowMoreItemInfoActivity : AppCompatActivity() {
             lpriceText.setText(getiprice)
             val getmallname = swapVariable.get("mallname") as String
             mallNameText.setText(getmallname)
-            val gethprice = swapVariable.get("hprice") as String
-            hprice.setText(gethprice)
             val getimage = swapVariable.get("image") as String
             imageurl.loadUrl(getimage)
             val getlink = swapVariable.get("link") as String
@@ -82,7 +80,6 @@ class ShowMoreItemInfoActivity : AppCompatActivity() {
         name_item = tileText.getText().toString()
         i_price = lpriceText.getText().toString()
         mall_name = mallNameText.getText().toString()
-        h_price = hprice.getText().toString()
         link = linkText.getText().toString()
         productid = productidText.getText().toString()
 
@@ -137,7 +134,6 @@ class ShowMoreItemInfoActivity : AppCompatActivity() {
             intent.putExtra("mallname",  mallNameText.getText());
             intent.putExtra("date",  date);
             intent.putExtra("link",  link);
-            intent.putExtra("hprice",  hprice.getText());
             intent.putExtra("productid",productid)
 
 

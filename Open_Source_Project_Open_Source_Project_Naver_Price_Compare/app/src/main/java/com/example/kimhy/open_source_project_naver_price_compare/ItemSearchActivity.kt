@@ -33,6 +33,11 @@ class ItemSearchActivity : AppCompatActivity()
         var data_array_hprice = Array(display, { i -> "hprice-$i" })
         var data_array_productid = Array(display, { i -> "productid-$i" })
 
+
+        for(i in data_array_items.indices){
+            data_array_items.set(i,"")
+        }
+
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
         listView.adapter = adapter
 

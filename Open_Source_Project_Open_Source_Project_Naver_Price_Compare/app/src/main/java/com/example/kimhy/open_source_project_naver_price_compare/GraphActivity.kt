@@ -28,7 +28,6 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
-import kotlinx.android.synthetic.main.activity_show_more_item_info.*
 
 
 class GraphActivity : AppCompatActivity() {
@@ -106,7 +105,6 @@ class GraphActivity : AppCompatActivity() {
         rightAxis.setEnabled(false)
 
 
-        //val buyButton = findViewById(R.id.buyButton) as Button
         //buyButton click시 발생하는 event
         buyButton.setOnClickListener {
             // 해당 상품 구매 사이트에 이동
@@ -121,7 +119,7 @@ class GraphActivity : AppCompatActivity() {
 
         }
 
-        //val deleteButton = findViewById(R.id.deleteButton) as ImageButton
+
         //delete button click시 발생하는 event
         deleteButton.setOnClickListener {
             val builder = AlertDialog.Builder(this)

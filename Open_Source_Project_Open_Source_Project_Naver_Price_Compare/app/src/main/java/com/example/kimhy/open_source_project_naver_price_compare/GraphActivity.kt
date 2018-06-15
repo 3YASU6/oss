@@ -41,6 +41,23 @@ class GraphActivity : AppCompatActivity() {
 
         val item_price = intent.getStringExtra("lprice")
         val item_title = intent.getStringExtra("title")
+        val swapVariable = intent.extras
+        if (swapVariable != null) {
+
+            val getlink = swapVariable.get("link") as String
+            textViewlink.setText(getlink)
+            val gettitle = swapVariable.get("title") as String
+            titleText.setText(gettitle)
+            val getlprice = swapVariable.get("iprice") as String
+            priceText.setText(getlprice)
+
+
+
+
+        }
+        var link:String
+        link = textViewlink.getText().toString()
+
 
         priceText.setText(item_price)
         titleText.setText(item_title)
@@ -114,7 +131,7 @@ class GraphActivity : AppCompatActivity() {
             webview = "http://search.shopping.naver.com/gate.nhn?id=12830391037"
            // intent.putExtra("link", webview)
             val detailintent = Intent(this, WebView::class.java)
-            detailintent.putExtra("link", webview)
+            detailintent.putExtra("link", link)
             startActivity(detailintent)
 
         }

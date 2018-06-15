@@ -127,7 +127,7 @@ public class Naver_API extends Thread
             {
                 mallName[k] = array[i + 2];
             }
-            if (array[i].equals("produceId"))
+            if (array[i].equals("productId"))
             {
                 produceId[k] = array[i + 2];
             }
@@ -136,6 +136,10 @@ public class Naver_API extends Thread
                 productType[k] = array[i + 2];
                 k++;
             }
+        }
+        for (String str:produceId)
+        {
+            System.out.println(str);
         }
         //String parse part end
 

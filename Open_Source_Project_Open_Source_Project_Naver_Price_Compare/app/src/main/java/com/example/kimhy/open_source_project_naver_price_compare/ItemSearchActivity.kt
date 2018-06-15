@@ -14,12 +14,12 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.firestore.FirebaseFirestore
 
 
-
-
-class ItemSearchActivity : AppCompatActivity() {
+class ItemSearchActivity : AppCompatActivity()
+{
     var display = 20;
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_item_search)
         //     val db = FirebaseFirestore.getInstance()
@@ -45,22 +45,28 @@ class ItemSearchActivity : AppCompatActivity() {
 
 
         //searchView 검색 버튼을 눌렀을때 발생하는 event
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextChange(newText: String): Boolean {
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener
+        {
+            override fun onQueryTextChange(newText: String): Boolean
+            {
                 //검색어 입력시 : onQueryTextChange
                 return false
             }
 
-            override fun onQueryTextSubmit(query: String): Boolean {
+            override fun onQueryTextSubmit(query: String): Boolean
+            {
                 //검색어 완료시 : onQueryTextSubmit
                 //Task HERE
 
                 //thread 만들어서 불러옴 http://plaboratory.org/archives/108 참조
                 val thread = Naver_API(query)
                 thread.start()
-                try {
+                try
+                {
                     thread.join()// API 요청 후 데이터를 다 가져올때까지 대기 반드시 사용할 것
-                } catch (e: Exception) {
+                }
+                catch (e: Exception)
+                {
                     e.printStackTrace()
                 }
                 var result = thread.getResult()
@@ -86,44 +92,50 @@ class ItemSearchActivity : AppCompatActivity() {
 
                 var productid: Array<String>? = null
                 productid = thread.getProduceId()
-
-
+                println(productid)
 
                 //https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html
                 //https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/with-index.html
                 //http://codetravel.tistory.com/17
-/*
-                for (index in title)
+
+                for (index in productid)
                 {
                     println("\n "+index+" 번째 상품명: ${index}")
-                    data_array_items.set(index, title)
+                    //data_array_items.set(index, title)
                 }
-*/
-                for ((index, value) in title.withIndex()) {
+
+                for ((index, value) in title.withIndex())
+                {
                     data_array_items.set(index, value)
                     println("the element at $index is $value")
                 }
-                for ((index, value) in iprice.withIndex()) {
+                for ((index, value) in iprice.withIndex())
+                {
                     data_array_iprice.set(index, value)
 
                 }
-                for ((index, value) in mallname.withIndex()) {
+                for ((index, value) in mallname.withIndex())
+                {
                     data_array_mallname.set(index, value)
 
                 }
-                for ((index, value) in link.withIndex()) {
+                for ((index, value) in link.withIndex())
+                {
                     data_array_link.set(index, value)
 
                 }
-                for ((index, value) in image.withIndex()) {
+                for ((index, value) in image.withIndex())
+                {
                     data_array_image.set(index, value)
                 }
 
-                for ((index, value) in hprice.withIndex()) {
+                for ((index, value) in hprice.withIndex())
+                {
                     data_array_hprice.set(index, value)
                     println("the element at $index is $value")
                 }
-                for ((index, value) in productid.withIndex()) {
+                for ((index, value) in productid.withIndex())
+                {
                     data_array_productid.set(index, value)
                     println("the element at $index is $value")
                 }
@@ -134,7 +146,7 @@ class ItemSearchActivity : AppCompatActivity() {
         })
 
         //아이템 클릭시 화면이동
-        searchListView.setOnItemClickListener {parent, view, position, id ->
+        searchListView.setOnItemClickListener { parent, view, position, id ->
             adapter.getItem(position)
             data_array_items.get(position)
             val title_sub: String = data_array_items.get(position)
@@ -144,7 +156,7 @@ class ItemSearchActivity : AppCompatActivity() {
             val hprice: String = data_array_hprice.get(position)
             val link_: String = data_array_link.get(position)
             val productid_: String = data_array_productid.get(position)
-            Toast.makeText(this, "Position Clicked:"+" "+title_sub,Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Position Clicked:" + " " + title_sub, Toast.LENGTH_SHORT).show()
             val detailintent = Intent(this, ShowMoreItemInfoActivity::class.java)
 
             //=========prepare the text, so it can be taken in ShowMoreItemInfo

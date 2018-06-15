@@ -74,7 +74,7 @@ class ItemListActivity : AppCompatActivity()
         val ItemLowprice = intent.getStringExtra( "iprice" )
         val ItemMallname = intent.getStringExtra( "mallname" )
         val ItemDate = intent.getStringExtra( "date" )
-        val ItemProductId = intent.getStringArrayExtra("productid")
+        val ItemProductId = intent.getStringExtra("productid")
 
         //intent.putExtra("hprice",  hprice.getText());
         // ListView 첫번쩨 요소에 ItemName 추가
@@ -82,6 +82,14 @@ class ItemListActivity : AppCompatActivity()
 
         var fileIO = FileIO(this)
         var data_array_items = fileIO.loadItemsFromFile()
+
+        //split
+        // data_array_items = data_array_items.spliterator("\n")
+
+
+
+
+        //var data_array_items = ArrayList<String>()
         var data_array_link = ArrayList<String>()
         var data_array_lprice = ArrayList<String>()
         var data_array_mallname = ArrayList<String>()
@@ -101,7 +109,7 @@ class ItemListActivity : AppCompatActivity()
             data_array_mallname.add(ItemMallname)
             data_array_graphDate
             data_array_graphPriceData
-
+            data_array_productId.add(ItemProductId)
         }
         val itemsAdapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
         thisView.adapter = itemsAdapter

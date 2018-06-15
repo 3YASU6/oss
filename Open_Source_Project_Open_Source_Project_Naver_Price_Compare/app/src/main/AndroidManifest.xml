@@ -8,6 +8,9 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!-- 단말기가 재부팅했을 때 작업을 계속하기 위해 -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/icon2"
@@ -42,6 +45,7 @@
             android:label="@string/frame_name_item_search"
             android:screenOrientation="portrait" />
 
+
         <!--
          <activity
              android:name=".ItemListActivity"
@@ -49,9 +53,9 @@
              android:label="@string/frame_name_item_list"/>
         -->
 
-        <service
-            android:name=".MyIntentService"
-            android:exported="false"></service>
+        <!-- <service -->
+        <!-- android:name=".MyIntentService_kt" -->
+        <!-- android:exported="false"></service> -->
     </application>
 
 </manifest>

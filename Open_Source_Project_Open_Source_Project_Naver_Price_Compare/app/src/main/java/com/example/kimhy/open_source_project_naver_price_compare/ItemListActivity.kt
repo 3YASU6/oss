@@ -1,5 +1,6 @@
 package com.example.kimhy.open_source_project_naver_price_compare
 
+import android.content.ClipData
 import android.content.Intent
 import android.icu.util.ULocale
 import android.nfc.Tag
@@ -73,7 +74,7 @@ class ItemListActivity : AppCompatActivity()
         val ItemLowprice = intent.getStringExtra( "iprice" )
         val ItemMallname = intent.getStringExtra( "mallname" )
         val ItemDate = intent.getStringExtra( "date" )
-
+        val ItemProductId = intent.getStringArrayExtra("productid")
 
         //intent.putExtra("hprice",  hprice.getText());
         // ListView 첫번쩨 요소에 ItemName 추가
@@ -84,6 +85,7 @@ class ItemListActivity : AppCompatActivity()
         var data_array_link = ArrayList<String>()
         var data_array_lprice = ArrayList<String>()
         var data_array_mallname = ArrayList<String>()
+        var data_array_productId = ArrayList<String>()
         var data_array_graphDate = ArrayList<String>()
         var data_array_graphPriceData = ArrayList<String>()
         if (ItemName == null)
@@ -94,9 +96,9 @@ class ItemListActivity : AppCompatActivity()
         else
         {
             data_array_items.add(ItemName)
-            data_array_link
-            data_array_lprice
-            data_array_mallname
+            data_array_link.add(ItemLink)
+            data_array_lprice.add(ItemLowprice)
+            data_array_mallname.add(ItemMallname)
             data_array_graphDate
             data_array_graphPriceData
 

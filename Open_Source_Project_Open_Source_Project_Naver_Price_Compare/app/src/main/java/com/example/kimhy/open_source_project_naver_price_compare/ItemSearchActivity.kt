@@ -31,6 +31,7 @@ class ItemSearchActivity : AppCompatActivity() {
         var data_array_link = Array(display, { i -> "Link-$i" })
         var data_array_image = Array(display, { i -> "Image-$i" })
         var data_array_hprice = Array(display, { i -> "hprice-$i" })
+        var data_array_productid = Array(display, { i -> "productid-$i" })
 
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
         listView.adapter = adapter
@@ -83,6 +84,9 @@ class ItemSearchActivity : AppCompatActivity() {
                 var hprice: Array<String>? = null
                 hprice = thread.getHprice()
 
+                var productid: Array<String>? = null
+                productid = thread.getProduceId()
+
 
 
                 //https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html
@@ -119,6 +123,10 @@ class ItemSearchActivity : AppCompatActivity() {
                     data_array_hprice.set(index, value)
                     println("the element at $index is $value")
                 }
+                for ((index, value) in productid.withIndex()) {
+                    data_array_productid.set(index, value)
+                    println("the element at $index is $value")
+                }
 
                 val fix: Array<String>? = title
                 return false
@@ -135,6 +143,7 @@ class ItemSearchActivity : AppCompatActivity() {
             val image: String = data_array_image.get(position)
             val hprice: String = data_array_hprice.get(position)
             val link_: String = data_array_link.get(position)
+            val productid_: String = data_array_productid.get(position)
             Toast.makeText(this, "Position Clicked:"+" "+title_sub,Toast.LENGTH_SHORT).show()
             val detailintent = Intent(this, ShowMoreItemInfoActivity::class.java)
 
@@ -145,6 +154,7 @@ class ItemSearchActivity : AppCompatActivity() {
             detailintent.putExtra("image", image);
             detailintent.putExtra("hprice", hprice);
             detailintent.putExtra("link", link_);
+            detailintent.putExtra("productid", productid_);
             startActivity(detailintent)
         }
     }

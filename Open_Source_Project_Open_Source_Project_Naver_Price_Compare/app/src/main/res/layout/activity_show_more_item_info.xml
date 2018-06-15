@@ -83,4 +83,14 @@
         android:layout_marginStart="12dp"
         android:text="TextView"
         android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/productidText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="12dp"
+        android:text="TextView"
+        android:visibility="invisible" />
 </RelativeLayout>

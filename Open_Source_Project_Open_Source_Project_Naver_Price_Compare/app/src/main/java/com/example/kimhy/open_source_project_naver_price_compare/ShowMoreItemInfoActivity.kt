@@ -83,48 +83,7 @@ class ShowMoreItemInfoActivity : AppCompatActivity() {
         link = linkText.getText().toString()
         productid = productidText.getText().toString()
 
-//        //==============add and insert to database
 //
-//        val items = HashMap<String, Any>()
-//        val item = HashMap<String, Any>()
-//        if (flavour!=null) {
-//            try {
-//
-//                // put the data in string database
-//                items.put("name", name_item)
-//                item.put("name", name_item)
-//                items.put("iprice", i_price)
-//                items.put("mall_name", mall_name)
-//                items.put("date", date)
-//                // insert the database to firebase
-//
-//           //     items.put("date", date)
-//                items.put("hprice", h_price)
-//
-//                // insert the database to firebase
-//                db.collection("items").document(name_item).set(items).addOnSuccessListener {
-//                    void: Void? -> Toast.makeText(this, "Successfully uploaded to the database :)", Toast.LENGTH_LONG).show()
-//                //if failed to insert the data
-//                }.addOnFailureListener {
-//                    // if the data failure
-//                    exception: java.lang.Exception -> Toast.makeText(this, exception.toString(), Toast.LENGTH_LONG).show()
-//                }
-//                db.collection("items").document("Title").update(item).addOnSuccessListener {
-//                    void: Void? -> Toast.makeText(this, "Successfully uploaded to the database :)", Toast.LENGTH_LONG).show()
-//
-//                }.addOnFailureListener {
-//                    // if the data failure
-//                    exception: java.lang.Exception -> Toast.makeText(this, exception.toString(), Toast.LENGTH_LONG).show()
-//                }
-//                //if there is no data in the String
-//            }catch (e:Exception) {
-//                Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show()
-//            }
-//        }else {
-//            //if can't read the data
-//            Toast.makeText(this, "Please fill up the fields :(", Toast.LENGTH_LONG).show()
-//        }
-
         // addToWishListButton click시 발생하는 event를 추가
         addToWishListButton.setOnClickListener {
             val intent = Intent(this, ItemListActivity::class.java)

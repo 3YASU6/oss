@@ -35,7 +35,31 @@ import kotlin.collections.ArrayList
 class ItemListActivity : AppCompatActivity()
 {
 
-    lateinit var db: DocumentReference
+    lateinit var data_array_items: ArrayList<String>
+    lateinit var data_array_iprice_: ArrayList<String>
+    lateinit var data_array_mallname_: ArrayList<String>
+    lateinit var data_array_link_: ArrayList<String>
+    lateinit var data_array_image_: ArrayList<String>
+    lateinit var data_array_date_: ArrayList<String>
+    lateinit var data_array_hprice_: ArrayList<String>
+    lateinit var data_array_productid_: ArrayList<String>
+    lateinit var data_array_productType: ArrayList<String>
+    lateinit var splitArray: ArrayList<String>
+    lateinit var splitVariable: String
+
+    lateinit var storeArray: ArrayList<String>
+
+    /*
+    data_array_items
+    data_array_iprice_
+    data_array_mallname_
+    data_array_link_
+    data_array_image_
+    data_array_date_
+    data_array_hprice_
+    data_array_productid_
+    */
+
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -67,26 +91,56 @@ class ItemListActivity : AppCompatActivity()
         // ListView의 Item 에 놓는 데이터 배열를 초기화
         // var data_array_items = Array(display, { i -> "Title-$i" })
         // showMoreItemInfoActivity에서 온 intent값중 "title"를 취득
-        val ItemName = intent.getStringExtra( "title" )
-        val ItemLink = intent.getStringExtra( "link" )
+        val ItemName = intent.getStringExtra("title")
+        val ItemLink = intent.getStringExtra("link")
 
-        val ItemLowprice = intent.getStringExtra( "iprice" )
-        val ItemMallname = intent.getStringExtra( "mallname" )
-        val ItemDate = intent.getStringExtra( "date" )
+        val ItemLowprice = intent.getStringExtra("iprice")
+        val ItemMallname = intent.getStringExtra("mallname")
+        val ItemDate = intent.getStringExtra("date")
         val ItemProductId = intent.getStringExtra("productid")
 
         var fileIO = FileIO(this)
-        var data_array_items = fileIO.loadItemsFromFile()
-        var data_array_iprice_  = fileIO.loadItemsFromFile()
-        var data_array_mallname_ = fileIO.loadItemsFromFile()
-        var data_array_link_ = fileIO.loadItemsFromFile()
-        var data_array_image_ = fileIO.loadItemsFromFile()
-        var data_array_date_ = fileIO.loadItemsFromFile()
-        var data_array_hprice_ = fileIO.loadItemsFromFile()
-        var data_array_productid_ = fileIO.loadItemsFromFile()
+        data_array_items = ArrayList<String>()
+        data_array_iprice_ = ArrayList<String>()
+        data_array_mallname_ = ArrayList<String>()
+        data_array_link_ = ArrayList<String>()
+        data_array_image_ = ArrayList<String>()
+        data_array_date_ = ArrayList<String>()
+        data_array_hprice_ = ArrayList<String>()
+        data_array_productid_ = ArrayList<String>()
+        storeArray = ArrayList<String>()
+
+        splitArray = fileIO.loadItemsFromFile()
+        println("splitArray " + splitArray)
+        splitVariable = splitArray.toString()
+        split()
+        println("splitVariable : " + splitVariable)
+
+
+
+        if (data_array_items.size == 0)// 오류 방지를 위한 초기값 셋팅 미 설정시   Caused by: kotlin.UninitializedPropertyAccessException: lateinit property data_array_items has not been initialized
+        {
+            data_array_items.add(0, "LG전자 올뉴그램 15ZD980-GX50K")
+            data_array_link_.add(0, "http://search.shopping.naver.com/gate.nhn?id=13019218737")
+            data_array_image_.add(0, "https://shopping-phinf.pstatic.net/main_1301921/13019218737.20171219161642.jpg")
+            data_array_iprice_.add(0, "1349000")
+            data_array_mallname_.add(0, "네이버")
+            data_array_productid_.add(0, "13019218737")
+        }
+        println("data_array_items " + data_array_items)
+
+//        data_array_items
+//        data_array_iprice_
+//        data_array_mallname_
+//        data_array_link_
+//        data_array_image_
+//        data_array_date_
+//        data_array_hprice_
+//        data_array_productid_
 
         val swapVariable = intent.extras
-        if (swapVariable != null) {
+        if (swapVariable != null)
+        {
             val getLink = swapVariable.get("link") as String
             link.setText(getLink)
             linkweb = link.getText().toString()
@@ -132,14 +186,8 @@ class ItemListActivity : AppCompatActivity()
         var data_array_graphPriceData = ArrayList<String>()
 
 
-
-
-
         //intent.putExtra("hprice",  hprice.getText());
         // ListView 첫번쩨 요소에 ItemName 추가
-
-
-
 
 
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
@@ -150,10 +198,8 @@ class ItemListActivity : AppCompatActivity()
         // data_array_items = data_array_items.spliterator("\n")
 
 
-
-
         //var data_array_items = ArrayList<String>()
-
+/*
         if (ItemName == null)
         {
             //data_array_items.add("lg gram notebook")
@@ -165,17 +211,16 @@ class ItemListActivity : AppCompatActivity()
             data_array_graphPriceData
             data_array_productId.add(ItemProductId)
         }
+        */
         val itemsAdapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data_array_items)
         thisView.adapter = itemsAdapter
-
-
 
 
         // item click시 발생하는 event
         thisView.setOnItemClickListener { parent, view, position, id ->
             // activity_graph 화면에 이동
             adapter.getItem(position)
-            val position_ :Int = position
+            val position_: Int = position
             data_array_items.get(position)
             data_array_link_.get(position)
             data_array_iprice_.get(position)
@@ -207,46 +252,70 @@ class ItemListActivity : AppCompatActivity()
 
 
 
-        @Override fun onBackPressed()
+        @Override
+        fun onBackPressed()
         {
 
             super.onBackPressed();
         }
-        fileIO.storeItemsToFile(data_array_items)
+        copulation()
+        fileIO.storeItemsToFile(storeArray)
+    }
+
+    fun split()
+    {
+        val array: Array<String>
+        array = splitVariable.split("\"".toRegex()).dropLastWhile({ it.isEmpty() }).toTypedArray()
+        var k = 0
+        for (i in array.indices)
+        {
+            if (array[i] == "title")
+            {
+                data_array_items[k] = array[i + 2]
+            }
+            if (array[i] == "link")
+            {
+                data_array_link_[k] = array[i + 2]
+            }
+            if (array[i] == "image")
+            {
+                data_array_image_[k] = array[i + 2]
+            }
+            if (array[i] == "lprice")
+            {
+                data_array_iprice_[k] = array[i + 2]
+            }
+            if (array[i] == "hprice")
+            {
+                data_array_hprice_[k] = array[i + 2]
+            }
+            if (array[i] == "mallName")
+            {
+                data_array_mallname_[k] = array[i + 2]
+            }
+            if (array[i] == "productId")
+            {
+                data_array_productid_[k] = array[i + 2]
+                k++
+            }
+            /*
+            if (array[i] == "productType")
+            {
+                data_array_productType[k-1] = array[i + 2]
+
+            }
+            */
+        }
+    }
+
+    fun copulation()
+    {
+        for (i in data_array_items.indices)
+        {
+            storeArray.add("title" + " : " + data_array_items[i] + "link" + " : " + data_array_link_ + "image" + " : " + "lprice" + " : " + "productId" + " : " + data_array_productid_ + "mallName" + " : " + data_array_mallname_)
+        }
+
+
     }
 }
 
-class Note
-{
-
-    var id: String? = null
-    var title: String? = null
-    var content: String? = null
-
-    constructor()
-    {
-    }
-
-    constructor(id: String, title: String, content: String)
-    {
-        this.id = id
-        this.title = title
-        this.content = content
-    }
-
-    constructor(title: String, content: String)
-    {
-        this.title = title
-        this.content = content
-    }
-
-    fun toMap(): Map<String, Any>
-    {
-
-        val result = HashMap<String, Any>()
-        result.put("title", title!!)
-        result.put("content", content!!)
-
-        return result
-    }
-}

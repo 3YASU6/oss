@@ -67,7 +67,7 @@ public class FileIO
 
                 while ((string = bufferedReader.readLine()) != null)
                 {
-                    items.add(string);
+                    items.add(string+"\n");
                 }
                 bufferedReader.close();
                 reader.close();
@@ -94,7 +94,8 @@ public class FileIO
         return items;
     }
 
-    public void storeItemsToFile(ArrayList<String> argumentTitle)
+    public void storeItemsToFile(
+            ArrayList<String> argumentTitle)
     {
 
         System.out.println("storeItemsToFile method load success");

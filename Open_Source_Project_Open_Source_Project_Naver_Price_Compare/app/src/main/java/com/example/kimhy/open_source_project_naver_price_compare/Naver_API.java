@@ -92,6 +92,7 @@ public class Naver_API extends Thread
         String[] array;
         array = data.split("\"");
 
+
         title = new String[display];
         link = new String[display];
         image = new String[display];

@@ -122,12 +122,19 @@ class ItemListActivity : AppCompatActivity()
         {
             data_array_items.add(0, "LG전자 올뉴그램 15ZD980-GX50K")
             data_array_link_.add(0, "http://search.shopping.naver.com/gate.nhn?id=13019218737")
-            data_array_image_.add(0, "https://shopping-phinf.pstatic.net/main_1301921/13019218737.20171219161642.jpg")
+      //      data_array_image_.add(0, "https://shopping-phinf.pstatic.net/main_1301921/13019218737.20171219161642.jpg")
             data_array_iprice_.add(0, "1349000")
             data_array_mallname_.add(0, "네이버")
             data_array_productid_.add(0, "13019218737")
+
+            data_array_items.add(1, "삼성전자 오딧세이Z NT850XAX-GD7A")
+            data_array_link_.add(1, "http://search.shopping.naver.com/gate.nhn?id=14265078551")
+            //      data_array_image_.add(1, "https://shopping-phinf.pstatic.net/main_1426507/14265078551.20180516152958.jpg")
+            data_array_iprice_.add(1, "1999000")
+            data_array_mallname_.add(1, "네이버")
+            data_array_productid_.add(1, "14265078551")
         }
-        println("data_array_items " + data_array_items)
+        println("data_array_items t4esaf" + data_array_items)
 
 //        data_array_items
 //        data_array_iprice_
@@ -265,54 +272,70 @@ class ItemListActivity : AppCompatActivity()
     fun split()
     {
         val array: Array<String>
-        array = splitVariable.split("\"".toRegex()).dropLastWhile({ it.isEmpty() }).toTypedArray()
-        var k = 0
-        for (i in array.indices)
+        array = splitVariable.split(",".toRegex()).dropLastWhile({ it.isEmpty() }).toTypedArray()
+        var q = 0
+        for(i in array)
         {
-            if (array[i] == "title")
+            print(q)
+            q++
+            print(i+"\n")
+
+        }
+        var k = 0
+        /*
+        if(array.size >=2 )
+        {
+            for (i in array.indices)
             {
-                data_array_items[k] = array[i + 2]
-            }
-            if (array[i] == "link")
-            {
-                data_array_link_[k] = array[i + 2]
-            }
-            if (array[i] == "image")
-            {
-                data_array_image_[k] = array[i + 2]
-            }
-            if (array[i] == "lprice")
-            {
-                data_array_iprice_[k] = array[i + 2]
-            }
-            if (array[i] == "hprice")
-            {
-                data_array_hprice_[k] = array[i + 2]
-            }
-            if (array[i] == "mallName")
-            {
-                data_array_mallname_[k] = array[i + 2]
-            }
-            if (array[i] == "productId")
-            {
-                data_array_productid_[k] = array[i + 2]
-                k++
-            }
-            /*
-            if (array[i] == "productType")
-            {
-                data_array_productType[k-1] = array[i + 2]
+                if (array[i] == "title")
+                {
+                    data_array_items.add(k,array[i + 2])
+                }
+                if (array[i] == "link")
+                {
+                    data_array_link_.add(k,array[i + 2])
+                }
+                /*
+                if (array[i] == "image")
+                {
+                    data_array_image_.add(k,array[i + 2])
+                }
+                */
+                if (array[i] == "lprice")
+                {
+                    data_array_iprice_.add(k,array[i + 2])
+                }
+                if (array[i] == "hprice")
+                {
+                    data_array_hprice_.add(k,array[i + 2])
+                }
+                if (array[i] == "mallName")
+                {
+                    data_array_mallname_.add(k,array[i + 2])
+                }
+                if (array[i] == "productId")
+                {
+                    data_array_productid_.add(k,array[i + 2])
+                    k++
+                }
+
+//            if (array[i] == "productType")
+//            {
+//                data_array_productType[k-1] = array[i + 2]
+//
+//            }
 
             }
-            */
-        }
+        }*/
+
     }
 
     fun copulation()
     {
         for (i in data_array_items.indices)
         {
-            storeArray.add("title" + " : " + data_array_items[i] + "link" + " : " + data_array_link_ + "image" + " : " + "lprice" + " : " + "productId" + " : " + data_array_productid_ + "mallName" + " : " + data_array_mallname_)
+            storeArray.add(data_array_items[i]+","+data_array_link_[i]+","+data_array_iprice_[i]+","+data_array_productid_[i]+","+data_array_mallname_[i])//제목,링크,가격.제품ID,쇼핑몰 이름 순서로 합쳐서 선정
+            //storeArray.add("title" + " & " + data_array_items[i] + "link" + " & " + data_array_link_ + "image" + " & " + "lprice" + " & " + "productId" + " & " + data_array_productid_ + "mallName" + " & " + data_array_mallname_)
         }
 
 

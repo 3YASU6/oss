@@ -63,7 +63,6 @@ class ItemSearchActivity : AppCompatActivity()
                 //검색어 완료시 : onQueryTextSubmit
                 //Task HERE
 
-                //thread 만들어서 불러옴 http://plaboratory.org/archives/108 참조
                 val thread = Naver_API(query)
                 thread.start()
                 try
@@ -101,7 +100,6 @@ class ItemSearchActivity : AppCompatActivity()
 
                 //https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html
                 //https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/with-index.html
-                //http://codetravel.tistory.com/17
 
                 for (index in productid)
                 {

@@ -19,7 +19,6 @@ import android.widget.TextView;
 //NetworkOnMainThreadException AsyncTask
 public class Naver_API extends Thread
 {
-    //thread로 처리한 값을 넘기기 위해서 http://plaboratory.org/archives/108 참조
     private final String clientId = "tFZOEVXrE7b672z3YZ5L";//애플리케이션 클라이언트 아이디값";
     private final String clientSecret = "S2m9hxStjR";//애플리케이션 클라이언트 시크릿값";
     private String returnString = null;// naver_API_Call return variable

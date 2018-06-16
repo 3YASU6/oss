@@ -244,7 +244,7 @@ class ItemListActivity : AppCompatActivity()
             val detailintent = Intent(this, GraphActivity::class.java)
             detailintent.putExtra("title", title_sub);
             detailintent.putExtra("link", link_);
-            detailintent.putExtra("iprice", lprice);
+            detailintent.putExtra("lprice", lprice);
 //
             startActivity(detailintent)
         }

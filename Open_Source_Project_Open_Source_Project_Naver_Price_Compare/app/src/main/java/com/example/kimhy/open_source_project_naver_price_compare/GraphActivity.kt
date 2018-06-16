@@ -36,32 +36,31 @@ class GraphActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_graph)
 
+        // text 설정
         val priceText = findViewById(R.id.priceText) as TextView
         val titleText = findViewById(R.id.titleText) as TextView
 
         val item_price = intent.getStringExtra("lprice")
         val item_title = intent.getStringExtra("title")
+
+        priceText.setText(item_price)
+        titleText.setText(item_title)
+
         val swapVariable = intent.extras
         if (swapVariable != null) {
-
             val getlink = swapVariable.get("link") as String
             textViewlink.setText(getlink)
-            val gettitle = swapVariable.get("title") as String
-            titleText.setText(gettitle)
-            val getlprice = swapVariable.get("iprice") as String
-            priceText.setText(getlprice)
-
-
-
-
+//            val gettitle = swapVariable.get("title") as String
+//            titleText.setText(gettitle)
+//            val getlprice = swapVariable.get("iprice") as String
+//            priceText.setText(getlprice)
         }
         var link:String
         link = textViewlink.getText().toString()
 
 
-        priceText.setText(item_price)
-        titleText.setText(item_title)
 
+        // chart 취득
         val mChart = findViewById(R.id.chart) as LineChart
 
         // 터치 제스처 사용
@@ -146,6 +145,10 @@ class GraphActivity : AppCompatActivity() {
                 // YES를 눌렀을 때 발생돼는 event를 여기에 기술
                 // Item을 DB에서 삭제
 
+
+                // listView에 화면 이동
+                val intent = Intent(this, ItemListActivity::class.java)
+                startActivity(intent)
 
                 // Toast로 삭제 완료됐음을 표시
                 Toast.makeText(this, getString(R.string.deleteFinishedMessage), Toast.LENGTH_SHORT).show()

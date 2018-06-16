@@ -265,7 +265,7 @@ class ItemListActivity : AppCompatActivity()
 
             super.onBackPressed();
         }
-        copulation()
+//        copulation()
         fileIO.storeItemsToFile(storeArray)
     }
 

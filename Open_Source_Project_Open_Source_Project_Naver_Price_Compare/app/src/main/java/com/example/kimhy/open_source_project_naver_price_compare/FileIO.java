@@ -34,7 +34,7 @@ public class FileIO
     {
         ArrayList<String> items = new ArrayList<>();
         File file = new File(context.getFilesDir(), fileName);//file object Create
-        System.out.println("file location " + context.getFilesDir());
+        //System.out.println("file location " + context.getFilesDir());
 
         if (!file.exists())
             {

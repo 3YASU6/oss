@@ -16,13 +16,12 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class ItemSearchActivity : AppCompatActivity()
 {
-    var display = 20;
+    var display = 20
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_item_search)
-        //     val db = FirebaseFirestore.getInstance()
 
         val listView = findViewById(R.id.searchListView) as ListView
         var data_array_items = Array(display, { i -> "Title-$i" })
@@ -73,8 +72,6 @@ class ItemSearchActivity : AppCompatActivity()
                 {
                     e.printStackTrace()
                 }
-                var result = thread.getResult()
-                //println("ItemSearch " + result)
                 //쓰레드 처리 끝
                 var title: Array<String>? = null
                 title = thread.getTitle()
@@ -104,7 +101,6 @@ class ItemSearchActivity : AppCompatActivity()
                 for (index in productid)
                 {
                     println("\n "+index+" 번째 상품명: ${index}")
-                    //data_array_items.set(index, title)
                 }
 
                 for ((index, value) in title.withIndex())
@@ -115,23 +111,19 @@ class ItemSearchActivity : AppCompatActivity()
                 for ((index, value) in iprice.withIndex())
                 {
                     data_array_iprice.set(index, value)
-
                 }
                 for ((index, value) in mallname.withIndex())
                 {
                     data_array_mallname.set(index, value)
-
                 }
                 for ((index, value) in link.withIndex())
                 {
                     data_array_link.set(index, value)
-
                 }
                 for ((index, value) in image.withIndex())
                 {
                     data_array_image.set(index, value)
                 }
-
                 for ((index, value) in hprice.withIndex())
                 {
                     data_array_hprice.set(index, value)
@@ -153,23 +145,24 @@ class ItemSearchActivity : AppCompatActivity()
             adapter.getItem(position)
             data_array_items.get(position)
             val title_sub: String = data_array_items.get(position)
-            val iprice: String = data_array_iprice.get(position)
+            val lprice: String = data_array_iprice.get(position)
             val mallname: String = data_array_mallname.get(position)
             val image: String = data_array_image.get(position)
             val hprice: String = data_array_hprice.get(position)
             val link_: String = data_array_link.get(position)
             val productid_: String = data_array_productid.get(position)
             Toast.makeText(this, "Position Clicked:" + " " + title_sub, Toast.LENGTH_SHORT).show()
+
             val detailintent = Intent(this, ShowMoreItemInfoActivity::class.java)
 
             //=========prepare the text, so it can be taken in ShowMoreItemInfo
-            detailintent.putExtra("title", title_sub);
-            detailintent.putExtra("iprice", iprice);
-            detailintent.putExtra("mallname", mallname);
-            detailintent.putExtra("image", image);
-            detailintent.putExtra("hprice", hprice);
-            detailintent.putExtra("link", link_);
-            detailintent.putExtra("productid", productid_);
+            detailintent.putExtra("title", title_sub)
+            detailintent.putExtra("lprice", lprice)
+            detailintent.putExtra("mallname", mallname)
+            detailintent.putExtra("image", image)
+            detailintent.putExtra("hprice", hprice)
+            detailintent.putExtra("link", link_)
+            detailintent.putExtra("productid", productid_)
             startActivity(detailintent)
         }
     }

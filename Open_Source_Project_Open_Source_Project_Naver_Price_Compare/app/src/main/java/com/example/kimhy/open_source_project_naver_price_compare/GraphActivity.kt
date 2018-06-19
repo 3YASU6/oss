@@ -36,31 +36,19 @@ class GraphActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_graph)
 
-        // text 설정
+        // ItemList화면에서 오는 intent값을 text에 표시
         val priceText = findViewById(R.id.priceText) as TextView
         val titleText = findViewById(R.id.titleText) as TextView
+        priceText.setText(intent.getStringExtra("lprice"))
+        titleText.setText(intent.getStringExtra("title"))
 
-        val item_price = intent.getStringExtra("lprice")
-        val item_title = intent.getStringExtra("title")
-
-        priceText.setText(item_price)
-        titleText.setText(item_title)
-
-        val swapVariable = intent.extras
-        if (swapVariable != null) {
-            val getlink = swapVariable.get("link") as String
-            textViewlink.setText(getlink)
-//            val gettitle = swapVariable.get("title") as String
-//            titleText.setText(gettitle)
-//            val getlprice = swapVariable.get("iprice") as String
-//            priceText.setText(getlprice)
-        }
-        var link:String
-        link = textViewlink.getText().toString()
+        // ItemList화면에서 오는 intent값을 취득
+        val link = intent.getStringExtra("link")
+        val productID = intent.getStringExtra("productid")
 
 
 
-        // chart 취득
+        //////////////////////////////// chart 정의  ////////////////////////////////////////
         val mChart = findViewById(R.id.chart) as LineChart
 
         // 터치 제스처 사용
@@ -121,18 +109,11 @@ class GraphActivity : AppCompatActivity() {
         rightAxis.setEnabled(false)
 
 
-        //buyButton click시 발생하는 event
+        //buyButton click시 해당 상품 구매 사이트에 이동
         buyButton.setOnClickListener {
-            // 해당 상품 구매 사이트에 이동
-            Toast.makeText(this, "해당 상품 구매 사이트에 이동", Toast.LENGTH_SHORT).show()
-
-            val webview: String
-            webview = "http://search.shopping.naver.com/gate.nhn?id=12830391037"
-           // intent.putExtra("link", webview)
-            val detailintent = Intent(this, WebView::class.java)
-            detailintent.putExtra("link", link)
-            startActivity(detailintent)
-
+            val WebViewIntent = Intent(this, WebView::class.java)
+            WebViewIntent.putExtra("link", link)
+            startActivity(WebViewIntent)
         }
 
 
@@ -142,16 +123,32 @@ class GraphActivity : AppCompatActivity() {
             builder.setMessage(getString(R.string.messageOfDeleteDialog))
             builder.setTitle(getString(R.string.titleOfDeleteDialog))
             builder.setPositiveButton("YES") { dialog, which ->
-                // YES를 눌렀을 때 발생돼는 event를 여기에 기술
-                // Item을 DB에서 삭제
+                // TODO: YES를 눌렀을 때 ItemList에서 Item삭제 : items.txt에서 해당 상품 정보 삭제
 
+                //////////////////////////// 파일 읽기. ファイル読み込み /////////////////////////////////
+                var fileArray: ArrayList<String>
+                var fileIO = FileIO(this) // File의 인스턴스 생성. Fileのインスタンス生成
+                fileArray = fileIO.loadItemsFromFile() // File에서 부터 내용 읽고 오기 . Fileから内容(ArrayList)を読み取ってくる  1行：1商品
+                var newFileArray = ArrayList<String>()
 
-                // listView에 화면 이동
-                val intent = Intent(this, ItemListActivity::class.java)
-                startActivity(intent)
+                // 전상품의 loop. 全商品分のループ
+                for(i in fileArray.indices){
+                    val array_splied_itemInfo = split(fileArray[i])  //상품 정보를 split한 결과. アイテムの情報をsplitした結果
+                    if(array_splied_itemInfo[3] != productID) // if same productID
+                    {
+                        newFileArray.add(fileArray[i])
+                    }
+                }
 
-                // Toast로 삭제 완료됐음을 표시
+                val fileio = FileIO(this)
+                fileio.storeItemsToFile(newFileArray)
+
+                // . Toast로 삭제 완료됐음을 표시
                 Toast.makeText(this, getString(R.string.deleteFinishedMessage), Toast.LENGTH_SHORT).show()
+
+                // ItemList 에 화면 이동
+                val goToItemListIntent = Intent(this, ItemListActivity::class.java)
+                startActivity(goToItemListIntent)
             }
             builder.setNeutralButton("Cancel") { _, _ ->
             }
@@ -161,4 +158,11 @@ class GraphActivity : AppCompatActivity() {
 
         }
     }
+
+    fun split(splitVariable : String) : Array<String>
+    {
+        val splitedArray: Array<String> = splitVariable.split(",".toRegex()).dropLastWhile({ it.isEmpty() }).toTypedArray()   // 특히 의미없음 : .toRegex()).dropLastWhile({ it.isEmpty() })
+        return splitedArray
+    }
+
 }

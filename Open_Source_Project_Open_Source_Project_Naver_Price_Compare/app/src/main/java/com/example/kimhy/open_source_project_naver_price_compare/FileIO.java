@@ -9,8 +9,13 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.lang.reflect.Array;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
 
 public class FileIO
 {
@@ -24,7 +29,6 @@ public class FileIO
 
     public FileIO(Context context)
     {
-
         this.context = context;
         System.out.println("context const success");
     }
@@ -33,125 +37,107 @@ public class FileIO
     public ArrayList<String> loadItemsFromFile()
     {
         ArrayList<String> items = new ArrayList<>();
-        File file = new File(context.getFilesDir(), fileName);//file object Create
-        //System.out.println("file location " + context.getFilesDir());
+        // file object Create
+        File file = new File(context.getFilesDir(), fileName);
 
+        // 파일이 존재하지 않으면 새로은 파일을 생성. ファイルが存在しない時、新たなファイルを生成
         if (!file.exists())
-            {
+        {
             try
-                {
+            {
                 file.createNewFile();
-                }
+            }
             catch (IOException e)
-                {
+            {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
-                }
             }
-
-        if (file.exists())
-            {
+        }
+        else{  // 파일이 존재할때. ファイルが存在するとき
             System.out.println("I find the Items.txt");
-            }
-        else
-            {
-            System.out.println("No, there is not a no file.");
-            }
+        }
 
-        if (file.exists() & file.canWrite())
-            {
-            try
-                {
+        // 파일이 존재하고 또 입력 가능, ファイルが存在し、かつ書き込み可能
+        if (file.exists() & file.canWrite()) {
+            try {
                 reader = new FileReader(file);
                 bufferedReader = new BufferedReader(reader);
 
-                while ((string = bufferedReader.readLine()) != null)
-                    {
-                    items.add(string+"\n");
-                    }
+                while ((string = bufferedReader.readLine()) != null) {
+                    items.add(string);
+                }
                 bufferedReader.close();
                 reader.close();
 
-                System.out.println("file read success");//
-                }
-            catch (Exception e)
-                {
+                System.out.println("file read success");
+            } catch (Exception e) {
                 e.printStackTrace();
+            }
+        }
 
-                }
-            System.out.println("success " + items);
-            }
-
-        //        int size = 0;
-        //        String[] arrayReturn = new String[items.size()];
-        //        for (String temp : items)
-        //        {
-        //
-        //            arrayReturn[size++] = temp;
-        //
-        //        }
-        file.delete();
-        try
-            {
-            file.createNewFile();
-            }
-        catch (Exception e)
-            {
-            e.printStackTrace();
-            }
         return items;
     }
 
-    public void storeItemsToFile(
-            ArrayList<String> argumentTitle)
-    {
 
+
+
+    public String addNewItem(String newItemInfo) {
+        try {
+            // file object Create
+            File file_name = new File(context.getFilesDir(), fileName);
+            FileWriter file_object = new FileWriter(file_name, true);
+            PrintWriter pw = new PrintWriter(new BufferedWriter(file_object));
+
+            pw.println(newItemInfo);
+
+            pw.close();
+
+            return newItemInfo + " : Successfully Add New Item";
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "ERROR : " + e.toString();
+        }
+    }
+
+
+
+    public void storeItemsToFile(ArrayList<String> argumentTitle)
+    {
         System.out.println("storeItemsToFile method load success");
         System.out.println(argumentTitle);
-        ArrayList<String> items = new ArrayList<>();
-        //        for (String temp : argumentTitle)
-        //        {
-        //
-        //            items.add(temp);
-        //
-        //        }
-        File file = new File(context.getFilesDir(), fileName);//file object Create
-
-
+        File file = new File(context.getFilesDir(), fileName); //file object Create
         try
-            {
+        {
             writer = new FileWriter(file);
             bufferedWriter = new BufferedWriter(writer);
             System.out.println("data " + argumentTitle);
-            for (String str : argumentTitle)//items->argumentTitle
-                {
+            for (String str : argumentTitle) //items->argumentTitle
+            {
                 bufferedWriter.write(str);
                 bufferedWriter.newLine();
-
-                }
+            }
             //file write
             bufferedWriter.flush();
-            }
+        }
         catch (Exception e)
-            {
+        {
             e.printStackTrace();
-            }
+        }
         try
-            {
+        {
             if (bufferedWriter != null)
-                {
-                bufferedWriter.close();
-                }
-            if (writer != null)
-                {
-                writer.close();
-                }
-            }
-        catch (Exception e)
             {
-            e.printStackTrace();
+                bufferedWriter.close();
             }
+            if (writer != null)
+            {
+                writer.close();
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
-
 
 }

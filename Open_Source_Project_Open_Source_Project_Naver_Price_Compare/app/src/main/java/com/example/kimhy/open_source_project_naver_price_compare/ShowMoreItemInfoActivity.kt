@@ -26,79 +26,35 @@ class ShowMoreItemInfoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_show_more_item_info)
-        val  db = FirebaseFirestore.getInstance()
-              //  .document("items/detail")
 
+        // 상품 데이터
+        val itemName = intent.getStringExtra("title")
+        val lPrice = intent.getStringExtra("lprice")
+        val mall_name = intent.getStringExtra("mallname")
+        val link = intent.getStringExtra("link")
+        val productid = intent.getStringExtra("productid")
+        val image = intent.getStringExtra("image")
 
-        val name:String
-        val titleitem:String
-        val price:String
-        val mall:String
-        val name_item:String
-        val i_price:String
-        val h_price:String
-        val mall_name:String
-        val link:String
-        val productid:String
-        val intent = intent
-        val bd = intent.extras
-        val ti = intent.getStringExtra("title")
+        // textView Setting
+        tileText.setText(itemName)
+        lpriceText.setText(lPrice)
+        mallNameText.setText(mall_name)
+        productidText.setText(productid)
+        linkText.setText(link)
+        imageurl.loadUrl(image)
 
-//============set the text in the textview
-        val swapVariable = intent.extras
-        if (swapVariable != null) {
-            val getName = swapVariable.get("title") as String
-            tileText.setText(getName)
-            val getiprice = swapVariable.get("iprice") as String
-            lpriceText.setText(getiprice)
-            val getmallname = swapVariable.get("mallname") as String
-            mallNameText.setText(getmallname)
-            val getimage = swapVariable.get("image") as String
-            imageurl.loadUrl(getimage)
-            val getlink = swapVariable.get("link") as String
-            linkText.setText(getlink)
-            val getproductid = swapVariable.get("productid") as String
+        // 상품정보를 한줄에 넣기
+        val item_info = itemName + "," + link + "," + lPrice + "," + productid + "," + mall_name + ","
 
-
-
-
-        }
-
-        val calendar = Calendar.getInstance()
-        val date = calendar.getTime()
-        println(date)
-
-
-         android.text.format.DateFormat.format("yyyy-MM-dd ", java.util.Date())
-
-//       val calendar = Calendar.getInstance()
-//        val date = calendar.getTime()
-//        println(date)
-
-        //to take the data into string
-        var flavour = tileText.text.toString().trim()
-        name_item = tileText.getText().toString()
-        i_price = lpriceText.getText().toString()
-        mall_name = mallNameText.getText().toString()
-        link = linkText.getText().toString()
-        productid = productidText.getText().toString()
-
-//
-        // addToWishListButton click시 발생하는 event를 추가
+        // addToWishListButton click 시 발생하는 event
         addToWishListButton.setOnClickListener {
-            val intent = Intent(this, ItemListActivity::class.java)
-            //=========prepare the text, so it can be taken in ItemList
-            intent.putExtra("title", tileText.getText());
-            intent.putExtra("iprice", lpriceText.getText());
-            intent.putExtra("mallname",  mallNameText.getText());
-            intent.putExtra("date",  date);
-            intent.putExtra("link",  link);
-            intent.putExtra("productid",productid)
+            // file(items.txt) 에 상품 정보 추가
+            val fileio = FileIO(this)
+            val result_message = fileio.addNewItem(item_info)
 
-
-            startActivity(intent)
+            // ItemList 화면에 이동
+            val goToItemListIntent = Intent(this,ItemListActivity::class.java)
+            startActivity(goToItemListIntent)
         }
-
-
     }
 }

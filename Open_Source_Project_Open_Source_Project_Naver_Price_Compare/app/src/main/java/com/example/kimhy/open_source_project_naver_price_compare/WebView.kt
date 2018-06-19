@@ -21,7 +21,6 @@ import java.util.*
 import com.example.kimhy.open_source_project_naver_price_compare.R.layout.webview
 
 
-
 class WebView : AppCompatActivity() {
     private val mWebView: WebView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,26 +29,8 @@ class WebView : AppCompatActivity() {
 
         val swapVariable = intent.extras
         if (swapVariable != null) {
-
             val getlink = swapVariable.get("link") as String
             webvieww.loadUrl(getlink)
-
-
-
-        }
-
-
-
-
-
-//
-//        val intent = intent
-//        val myWebView = findViewById(R.id.webview_url) as WebView
-//        myWebView.loadUrl("http://www.example.com")
-////        webview_url.loadUrl("http://search.shopping.naver.com/gate.nhn?id=12830391037")
-//        val swapVariable = intent.extras
-//        if (swapVariable != null) {
-//            val getlink = swapVariable.get("link") as String
-//    //        webview_url.loadUrl("http://search.shopping.naver.com/gate.nhn?id=12830391037")
         }
     }
+}
